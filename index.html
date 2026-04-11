@@ -121,7 +121,7 @@
             accent-color: #00e5ff;
             cursor: pointer;
         }
-        
+
         .val-label {
             display: block;
             text-align: right;
@@ -134,213 +134,211 @@
     </style>
 </head>
 
-<body onload="applyLanguage(currentLang); updateMicUI(); updateExtraUI(); updateTxtMicUI(); updateLogoAudioUI('off'); updateLogoAudioUI('on'); updateMuteMicUI('off'); updateMuteMicUI('on'); updateCensuraUI('off'); updateCensuraUI('on'); updateStripUI('sx'); updateStripUI('dx'); updateVfx1UI('off'); updateVfx1UI('on'); updateBankUI('off'); updateBankUI('on'); updateVfx2UI('off'); updateVfx2UI('on'); updateSampUI(1, 'un'); updateSampUI(1, 'in'); updateSampUI(1, 'ac'); updateSampUI(2, 'un'); updateSampUI(2, 'in'); updateSampUI(2, 'ac'); updateSampUI(3, 'un'); updateSampUI(3, 'in'); updateSampUI(3, 'ac'); updateSampUI(4, 'un'); updateSampUI(4, 'in'); updateSampUI(4, 'ac'); updateSampUI(5, 'un'); updateSampUI(5, 'in'); updateSampUI(5, 'ac'); updateKnobUI(); updateLogoUI('off'); updateContentUI('off'); updateIconUI('game'); updateIconUI('chat'); updateIconUI('samp'); updateIconUI('sys'); updateMslUI('off'); updateMslUI('on'); updateNbnkUI('off'); updateNbnkUI('on');">
+<body
+    onload="updateMicUI(); updateExtraUI(); updateTxtMicUI(); updateLogoAudioUI(); updateMuteMicUI('off'); updateMuteMicUI('on'); updateCensuraUI('off'); updateCensuraUI('on'); updateStripUI('sx'); updateStripUI('dx'); updateVfx1UI('off'); updateVfx1UI('on'); updateBankUI('off'); updateBankUI('on'); updateVfx2UI('off'); updateVfx2UI('on'); updateSampUI(1, 'un'); updateSampUI(1, 'in'); updateSampUI(1, 'ac'); updateSampUI(2, 'un'); updateSampUI(2, 'in'); updateSampUI(2, 'ac'); updateSampUI(3, 'un'); updateSampUI(3, 'in'); updateSampUI(3, 'ac'); updateSampUI(4, 'un'); updateSampUI(4, 'in'); updateSampUI(4, 'ac'); updateSampUI(5, 'un'); updateSampUI(5, 'in'); updateSampUI(5, 'ac'); updateKnobUI(); updateLogoUI('off'); updateContentUI('off'); updateIconUI('game'); updateIconUI('chat'); updateIconUI('samp'); updateIconUI('sys'); updateMslUI('off'); updateMslUI('on'); updateNbnkUI('off'); updateNbnkUI('on');">
 
-<script>
-const M_COLORS = ["#000000", "#000000", "#7f0000", "#7f1f00", "#7f3f00", "#7f5f00", "#7f7f00", "#5f7f00", "#3f7f00", "#1f7f00", "#007f00", "#007f1f", "#007f3f", "#007f5f", "#007f7f", "#005f7f", "#003f7f", "#001f7f", "#00007f", "#1f007f", "#3f007f", "#5f007f", "#7f007f", "#7f005f", "#7f003f", "#7f001f", "#3f3f3f", "#cc0000", "#cc3300", "#cc6600", "#cc9900", "#cbcc00", "#99cc00", "#66cc00", "#32cc00", "#00cc00", "#00cc33", "#00cc66", "#00cc99", "#00cbcc", "#0099cc", "#0065cc", "#0032cc", "#0000cc", "#3300cc", "#6500cc", "#9900cc", "#cc00cb", "#cc0098", "#cc0066", "#cc0032", "#666666", "#ff0000", "#ff3f00", "#ff7f00", "#ffbf00", "#feff00", "#bfff00", "#7fff00", "#3fff00", "#00ff00", "#00ff3f", "#00ff7f", "#00ffbf", "#00feff", "#00bfff", "#007fff", "#003fff", "#0000ff", "#3f00ff", "#7f00ff", "#bf00ff", "#ff00fe", "#ff00bf", "#ff007f", "#ff003f", "#7f7f7f", "#ff6565", "#ff8c65", "#ffb265", "#ffd865", "#feff65", "#d8ff65", "#b2ff65", "#8cff65", "#65ff65", "#65ff8c", "#65ffb2", "#65ffd8", "#65feff", "#65d8ff", "#65b2ff", "#658cff", "#6565ff", "#8c65ff", "#b265ff", "#d865ff", "#ff65fe", "#ff65d8", "#ff65b2", "#ff658c", "#b2b2b2", "#ffb2b2", "#ffc5b2", "#ffd8b2", "#ffebb2", "#ffffb2", "#ebffb2", "#d8ffb2", "#c5ffb2", "#b2ffb2", "#b2ffc5", "#b2ffd8", "#b2ffeb", "#b2ffff", "#b2ebff", "#b2d8ff", "#b2c5ff", "#b2b2ff", "#c5b2ff", "#d8b2ff", "#ebb2ff", "#ffb2ff", "#ffb2eb", "#ffb2d8", "#d8d8d8", "#ffffff", "#ffffff"];
+    <script>
+        const M_COLORS = ["#000000", "#000000", "#7f0000", "#7f1f00", "#7f3f00", "#7f5f00", "#7f7f00", "#5f7f00", "#3f7f00", "#1f7f00", "#007f00", "#007f1f", "#007f3f", "#007f5f", "#007f7f", "#005f7f", "#003f7f", "#001f7f", "#00007f", "#1f007f", "#3f007f", "#5f007f", "#7f007f", "#7f005f", "#7f003f", "#7f001f", "#3f3f3f", "#cc0000", "#cc3300", "#cc6600", "#cc9900", "#cbcc00", "#99cc00", "#66cc00", "#32cc00", "#00cc00", "#00cc33", "#00cc66", "#00cc99", "#00cbcc", "#0099cc", "#0065cc", "#0032cc", "#0000cc", "#3300cc", "#6500cc", "#9900cc", "#cc00cb", "#cc0098", "#cc0066", "#cc0032", "#666666", "#ff0000", "#ff3f00", "#ff7f00", "#ffbf00", "#feff00", "#bfff00", "#7fff00", "#3fff00", "#00ff00", "#00ff3f", "#00ff7f", "#00ffbf", "#00feff", "#00bfff", "#007fff", "#003fff", "#0000ff", "#3f00ff", "#7f00ff", "#bf00ff", "#ff00fe", "#ff00bf", "#ff007f", "#ff003f", "#7f7f7f", "#ff6565", "#ff8c65", "#ffb265", "#ffd865", "#feff65", "#d8ff65", "#b2ff65", "#8cff65", "#65ff65", "#65ff8c", "#65ffb2", "#65ffd8", "#65feff", "#65d8ff", "#65b2ff", "#658cff", "#6565ff", "#8c65ff", "#b265ff", "#d865ff", "#ff65fe", "#ff65d8", "#ff65b2", "#ff658c", "#b2b2b2", "#ffb2b2", "#ffc5b2", "#ffd8b2", "#ffebb2", "#ffffb2", "#ebffb2", "#d8ffb2", "#c5ffb2", "#b2ffb2", "#b2ffc5", "#b2ffd8", "#b2ffeb", "#b2ffff", "#b2ebff", "#b2d8ff", "#b2c5ff", "#b2b2ff", "#c5b2ff", "#d8b2ff", "#ebb2ff", "#ffb2ff", "#ffb2eb", "#ffb2d8", "#d8d8d8", "#ffffff", "#ffffff"];
+        let activeColorInputId = null;
+        let activeColorIndex = 0;
+        let activeLength = 1;
+        let currentLang = 'it';
 
-const i18n = {
-    it: {
-        settings_title: "Impostazioni",
-        label_language: "Lingua",
-        btn_close: "Chiudi",
-        nav_led: "🎛️ Modifica LED",
-        nav_dsp: "🎚️ Audio DSP",
-        title_led: "🎛️ Modifica Hardware & LED",
-        col_left: "⬅️ Sinistra",
-        col_center: "⏺️ Centro",
-        col_right: "➡️ Destra",
-        label_mic_text: "Testo MIC",
-        label_logo_audio: "Logo (Audio)",
-        state_off_inactive: "Stato OFF (Inattivo)",
-        state_on_active: "Stato ON (Attivo)",
-        btn_apply_logo_audio: "Applica a Logo (Audio)",
-        label_mute_mic: "Mute Mic",
-        label_censura: "Tasto Censura",
-        head_mic_indicator: "📊 Mic Indicator",
-        head_extra_sx: "⚙️ Extra SX",
-        label_ssx: "Striscia Led SX",
-        label_vfx1: "Voice FX 1",
-        label_logo_main: "Logo Principale",
-        label_main_knob: "Main Knob (Manopolone)",
-        label_bank_btn: "Tasto BANK",
-        label_bank_num: "Numeri Bank (1 e 2)",
-        label_content_text: "Testo CONTENT",
-        label_ico_game: "Icona Game (Controller)",
-        label_ico_chat: "Icona Chat",
-        label_ico_samp: "Icona Sampler",
-        label_ico_sys: "Icona System",
-        btn_apply_mic_text: "Applica a Testo MIC",
-        btn_apply_mute_mic: "Applica a Mute Mic",
-        btn_apply_censura: "Applica a Censura",
-        btn_apply_mic_eff: "Applica Effetto MIC",
-        btn_apply_ssx: "Applica a Striscia SX",
-        btn_apply_vfx1: "Applica a Voice FX 1",
-        btn_apply_logo_main: "Applica a Logo",
-        btn_apply_knob: "Applica a Main Knob",
-        btn_apply_bank: "Applica a Tasto BANK",
-        btn_apply_bank_num: "Applica a Numero Bank Selezionato",
-        btn_apply_content: "Applica a Testo CONTENT",
-        btn_apply_ico_chat: "Applica a Icona Chat",
-        btn_apply_ico_samp: "Applica a Icona Sampler",
-        btn_apply_ico_sys: "Applica a Icona System",
-        head_extra_indicators: "📊 Altri Indicatori (Game/Chat/Samp/Sys)",
-        btn_apply_fader: "Applica a questo Fader",
-        head_mute_sliders: "🎚️ Mute Sliders",
-        label_mute_sliders: "Mute Sliders (1, 2, 3, 4)",
-        btn_apply_mute_sliders: "Applica a Mute Slider Selezionato",
-        head_sampler: "🎹 Samplers",
-        label_samp1: "Sample 1",
-        label_samp4: "Sample 4",
-        label_samp5: "Sample 5",
-        btn_apply_samp1: "Applica a Sample 1",
-        btn_apply_samp4: "Applica a Sample 4",
-        btn_apply_samp5: "Applica a Sample 5",
-        head_mic_ch: "🎤 Canale MIC"
-    },
-    en: {
-        settings_title: "Settings",
-        label_language: "Language",
-        btn_close: "Close",
-        nav_led: "🎛️ Edit LED",
-        nav_dsp: "🎚️ Audio DSP",
-        title_led: "🎛️ Edit Hardware & LED",
-        col_left: "⬅️ Left",
-        col_center: "⏺️ Center",
-        col_right: "➡️ Right",
-        label_mic_text: "MIC Text",
-        label_logo_audio: "Logo (Audio)",
-        state_off_inactive: "OFF State (Inactive)",
-        state_on_active: "ON State (Active)",
-        btn_apply_logo_audio: "Apply to Logo (Audio)",
-        label_mute_mic: "Mute Mic",
-        label_censura: "Censor Button",
-        head_mic_indicator: "📊 Mic Indicator",
-        head_extra_sx: "⚙️ Extra Left",
-        label_ssx: "Left LED Strip",
-        label_vfx1: "Voice FX 1",
-        label_logo_main: "Main Logo",
-        label_main_knob: "Main Knob",
-        label_bank_btn: "BANK Button",
-        label_bank_num: "Bank Numbers (1 & 2)",
-        label_content_text: "CONTENT Text",
-        label_ico_game: "Game Icon (Controller)",
-        label_ico_chat: "Chat Icon",
-        label_ico_samp: "Sampler Icon",
-        label_ico_sys: "System Icon",
-        btn_apply_mic_text: "Apply to MIC Text",
-        btn_apply_mute_mic: "Apply to Mute Mic",
-        btn_apply_censura: "Apply to Censor",
-        btn_apply_mic_eff: "Apply MIC Effect",
-        btn_apply_ssx: "Apply to Left Strip",
-        btn_apply_vfx1: "Apply to Voice FX 1",
-        btn_apply_logo_main: "Apply to Logo",
-        btn_apply_knob: "Apply to Main Knob",
-        btn_apply_bank: "Apply to BANK Button",
-        btn_apply_bank_num: "Apply to Selected Bank Num",
-        btn_apply_content: "Apply to CONTENT Text",
-        btn_apply_ico_chat: "Apply to Chat Icon",
-        btn_apply_ico_samp: "Apply to Sampler Icon",
-        btn_apply_ico_sys: "Apply to System Icon",
-        head_extra_indicators: "📊 Extra Indicators (Game/Chat/Samp/Sys)",
-        btn_apply_fader: "Apply to this Fader",
-        head_mute_sliders: "🎚️ Mute Sliders",
-        label_mute_sliders: "Mute Sliders (1, 2, 3, 4)",
-        btn_apply_mute_sliders: "Apply to Selected Mute Slider",
-        head_sampler: "🎹 Samplers",
-        label_samp1: "Sample 1",
-        label_samp4: "Sample 4",
-        label_samp5: "Sample 5",
-        btn_apply_samp1: "Apply to Sample 1",
-        btn_apply_samp4: "Apply to Sample 4",
-        btn_apply_samp5: "Apply to Sample 5",
-        head_mic_ch: "🎤 MIC Channel"
-    }
-};
+        const translations = {
+            it: {
+                settings_title: "IMPOSTAZIONI",
+                lang_label: "LINGUA / LANGUAGE",
+                close_btn: "CHIUDI",
+                nav_led: "🎛️ Modifica LED",
+                nav_dsp: "🎚️ Audio DSP",
+                led_page_h1: "🎛️ Modifica Hardware & LED",
+                col_left_h2: "⬅️ Sinistra",
+                mic_channel_h3: "🎤 Canale MIC",
+                mic_led_title: "LED MICROFONO",
+                logo_mic_title: "LOGO MICROFONO",
+                txt_mic_title: "TESTO MICROFONO",
+                mode_solid: "Solido",
+                mode_pulse: "Pulsante",
+                mode_rainbow: "Rainbow",
+                mode_chasing: "Chasing Fader",
+                strip_title: "STRISCIA LATERALE",
+                strip_sx: "STRISCIA SX",
+                strip_dx: "STRISCIA DX",
+                vfx1_title: "VOICE FX 1",
+                samp_title: "CAMPIONE",
+                unassigned_label: "NON ASSEGNATO",
+                empty_label: "VUOTO / INATTIVO",
+                playing_label: "IN RIPRODUZIONE",
+                buttons_title: "TASTI E FUNZIONI",
+                mute_mic_title: "TASTO MUTE MICROFONO",
+                censura_title: "TASTO CENSURA",
+                logo_audio_title: "LOGO AUDIO CARD",
+                state_inactive: "INATTIVO (OFF)",
+                state_active: "ATTIVO (ON)",
+                state_label: "STATO",
+                apply_btn: "APPLICA",
+                knobs_extra_title: "MANOPOLE E EXTRA",
+                main_knob_title: "MANOPOLA PRINCIPALE",
+                col_center_h2: "⏺️ CENTRO",
+                main_logo_title: "LOGO PRINCIPALE",
+                bank_btn_title: "TASTO BANK",
+                bank_nums_title: "NUMERI BANK (1 E 2)",
+                num_1_label: "NUMERO 1",
+                num_2_label: "NUMERO 2",
+                col_right_h2: "➡️ DESTRA",
+                content_title: "TESTO CONTENT",
+                ico_game_title: "ICONA GAME (CONTROLLER)",
+                ico_chat_title: "ICONA CHAT",
+                ico_samp_title: "ICONA SAMPLER",
+                ico_sys_title: "ICONA SYSTEM",
+                extra_indicators_h3: "📊 ALTRI INDICATORI",
+                slider_game: "SLIDER 1 (GAME)",
+                slider_chat: "SLIDER 2 (CHAT)",
+                slider_samp: "SLIDER 3 (SAMPLER)",
+                slider_sys: "SLIDER 4 (SYSTEM)",
+                mute_sliders_h3: "🎚️ MUTE SLIDERS",
+                mute_slider_label: "MUTE SLIDER",
+                vfx2_title: "VOICE FX 2"
+            },
+            en: {
+                settings_title: "SETTINGS",
+                lang_label: "LANGUAGE / LINGUA",
+                close_btn: "CLOSE",
+                nav_led: "🎛️ Edit LEDs",
+                nav_dsp: "🎚️ Audio DSP",
+                led_page_h1: "🎛️ Hardware & LED Editing",
+                col_left_h2: "⬅️ Left",
+                mic_channel_h3: "🎤 MIC Channel",
+                mic_led_title: "MICROPHONE LED",
+                logo_mic_title: "MICROPHONE LOGO",
+                txt_mic_title: "MICROPHONE TEXT",
+                mode_solid: "Solid",
+                mode_pulse: "Pulse",
+                mode_rainbow: "Rainbow",
+                mode_chasing: "Chasing Fader",
+                strip_title: "SIDE STRIP",
+                strip_sx: "LEFT STRIP",
+                strip_dx: "RIGHT STRIP",
+                vfx1_title: "VOICE FX 1",
+                samp_title: "SAMPLE",
+                unassigned_label: "UNASSIGNED",
+                empty_label: "EMPTY / INACTIVE",
+                playing_label: "PLAYING",
+                buttons_title: "BUTTONS & FUNCTIONS",
+                mute_mic_title: "MUTE MIC BUTTON",
+                censura_title: "CENSOR BUTTON",
+                logo_audio_title: "LOGO AUDIO CARD",
+                state_inactive: "INACTIVE (OFF)",
+                state_active: "ACTIVE (ON)",
+                state_label: "STATE",
+                apply_btn: "APPLY",
+                knobs_extra_title: "KNOBS & EXTRA",
+                main_knob_title: "MAIN KNOB",
+                col_center_h2: "⏺️ CENTER",
+                main_logo_title: "MAIN LOGO",
+                bank_btn_title: "BANK BUTTON",
+                bank_nums_title: "BANK NUMBERS (1 & 2)",
+                num_1_label: "NUMBER 1",
+                num_2_label: "NUMBER 2",
+                col_right_h2: "➡️ RIGHT",
+                content_title: "CONTENT TEXT",
+                ico_game_title: "GAME ICON (CONTROLLER)",
+                ico_chat_title: "CHAT ICON",
+                ico_samp_title: "SAMPLER ICON",
+                ico_sys_title: "SYSTEM ICON",
+                extra_indicators_h3: "📊 OTHER INDICATORS",
+                slider_game: "SLIDER 1 (GAME)",
+                slider_chat: "SLIDER 2 (CHAT)",
+                slider_samp: "SLIDER 3 (SAMPLER)",
+                slider_sys: "SLIDER 4 (SYSTEM)",
+                mute_sliders_h3: "🎚️ MUTE SLIDERS",
+                mute_slider_label: "MUTE SLIDER",
+                vfx2_title: "VOICE FX 2"
+            }
+        };
 
-let currentLang = localStorage.getItem('mgame_lang') || 'it';
-
-function applyLanguage(lang) {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (i18n[lang] && i18n[lang][key]) {
-            el.textContent = i18n[lang][key];
+        function updateTranslations() {
+            const lang = currentLang;
+            const t = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.textContent = t[key];
+                }
+            });
         }
-    });
-    // Update custom selects if they exist
-    document.querySelectorAll('.custom-select-box .sel-text').forEach(span => {
-        // This is tricky because custom selects hide the original. 
-        // For now, simple text triggers a refresh if needed.
-    });
-}
 
-function changeLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('mgame_lang', lang);
-    applyLanguage(lang);
-    // Refresh page to ensure all dynamic elements (like custom selects) updated correctly
-    location.reload(); 
-}
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('mgame_lang', lang);
+            updateTranslations();
 
-function openSettings() {
-    const overlay = document.getElementById('settings-overlay');
-    overlay.classList.add('open');
-    document.getElementById('lang_select').value = currentLang;
-}
-
-function closeSettings() {
-    document.getElementById('settings-overlay').classList.remove('open');
-}
-
-let activeColorInputId = null;
-let activeColorIndex = 0; 
-let activeLength = 1;
-
-function toggleMulti10(chk, inputId) {
-    let wrapS = document.getElementById('wrap_single_' + inputId);
-    let wrapM = document.getElementById('wrap_multi_' + inputId);
-    let hidden = document.getElementById(inputId);
-    if (chk.checked) {
-        wrapS.style.display = 'none';
-        wrapM.style.display = 'flex';
-        let val = hidden.value.split(',')[0] || 0;
-        hidden.value = [val, val, val, val, val, val, val, val, val, val].join(',');
-        for(let i=0; i<10; i++){
-             let b = document.getElementById(`btn_${inputId}_${i}`);
-             if(b) b.style.background = M_COLORS[parseInt(val)];
+            // Update active dropdown text if customized
+            document.querySelectorAll('.custom-select-wrapper select').forEach(sel => {
+                sel.dispatchEvent(new Event('change', { bubbles: true }));
+            });
         }
-    } else {
-        wrapS.style.display = 'flex';
-        wrapM.style.display = 'none';
-        let val = hidden.value.split(',')[0] || 0;
-        hidden.value = val.toString();
-        let btn = document.getElementById(`btn_single_${inputId}`);
-        if(btn) btn.style.background = M_COLORS[parseInt(val)];
-    }
-}
 
-function buildColorPickerHTML(inputId, type) {
-    if (type === 'single') {
-        return `<input type="hidden" id="${inputId}" value="0">
+        function toggleSettingsModal() {
+            const modal = document.getElementById('settingsModal');
+            modal.classList.toggle('open');
+        }
+
+        // Check saved language on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('mgame_lang');
+            if (savedLang && translations[savedLang]) {
+                currentLang = savedLang;
+                document.getElementById('langSelect').value = savedLang;
+            }
+            updateTranslations();
+        });
+
+        function toggleMulti10(chk, inputId) {
+            let wrapS = document.getElementById('wrap_single_' + inputId);
+            let wrapM = document.getElementById('wrap_multi_' + inputId);
+            let hidden = document.getElementById(inputId);
+            if (chk.checked) {
+                wrapS.style.display = 'none';
+                wrapM.style.display = 'flex';
+                let val = hidden.value.split(',')[0] || 0;
+                hidden.value = [val, val, val, val, val, val, val, val, val, val].join(',');
+                for (let i = 0; i < 10; i++) {
+                    let b = document.getElementById(`btn_${inputId}_${i}`);
+                    if (b) b.style.background = M_COLORS[parseInt(val)];
+                }
+            } else {
+                wrapS.style.display = 'flex';
+                wrapM.style.display = 'none';
+                let val = hidden.value.split(',')[0] || 0;
+                hidden.value = val.toString();
+                let btn = document.getElementById(`btn_single_${inputId}`);
+                if (btn) btn.style.background = M_COLORS[parseInt(val)];
+            }
+        }
+
+        function buildColorPickerHTML(inputId, type) {
+            if (type === 'single') {
+                return `<input type="hidden" id="${inputId}" value="0">
                 <div class="color-picker-container" style="display:flex; justify-content:center; padding:10px 0;">
                     <div class="color-btn" id="btn_${inputId}" onclick="openColorGrid('${inputId}', 0, 1)" style="width:50px;height:50px;border-radius:12px;background:${M_COLORS[0]};border:2px solid rgba(255,255,255,0.2);cursor:pointer;box-shadow:inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px rgba(0,229,255,0.1);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
                 </div>`;
-    } else if (type === 'multi_2') {
-        return `<input type="hidden" id="${inputId}" value="0,0">
-                <div class="color-picker-container" style="display:flex; justify-content:center; gap:15px; padding:10px 0;">
-                    <div class="color-btn" id="btn_${inputId}_0" onclick="openColorGrid('${inputId}', 0, 2)" style="width:50px;height:50px;border-radius:12px;background:${M_COLORS[0]};border:2px solid rgba(255,255,255,0.2);cursor:pointer;box-shadow:inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px rgba(0,229,255,0.1);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <div class="color-btn" id="btn_${inputId}_1" onclick="openColorGrid('${inputId}', 1, 2)" style="width:50px;height:50px;border-radius:12px;background:${M_COLORS[0]};border:2px solid rgba(255,255,255,0.2);cursor:pointer;box-shadow:inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px rgba(0,229,255,0.1);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
-                </div>`;
-    } else if (type === 'multi_4') {
-        return `<input type="hidden" id="${inputId}" value="0,0,0,0">
+            } else if (type === 'multi_4') {
+                return `<input type="hidden" id="${inputId}" value="0,0,0,0">
                 <div class="color-picker-container" style="display:flex; justify-content:center; gap:15px; padding:10px 0;">
                     <div class="color-btn" id="btn_${inputId}_0" onclick="openColorGrid('${inputId}', 0, 4)" style="width:40px;height:40px;border-radius:10px;background:${M_COLORS[0]};border:2px solid rgba(255,255,255,0.2);cursor:pointer;box-shadow:inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px rgba(0,229,255,0.05);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
                     <div class="color-btn" id="btn_${inputId}_1" onclick="openColorGrid('${inputId}', 1, 4)" style="width:40px;height:40px;border-radius:10px;background:${M_COLORS[0]};border:2px solid rgba(255,255,255,0.2);cursor:pointer;box-shadow:inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px rgba(0,229,255,0.05);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
                     <div class="color-btn" id="btn_${inputId}_2" onclick="openColorGrid('${inputId}', 2, 4)" style="width:40px;height:40px;border-radius:10px;background:${M_COLORS[0]};border:2px solid rgba(255,255,255,0.2);cursor:pointer;box-shadow:inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px rgba(0,229,255,0.05);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
                     <div class="color-btn" id="btn_${inputId}_3" onclick="openColorGrid('${inputId}', 3, 4)" style="width:40px;height:40px;border-radius:10px;background:${M_COLORS[0]};border:2px solid rgba(255,255,255,0.2);cursor:pointer;box-shadow:inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px rgba(0,229,255,0.05);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
                 </div>`;
-    } else if (type === 'single_or_10') {
-        return `<input type="hidden" id="${inputId}" value="0">
+            } else if (type === 'multi_2') {
+                return `<input type="hidden" id="${inputId}" value="0,0">
+                <div class="color-picker-container" style="display:flex; justify-content:center; gap:15px; padding:10px 0;">
+                    <div class="color-btn" id="btn_${inputId}_0" onclick="openColorGrid('${inputId}', 0, 2)" style="width:40px;height:40px;border-radius:10px;background:${M_COLORS[0]};border:2px solid rgba(255,255,255,0.2);cursor:pointer;box-shadow:inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px rgba(0,229,255,0.05);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                    <div class="color-btn" id="btn_${inputId}_1" onclick="openColorGrid('${inputId}', 1, 2)" style="width:40px;height:40px;border-radius:10px;background:${M_COLORS[0]};border:2px solid rgba(255,255,255,0.2);cursor:pointer;box-shadow:inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px rgba(0,229,255,0.05);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
+                </div>`;
+            } else if (type === 'single_or_10') {
+                return `<input type="hidden" id="${inputId}" value="0">
                 <div class="color-picker-container" style="display:flex; flex-direction:column; align-items:center; padding:10px 0;">
                     <div id="wrap_single_${inputId}" style="display:flex; justify-content:center;">
                         <div class="color-btn" id="btn_single_${inputId}" onclick="openColorGrid('${inputId}', 0, 1)" style="width:50px;height:50px;border-radius:12px;background:${M_COLORS[0]};border:2px solid rgba(255,255,255,0.2);cursor:pointer;box-shadow:inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px rgba(0,229,255,0.1);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></div>
@@ -361,52 +359,52 @@ function buildColorPickerHTML(inputId, type) {
                         <input type="checkbox" onchange="toggleMulti10(this, '${inputId}')" style="vertical-align:middle; width:auto; margin-right:5px; accent-color:#00e5ff;"> Usa Sfumatura 10 Colori
                     </label>
                 </div>`;
-    }
-}
+            }
+        }
 
-function openColorGrid(inputId, subIndex, length) {
-    activeColorInputId = inputId;
-    activeColorIndex = subIndex;
-    activeLength = length;
-    let modal = document.getElementById('color-grid-modal');
-    if (!modal) return;
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden'; 
-}
+        function openColorGrid(inputId, subIndex, length) {
+            activeColorInputId = inputId;
+            activeColorIndex = subIndex;
+            activeLength = length;
+            let modal = document.getElementById('color-grid-modal');
+            if (!modal) return;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
 
-function chiudiColorGrid() {
-    let modal = document.getElementById('color-grid-modal');
-    if (modal) modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
+        function chiudiColorGrid() {
+            let modal = document.getElementById('color-grid-modal');
+            if (modal) modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
-function assegnaColore(numero) {
-    if (!activeColorInputId) return;
-    let inputEl = document.getElementById(activeColorInputId);
-    if (!inputEl) return;
+        function assegnaColore(numero) {
+            if (!activeColorInputId) return;
+            let inputEl = document.getElementById(activeColorInputId);
+            if (!inputEl) return;
 
-    if (activeLength === 1) {
-        inputEl.value = numero.toString();
-        // Cerca prima il tasto normale o quello 'single' della variante 1or10
-        let btn = document.getElementById(`btn_${activeColorInputId}`);
-        if(!btn) btn = document.getElementById(`btn_single_${activeColorInputId}`);
-        if(btn) btn.style.background = M_COLORS[numero];
-    } else {
-        let valString = inputEl.value;
-        let arr = valString ? valString.split(',').map(s=>s.trim()) : [];
-        while(arr.length < activeLength) arr.push('0');
-        
-        arr[activeColorIndex] = numero.toString();
-        inputEl.value = arr.join(',');
-        
-        let btn_m = document.getElementById(`btn_${activeColorInputId}_${activeColorIndex}`);
-        if(btn_m) btn_m.style.background = M_COLORS[numero];
-    }
-    chiudiColorGrid();
-    inputEl.dispatchEvent(new Event('change', { bubbles: true }));
-}
+            if (activeLength === 1) {
+                inputEl.value = numero.toString();
 
-</script>
+                let btn = document.getElementById(`btn_${activeColorInputId}`);
+                if (!btn) btn = document.getElementById(`btn_single_${activeColorInputId}`);
+                if (btn) btn.style.background = M_COLORS[numero];
+            } else {
+                let valString = inputEl.value;
+                let arr = valString ? valString.split(',').map(s => s.trim()) : [];
+                while (arr.length < activeLength) arr.push('0');
+
+                arr[activeColorIndex] = numero.toString();
+                inputEl.value = arr.join(',');
+
+                let btn_m = document.getElementById(`btn_${activeColorInputId}_${activeColorIndex}`);
+                if (btn_m) btn_m.style.background = M_COLORS[numero];
+            }
+            chiudiColorGrid();
+            inputEl.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+    </script>
 
 
     {% include 'gui.html' %}
@@ -439,7 +437,7 @@ function assegnaColore(numero) {
             container.innerHTML = html;
         }
 
-                function _getUIHtmlForMode(mode, prefix) {
+        function _getUIHtmlForMode(mode, prefix) {
             let html = '';
 
             if (mode === 'solid') {
@@ -448,8 +446,8 @@ function assegnaColore(numero) {
                 html = buildColorPickerHTML(prefix + 'cols', 'multi_4');
             } else if (mode === 'rainbow' || mode === 'rainbow_fader') {
                 html = `<select id="${prefix}lum">
-                            <option value="true">Luminosità Alta</option>
                             <option value="false">Luminosità Bassa</option>
+                            <option value="true">Luminosità Alta</option>
                         </select>`;
             } else if (mode === 'fader' || mode === 'pulse_fader') {
                 html = buildColorPickerHTML(prefix + 'cols', 'single_or_10') + `
@@ -500,7 +498,6 @@ function assegnaColore(numero) {
             return html;
         }
 
-        // MOTORE ANTIPROIETTILE (Non crasherà mai più per via di variabili mancanti)
         function applyMicIndicator() {
             _applyIndicator('mic_mode', 'm_', 0);
         }
@@ -525,7 +522,6 @@ function assegnaColore(numero) {
             let cols = [0], bg = 0, peak = 0, isHigh = true;
             let c1 = 0, c2 = 0, is_fader = true;
 
-            // Legge i campi in totale sicurezza
             if (document.getElementById(prefix + 'cols')) {
                 let v = document.getElementById(prefix + 'cols').value;
                 if (v) cols = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
@@ -569,15 +565,15 @@ function assegnaColore(numero) {
         function updateStripUI(side) {
             let mode = document.getElementById('s' + side + '_mode').value;
             let container = document.getElementById('s' + side + '_inputs');
-            let prefix = 's' + side + '_'; 
-            
+            let prefix = 's' + side + '_';
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse' || mode === 'chasing') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -586,22 +582,22 @@ function assegnaColore(numero) {
             let mode = document.getElementById('s' + side + '_mode').value;
             let prefix = 's' + side + '_';
             let targetId = side === 'sx' ? 7 : 8;
-            
+
             let cols = [];
             let isHigh = false;
 
             if (mode === 'solid') {
                 let v = document.getElementById(`${prefix}c1`).value;
-                if(v!=="") cols = [parseInt(v)];
+                if (v !== "") cols = [parseInt(v)];
                 else cols = [0];
             } else if (mode === 'pulse' || mode === 'chasing') {
                 let v = document.getElementById(`${prefix}pcols`) ? document.getElementById(`${prefix}pcols`).value : '';
                 cols = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
-                if(cols.length === 0) cols = [0];
+                if (cols.length === 0) cols = [0];
             } else if (mode === 'rainbow') {
-                isHigh = document.getElementById(`${prefix}lum`).value === 'true'; 
+                isHigh = document.getElementById(`${prefix}lum`).value === 'true';
             }
-            
+
             // Dispatch
             if (mode === 'solid') {
                 inv('imposta_strisce_led', [targetId, cols[0]]);
@@ -639,7 +635,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById('t_lum').value === 'true'; 
+                p1 = document.getElementById('t_lum').value === 'true';
             }
 
             inv('imposta_tasto_mute_dinamico', [26, 'Testo MIC', mode, p1, p2, p3, p4, 'solid', 0, 0, 0, 0]);
@@ -649,14 +645,14 @@ function assegnaColore(numero) {
             let mode = document.getElementById(state === 'off' ? 'logo_audio_off_mode' : 'logo_audio_on_mode').value;
             let container = document.getElementById(state === 'off' ? 'logo_audio_off_inputs' : 'logo_audio_on_inputs');
             let prefix = state === 'off' ? 'la_off_' : 'la_on_';
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -664,7 +660,7 @@ function assegnaColore(numero) {
         function _getLogoAudioParams(state) {
             let mode = document.getElementById(state === 'off' ? 'logo_audio_off_mode' : 'logo_audio_on_mode').value;
             let prefix = state === 'off' ? 'la_off_' : 'la_on_';
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -673,7 +669,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
@@ -688,14 +684,14 @@ function assegnaColore(numero) {
             let mode = document.getElementById(state === 'off' ? 'mmic_off_mode' : 'mmic_on_mode').value;
             let container = document.getElementById(state === 'off' ? 'mmic_off_inputs' : 'mmic_on_inputs');
             let prefix = state === 'off' ? 'moff_' : 'mon_';
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -703,7 +699,7 @@ function assegnaColore(numero) {
         function _getMuteMicParams(state) {
             let mode = document.getElementById(state === 'off' ? 'mmic_off_mode' : 'mmic_on_mode').value;
             let prefix = state === 'off' ? 'moff_' : 'mon_';
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -712,7 +708,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
@@ -720,8 +716,8 @@ function assegnaColore(numero) {
         function applyMuteMic() {
             let off = _getMuteMicParams('off');
             let on = _getMuteMicParams('on');
-            
-            // Invia tutto in atomico al backend per preservare i colori!
+
+
             inv('imposta_tasto_mute_dinamico', [1, 'Mute Mic', off.mode, off.p1, off.p2, off.p3, off.p4, on.mode, on.p1, on.p2, on.p3, on.p4]);
         }
 
@@ -729,14 +725,14 @@ function assegnaColore(numero) {
             let mode = document.getElementById(state === 'off' ? 'censura_off_mode' : 'censura_on_mode').value;
             let container = document.getElementById(state === 'off' ? 'censura_off_inputs' : 'censura_on_inputs');
             let prefix = state === 'off' ? 'cenoff_' : 'cenon_';
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -744,7 +740,7 @@ function assegnaColore(numero) {
         function _getCensuraParams(state) {
             let mode = document.getElementById(state === 'off' ? 'censura_off_mode' : 'censura_on_mode').value;
             let prefix = state === 'off' ? 'cenoff_' : 'cenon_';
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -753,7 +749,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
@@ -768,14 +764,14 @@ function assegnaColore(numero) {
             let mode = document.getElementById(state === 'off' ? 'vfx1_off_mode' : 'vfx1_on_mode').value;
             let container = document.getElementById(state === 'off' ? 'vfx1_off_inputs' : 'vfx1_on_inputs');
             let prefix = state === 'off' ? 'vfx1off_' : 'vfx1on_';
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -783,7 +779,7 @@ function assegnaColore(numero) {
         function _getVfx1Params(state) {
             let mode = document.getElementById(state === 'off' ? 'vfx1_off_mode' : 'vfx1_on_mode').value;
             let prefix = state === 'off' ? 'vfx1off_' : 'vfx1on_';
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -792,7 +788,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
@@ -807,14 +803,14 @@ function assegnaColore(numero) {
             let mode = document.getElementById(state === 'off' ? 'logo_off_mode' : 'logo_on_mode').value;
             let container = document.getElementById(state === 'off' ? 'logo_off_inputs' : 'logo_on_inputs');
             let prefix = state === 'off' ? 'logooff_' : 'logoon_';
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -822,7 +818,7 @@ function assegnaColore(numero) {
         function _getLogoParams(state) {
             let mode = document.getElementById(state === 'off' ? 'logo_off_mode' : 'logo_on_mode').value;
             let prefix = state === 'off' ? 'logooff_' : 'logoon_';
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -831,7 +827,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
@@ -846,14 +842,14 @@ function assegnaColore(numero) {
             let mode = document.getElementById('content_off_mode').value;
             let container = document.getElementById('content_off_inputs');
             let prefix = 'contentoff_';
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -861,7 +857,7 @@ function assegnaColore(numero) {
         function _getContentParams() {
             let mode = document.getElementById('content_off_mode').value;
             let prefix = 'contentoff_';
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -870,24 +866,24 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
 
-        
+
         function updateIconUI(idName) {
             let mode = document.getElementById(`ico_${idName}_mode`).value;
             let container = document.getElementById(`ico_${idName}_inputs`);
             let prefix = `ico${idName}_`;
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -895,7 +891,7 @@ function assegnaColore(numero) {
         function _getIconParams(idName) {
             let mode = document.getElementById(`ico_${idName}_mode`).value;
             let prefix = `ico${idName}_`;
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -904,7 +900,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
@@ -923,14 +919,14 @@ function assegnaColore(numero) {
             let mode = document.getElementById(state === 'off' ? 'msl_off_mode' : 'msl_on_mode').value;
             let container = document.getElementById(state === 'off' ? 'msl_off_inputs' : 'msl_on_inputs');
             let prefix = state === 'off' ? 'msloff_' : 'mslon_';
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -938,7 +934,7 @@ function assegnaColore(numero) {
         function _getMslParams(state) {
             let mode = document.getElementById(state === 'off' ? 'msl_off_mode' : 'msl_on_mode').value;
             let prefix = state === 'off' ? 'msloff_' : 'mslon_';
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -947,24 +943,24 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
 
-        
+
         function updateNbnkUI(state) {
             let mode = document.getElementById(state === 'off' ? 'nbnk_off_mode' : 'nbnk_on_mode').value;
             let container = document.getElementById(state === 'off' ? 'nbnk_off_inputs' : 'nbnk_on_inputs');
             let prefix = state === 'off' ? 'nbnkoff_' : 'nbnkon_';
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -972,7 +968,7 @@ function assegnaColore(numero) {
         function _getNbnkParams(state) {
             let mode = document.getElementById(state === 'off' ? 'nbnk_off_mode' : 'nbnk_on_mode').value;
             let prefix = state === 'off' ? 'nbnkoff_' : 'nbnkon_';
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -981,7 +977,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
@@ -1007,14 +1003,14 @@ function assegnaColore(numero) {
             let mode = document.getElementById(state === 'off' ? 'bank_off_mode' : 'bank_on_mode').value;
             let container = document.getElementById(state === 'off' ? 'bank_off_inputs' : 'bank_on_inputs');
             let prefix = state === 'off' ? 'bankoff_' : 'bankon_';
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -1022,7 +1018,7 @@ function assegnaColore(numero) {
         function _getBankParams(state) {
             let mode = document.getElementById(state === 'off' ? 'bank_off_mode' : 'bank_on_mode').value;
             let prefix = state === 'off' ? 'bankoff_' : 'bankon_';
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -1031,7 +1027,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
@@ -1046,14 +1042,14 @@ function assegnaColore(numero) {
             let mode = document.getElementById(state === 'off' ? 'vfx2_off_mode' : 'vfx2_on_mode').value;
             let container = document.getElementById(state === 'off' ? 'vfx2_off_inputs' : 'vfx2_on_inputs');
             let prefix = state === 'off' ? 'vfx2off_' : 'vfx2on_';
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -1061,7 +1057,7 @@ function assegnaColore(numero) {
         function _getVfx2Params(state) {
             let mode = document.getElementById(state === 'off' ? 'vfx2_off_mode' : 'vfx2_on_mode').value;
             let prefix = state === 'off' ? 'vfx2off_' : 'vfx2on_';
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -1070,7 +1066,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
@@ -1081,19 +1077,19 @@ function assegnaColore(numero) {
             inv('imposta_tasto_mute_dinamico', [9, 'Voice FX 2', off.mode, off.p1, off.p2, off.p3, off.p4, on.mode, on.p1, on.p2, on.p3, on.p4]);
         }
 
-        
+
         function updateSampUI(num, state) {
             let mode = document.getElementById(`samp${num}_${state}_mode`).value;
             let container = document.getElementById(`samp${num}_${state}_inputs`);
             let prefix = `s${num}${state}_`;
-            
+
             let html = '';
             if (mode === 'solid') {
                 html = buildColorPickerHTML(prefix + 'c1', 'single');
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="true">Lum. Alta</option><option value="false">Lum. Bassa</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -1101,7 +1097,7 @@ function assegnaColore(numero) {
         function _getSampParams(num, state) {
             let mode = document.getElementById(`samp${num}_${state}_mode`).value;
             let prefix = `s${num}${state}_`;
-            let p1=0, p2=0, p3=0, p4=0;
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
 
             if (mode === 'solid') {
                 p1 = val(`${prefix}c1`);
@@ -1110,7 +1106,7 @@ function assegnaColore(numero) {
                 let arr = v.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
                 p1 = arr[0] || 0; p2 = arr[1] || 0; p3 = arr[2] || 0; p4 = arr[3] || 0;
             } else if (mode === 'rainbow') {
-                p1 = document.getElementById(`${prefix}lum`).value === 'true'; 
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
             }
             return { mode: mode, p1, p2, p3, p4 };
         }
@@ -1119,7 +1115,7 @@ function assegnaColore(numero) {
             let un = _getSampParams(num, 'un');
             let inv_in = _getSampParams(num, 'in');
             let ac = _getSampParams(num, 'ac');
-            inv('imposta_tasto_sampler_dinamico', [num, 'Sample '+num, un.mode, un.p1, un.p2, un.p3, un.p4, inv_in.mode, inv_in.p1, inv_in.p2, inv_in.p3, inv_in.p4, ac.mode, ac.p1, ac.p2, ac.p3, ac.p4]);
+            inv('imposta_tasto_sampler_dinamico', [num, 'Sample ' + num, un.mode, un.p1, un.p2, un.p3, un.p4, inv_in.mode, inv_in.p1, inv_in.p2, inv_in.p3, inv_in.p4, ac.mode, ac.p1, ac.p2, ac.p3, ac.p4]);
         }
 
         function updateMicDSP() {
@@ -1133,16 +1129,16 @@ function assegnaColore(numero) {
             let low = parseFloat(document.getElementById('eq_low').value);
             let mid = parseFloat(document.getElementById('eq_mid').value);
             let high = parseFloat(document.getElementById('eq_high').value);
-            
+
             document.getElementById('eq_sliders_container').style.display = attivo ? 'block' : 'none';
-            
+
             inv('imposta_eq', [attivo, low, mid, high]);
         }
 
         function updateCompressor() {
             let attivo = document.getElementById('comp_on_off').checked;
             let amount = parseInt(document.getElementById('comp_amount').value);
-            
+
             document.getElementById('comp_sliders_container').style.display = attivo ? 'block' : 'none';
             inv('imposta_compressor', [attivo, amount]);
         }
@@ -1161,6 +1157,93 @@ function assegnaColore(numero) {
             // forziamo l'accensione del Noise Gate e inviamo il valore.
             document.getElementById('gate_on_off').checked = true;
             inv('imposta_noise_gate', [parseInt(val)]);
+        }
+
+        function makeEverythingRainbow() {
+            if (!confirm("Sicuro di voler attivare la modalità MEGA RAINBOW su tutto il mixer?")) return;
+
+            // Imposta tutti i menu a tendina su 'rainbow' o 'rainbow_fader' se esiste l'opzione
+            let selects = document.querySelectorAll('select');
+            selects.forEach(sel => {
+                if (sel.id.endsWith('_mode')) {
+                    let opts = Array.from(sel.options);
+                    let rbOpt = opts.find(o => o.value === 'rainbow' || o.value === 'rainbow_fader');
+                    if (rbOpt) {
+                        sel.value = rbOpt.value;
+                        // Forza l'aggiornamento della Custom Select e delle UI dinamicamente
+                        sel.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                }
+            });
+
+            // Prepara l'elenco di tutte le funzioni di applicazione
+            let funcs = [
+                () => { if (typeof applyTxtMic === 'function') applyTxtMic(); },
+                () => { if (typeof applyLogoAudio === 'function') applyLogoAudio(); },
+                () => { if (typeof applyMuteMic === 'function') applyMuteMic(); },
+                () => { if (typeof applyCensura === 'function') applyCensura(); },
+                () => { if (typeof applyMicIndicator === 'function') applyMicIndicator(); },
+                () => { if (typeof applyStrip === 'function') { applyStrip('sx'); applyStrip('dx'); } },
+                () => { if (typeof applyVfx1 === 'function') applyVfx1(); },
+                () => { if (typeof applyVfx2 === 'function') applyVfx2(); },
+                () => { if (typeof applyLogo === 'function') applyLogo(); },
+                () => { if (typeof applyKnobIndicator === 'function') applyKnobIndicator(); },
+                () => { if (typeof applyBank === 'function') applyBank(); },
+                () => { if (typeof applyContent === 'function') applyContent(); },
+                () => {
+                    if (typeof applyIcon === 'function') {
+                        applyIcon('game', 29, 'Icona Game');
+                        applyIcon('chat', 30, 'Icona Chat');
+                        applyIcon('samp', 31, 'Icona Samp');
+                        applyIcon('sys', 32, 'Icona Sys');
+                    }
+                }
+            ];
+
+            // Sampler
+            for (let i = 1; i <= 5; i++) {
+                funcs.push(() => { if (typeof applySamp === 'function') applySamp(i); });
+            }
+
+            // Fader (Extra Indicators)
+            for (let i = 1; i <= 4; i++) {
+                funcs.push(() => {
+                    let targetSel = document.getElementById('e_target');
+                    if (targetSel && typeof applyExtraIndicator === 'function') {
+                        targetSel.value = i;
+                        applyExtraIndicator();
+                    }
+                });
+            }
+
+            // Mute Sliders
+            for (let i = 1; i <= 4; i++) {
+                funcs.push(() => {
+                    let mslSel = document.getElementById('msl_idx');
+                    if (mslSel && typeof applyMuteSlider === 'function') {
+                        mslSel.value = i;
+                        applyMuteSlider();
+                    }
+                });
+            }
+
+            // Bank Numbers
+            for (let i = 23; i <= 24; i++) {
+                funcs.push(() => {
+                    let nbnkSel = document.getElementById('nbnk_idx');
+                    if (nbnkSel && typeof applyNumBank === 'function') {
+                        nbnkSel.value = i;
+                        applyNumBank();
+                    }
+                });
+            }
+
+            // Esegue i comandi sequenzialmente con 150ms di latenza per non sovraccaricare l'UDP
+            let delay = 0;
+            funcs.forEach(f => {
+                setTimeout(f, delay);
+                delay += 150;
+            });
         }
     </script>
 </body>

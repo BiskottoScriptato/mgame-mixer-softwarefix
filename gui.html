@@ -1,96 +1,5 @@
 
 <style>
-
-<style>
-/* SETTINGS ICON */
-.settings-icon {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 2000;
-    cursor: pointer;
-    background: rgba(10, 10, 15, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 229, 255, 0.3);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #00e5ff;
-    font-size: 1.5em;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
-}
-
-.settings-icon:hover {
-    transform: rotate(90deg) scale(1.1);
-    background: rgba(10, 10, 15, 0.8);
-    box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
-    border-color: #00e5ff;
-}
-
-/* SETTINGS MODAL */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 3000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.modal-overlay.open {
-    display: flex;
-    opacity: 1;
-}
-
-.settings-modal {
-    background: #1a1a24;
-    border: 1px solid rgba(0, 229, 255, 0.4);
-    border-radius: 20px;
-    width: 400px;
-    padding: 30px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 229, 255, 0.1);
-    animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes modalPop {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.settings-modal h2 {
-    margin-top: 0;
-    color: #00e5ff;
-    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
-    padding-bottom: 15px;
-    margin-bottom: 25px;
-}
-
-.setting-row {
-    margin-bottom: 20px;
-}
-
-.setting-row label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: 600;
-    color: #ccc;
-    text-transform: uppercase;
-    font-size: 0.9em;
-}
-
-.close-modal-btn {
-    margin-top: 20px;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
 
 body {
@@ -115,6 +24,203 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+/* SETTINGS ICON - POSITIONED BOTTOM RIGHT */
+.settings-trigger {
+    position: fixed !important;
+    right: 25px !important;
+    bottom: 25px !important;
+    width: 48px !important;
+    height: 48px !important;
+    background: rgba(15, 15, 20, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    color: #00e5ff !important;
+    z-index: 9999 !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+.settings-trigger:hover {
+    background: rgba(0, 229, 255, 0.15) !important;
+    border-color: #00e5ff !important;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+.settings-trigger svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.6s ease;
+}
+
+.settings-trigger:hover svg {
+    transform: rotate(90deg);
+}
+
+/* MODAL OVERLAY */
+.modal-overlay {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    z-index: 10000 !important;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+    display: flex !important;
+    opacity: 1;
+}
+
+.modal-content {
+    background: rgba(20, 20, 25, 0.9) !important;
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+    border-radius: 20px !important;
+    padding: 40px !important;
+    width: 400px !important;
+    max-width: 90%;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 229, 255, 0.1) !important;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+
+.modal-overlay.open .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h2 {
+    margin-top: 0 !important;
+    margin-bottom: 30px !important;
+    color: #fff !important;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.setting-item {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 10px;
+    color: #00e5ff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+
+.close-modal-btn {
+    background: #00e5ff !important;
+    color: #000 !important;
+    border: none !important;
+    padding: 12px 30px !important;
+    border-radius: 10px !important;
+    font-weight: 900 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+}
+
+.close-modal-btn:hover {
+    background: #fff !important;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5) !important;
+}
+
+
+/* MODAL OVERLAY */
+.modal-overlay {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    z-index: 10000 !important;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+    display: flex !important;
+    opacity: 1;
+}
+
+.modal-content {
+    background: rgba(20, 20, 25, 0.9) !important;
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+    border-radius: 20px !important;
+    padding: 40px !important;
+    width: 400px !important;
+    max-width: 90%;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 229, 255, 0.1) !important;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+
+.modal-overlay.open .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h2 {
+    margin-top: 0 !important;
+    margin-bottom: 30px !important;
+    color: #fff !important;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.setting-item {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 10px;
+    color: #00e5ff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+
+.close-modal-btn {
+    background: #00e5ff !important;
+    color: #000 !important;
+    border: none !important;
+    padding: 12px 30px !important;
+    border-radius: 10px !important;
+    font-weight: 900 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+}
+
+.close-modal-btn:hover {
+    background: #fff !important;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5) !important;
 }
 
 .nav-btn {
@@ -404,720 +510,621 @@ input[type="checkbox"] {
 @keyframes rainbowScroll {
     0% { background-position: 100% 0; }
     100% { background-position: -100% 0; }
-
-/* SETTINGS ICON */
-.settings-icon {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 2000;
-    cursor: pointer;
-    background: rgba(10, 10, 15, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 229, 255, 0.3);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #00e5ff;
-    font-size: 1.5em;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
 }
 
-.settings-icon:hover {
-    transform: rotate(90deg) scale(1.1);
-    background: rgba(10, 10, 15, 0.8);
-    box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
-    border-color: #00e5ff;
-}
 
-/* SETTINGS MODAL */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 3000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
 
-.modal-overlay.open {
-    display: flex;
-    opacity: 1;
-}
 
-.settings-modal {
-    background: #1a1a24;
-    border: 1px solid rgba(0, 229, 255, 0.4);
-    border-radius: 20px;
-    width: 400px;
-    padding: 30px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 229, 255, 0.1);
-    animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes modalPop {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.settings-modal h2 {
-    margin-top: 0;
-    color: #00e5ff;
-    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
-    padding-bottom: 15px;
-    margin-bottom: 25px;
-}
-
-.setting-row {
-    margin-bottom: 20px;
-}
-
-.setting-row label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: 600;
-    color: #ccc;
-    text-transform: uppercase;
-    font-size: 0.9em;
-}
-
-.close-modal-btn {
-    margin-top: 20px;
-}
 </style>
-
-<div class="settings-icon" onclick="openSettings()">⚙️</div>
-
-<div class="modal-overlay" id="settings-overlay" onclick="closeSettings()">
-    <div class="settings-modal" onclick="event.stopPropagation()">
-        <h2 data-i18n="settings_title">Impostazioni</h2>
-        
-        <div class="setting-row">
-            <label data-i18n="label_language">Lingua / Language</label>
-            <select id="lang_select" onchange="changeLanguage(this.value)">
-                <option value="it">Italiano 🇮🇹</option>
-                <option value="en">English 🇺🇸</option>
-            </select>
-        </div>
-
-        <button class="close-modal-btn" onclick="closeSettings()" data-i18n="btn_close">Chiudi</button>
-    </div>
-</div>
 
 <div class="nav-bar">
     <button class="nav-btn active" onclick="switchPage('led-page', this)" data-i18n="nav_led">🎛️ Modifica LED</button>
     <button class="nav-btn" onclick="switchPage('dsp-page', this)" data-i18n="nav_dsp">🎚️ Audio DSP</button>
+    
+</div>
+
+<div class="settings-trigger" onclick="toggleSettingsModal()">
+    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.35 19.43,11.03L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.97 19.05,5.06L16.56,6.06C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.06L4.95,5.06C4.73,4.97 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11.03C4.53,11.35 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.94L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.94C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" /></svg>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal-overlay" onclick="toggleSettingsModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h2 data-i18n="settings_title">IMPOSTAZIONI</h2>
+        <div class="setting-item">
+            <label data-i18n="lang_label">LINGUA / LANGUAGE</label>
+            <select id="langSelect" onchange="changeLanguage(this.value)">
+                <option value="it">Italiano 🇮🇹</option>
+                <option value="en">English 🇺🇸</option>
+            </select>
+        </div>
+        <button onclick="toggleSettingsModal()" class="close-modal-btn" data-i18n="close_btn">CHIUDI</button>
+    </div>
 </div>
 <div id="led-page" class="view-page active">
-    <h1 style="margin-bottom:40px; font-size:2.5em; text-align:center;" data-i18n="title_led">🎛️ Modifica Hardware & LED</h1>
+    <h1 style="margin-bottom:40px; font-size:2.5em; text-align:center;" data-i18n="led_page_h1">🎛️ Modifica Hardware & LED</h1>
     <div class="mixer-board">
 
     <div class="column" id="col-left">
-        <h2 data-i18n="col_left">⬅️ Sinistra</h2>
+        <h2 data-i18n="col_left_h2">⬅️ Sinistra</h2>
 
-        <h3 data-i18n="head_mic_ch">🎤 Canale MIC</h3>
+        <h3 data-i18n="mic_channel_h3">🎤 Canale MIC</h3>
         <div class="card">
-            <label data-i18n="label_mic_text">Testo MIC</label>
+            <label data-i18n="txt_mic_title">Testo MIC</label>
             <select id="txt_mic_mode" onchange="updateTxtMicUI()" style="font-weight:bold; color:#00e5ff; margin-bottom:10px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="txt_mic_inputs" class="dynamic-box">
                 <input type="number" id="t_c1" placeholder="Colore">
             </div>
-            <button onclick="applyTxtMic()" style="margin-top: 10px;" data-i18n="btn_apply_mic_text">Applica a Testo MIC</button>
+            <button onclick="applyTxtMic()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         <div class="card">
-            <label data-i18n="label_logo_audio">Logo (Audio)</label>
+            <label data-i18n="logo_audio_title">Logo (Audio)</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato OFF (Inattivo)</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_inactive">Stato OFF (Inattivo)</span>
             </div>
             <select id="logo_audio_off_mode" onchange="updateLogoAudioUI('off')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="logo_audio_off_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
-
+            
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">Stato ON (Attivo)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="state_active">Stato ON (Attivo)</span>
             </div>
             <select id="logo_audio_on_mode" onchange="updateLogoAudioUI('on')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="logo_audio_on_inputs" class="dynamic-box"></div>
-
-            <button onclick="applyLogoAudio()" style="margin-top: 10px;" data-i18n="btn_apply_logo_audio">Applica a Logo (Audio)</button>
+            
+            <button onclick="applyLogoAudio()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         <div class="card">
-            <label data-i18n="label_mute_mic">Mute Mic</label>
+            <label data-i18n="mute_mic_title">Mute Mic</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato OFF (Inattivo)</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_inactive">Stato OFF (Inattivo)</span>
             </div>
             <select id="mmic_off_mode" onchange="updateMuteMicUI('off')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="mmic_off_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">Stato ON (Attivo)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="state_active">Stato ON (Attivo)</span>
             </div>
             <select id="mmic_on_mode" onchange="updateMuteMicUI('on')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="mmic_on_inputs" class="dynamic-box"></div>
             
-            <button onclick="applyMuteMic()" style="margin-top: 10px;" data-i18n="btn_apply_mute_mic">Applica a Mute Mic</button>
+            <button onclick="applyMuteMic()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         <div class="card">
-            <label data-i18n="label_censura">Tasto Censura</label>
+            <label data-i18n="censura_title">Tasto Censura</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato OFF (Inattivo)</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_inactive">Stato OFF (Inattivo)</span>
             </div>
             <select id="censura_off_mode" onchange="updateCensuraUI('off')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="censura_off_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">Stato ON (Attivo)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="state_active">Stato ON (Attivo)</span>
             </div>
             <select id="censura_on_mode" onchange="updateCensuraUI('on')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="censura_on_inputs" class="dynamic-box"></div>
             
-            <button onclick="applyCensura()" style="margin-top: 10px;" data-i18n="btn_apply_censura">Applica a Censura</button>
+            <button onclick="applyCensura()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
-        <h3 data-i18n="head_mic_indicator">📊 Mic Indicator</h3>
+        <h3 data-i18n="mic_led_title">📊 Mic Indicator</h3>
         <div class="card">
             <select id="mic_mode" onchange="updateMicUI()"
                 style="font-weight:bold; color:#00e5ff; margin-bottom: 10px;">
-                <option value="solid">Solid Color (Fisso / LED SPECIFICI)</option>
-                <option value="pulse">Pulse (Animazione Base)</option>
-                <option value="chasing">Chasing (Animazione Base)</option>
-                <option value="rainbow">Rainbow Animato</option>
-                <option value="fader">Fader (VU Meter Base)</option>
-                <option value="dynamic_gradient">Gradient Dinamico (Sfumatura calcolata)</option>
-                <option value="pulse_fader">Pulse Fader</option>
-                <option value="chasing_fader">Chasing Fader</option>
-                <option value="rainbow_fader">Rainbow Fader</option>
-                <option value="vu">VU Sensor (Sensore Diretto)</option>
+                <option value="solid" data-i18n="mode_solid">Solid Color</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse</option>
+                <option value="chasing" data-i18n="mode_chasing">Chasing Fader</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow</option>
             </select>
 
             <div id="mic_dynamic_inputs" class="dynamic-box">
             </div>
 
-            <button onclick="applyMicIndicator()" style="margin-top: 10px;" data-i18n="btn_apply_mic_eff">Applica Effetto MIC</button>
+            <button onclick="applyMicIndicator()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
-        <h3 data-i18n="head_extra_sx">⚙️ Extra SX</h3>
+        <h3 data-i18n="strip_sx">⚙️ Extra SX</h3>
         <div class="card">
-            <label data-i18n="label_ssx">Striscia Led SX</label>
+            <label data-i18n="strip_title">Striscia Led SX</label>
             <select id="ssx_mode" onchange="updateStripUI('sx')" style="font-weight:bold; color:#00e5ff; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="chasing">Chasing (Fg, Bkg)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="chasing" data-i18n="mode_chasing">Chasing (Fg, Bkg)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="ssx_inputs" class="dynamic-box"></div>
-            <button onclick="applyStrip('sx')" style="margin-top: 10px;" data-i18n="btn_apply_ssx">Applica a Striscia SX</button>
+            <button onclick="applyStrip('sx')" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         <div class="card">
-            <label data-i18n="label_vfx1">Voice FX 1</label>
+            <label data-i18n="vfx1_title">Voice FX 1</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato OFF / Unassigned</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_inactive">Stato OFF / Unassigned</span>
             </div>
             <select id="vfx1_off_mode" onchange="updateVfx1UI('off')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="vfx1_off_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">Stato ON (Attivo)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="state_active">Stato ON (Attivo)</span>
             </div>
             <select id="vfx1_on_mode" onchange="updateVfx1UI('on')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="vfx1_on_inputs" class="dynamic-box"></div>
             
-            <button onclick="applyVfx1()" style="margin-top: 10px;" data-i18n="btn_apply_vfx1">Applica a Voice FX 1</button>
+            <button onclick="applyVfx1()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         
         <div class="card">
-            <label>Sample 1</label>
+            <label data-i18n="samp_title">Sample 1</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#666; font-weight:bold;">S. Unassigned</span>
+                <span style="color:#666; font-weight:bold;" data-i18n="unassigned_label"></span>
             </div>
             <select id="samp1_un_mode" onchange="updateSampUI(1, 'un')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp1_un_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">S. Inactive (VUOTO)</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="empty_label"></span>
             </div>
             <select id="samp1_in_mode" onchange="updateSampUI(1, 'in')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp1_in_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">S. Active (IN RIPRODUZIONE)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="playing_label"></span>
             </div>
             <select id="samp1_ac_mode" onchange="updateSampUI(1, 'ac')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp1_ac_inputs" class="dynamic-box"></div>
             
-            <button onclick="applySamp(1)" style="margin-top: 10px;" data-i18n="btn_apply_samp1">Applica a Sample 1</button>
+            <button onclick="applySamp(1)" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         
         <div class="card">
-            <label>Sample 2</label>
+            <label data-i18n="samp_title">Sample 2</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#666; font-weight:bold;">S. Unassigned</span>
+                <span style="color:#666; font-weight:bold;" data-i18n="unassigned_label"></span>
             </div>
             <select id="samp2_un_mode" onchange="updateSampUI(2, 'un')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp2_un_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">S. Inactive (VUOTO)</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="empty_label"></span>
             </div>
             <select id="samp2_in_mode" onchange="updateSampUI(2, 'in')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp2_in_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">S. Active (IN RIPRODUZIONE)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="playing_label"></span>
             </div>
             <select id="samp2_ac_mode" onchange="updateSampUI(2, 'ac')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp2_ac_inputs" class="dynamic-box"></div>
             
-            <button onclick="applySamp(2)" style="margin-top: 10px;">Applica a Sample 2</button>
+            <button onclick="applySamp(2)" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
     </div>
 
     <div class="column" id="col-center">
-        <h2 data-i18n="col_center">⏺️ Centro</h2>
+        <h2 data-i18n="col_center_h2">⏺️ Centro</h2>
 
         <div class="card">
-            <label data-i18n="label_logo_main">Logo Principale</label>
+            <label data-i18n="main_logo_title">Logo Principale</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_label">Stato</span>
             </div>
             <select id="logo_off_mode" onchange="updateLogoUI('off')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="logo_off_inputs" class="dynamic-box"></div>
             
-            <button onclick="applyLogo()" style="margin-top: 10px;" data-i18n="btn_apply_logo_main">Applica a Logo</button>
+            <button onclick="applyLogo()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         <div class="card" style="border-color: #00e5ff55;">
-            <label style="color:#00e5ff; font-weight:bold;" data-i18n="label_main_knob">Main Knob (Manopolone)</label>
+            <label style="color:#00e5ff; font-weight:bold;" data-i18n="main_knob_title">Main Knob (Manopolone)</label>
             <select id="knob_mode" onchange="updateKnobUI()"
                 style="font-weight:bold; color:#ccc; margin-top: 5px; margin-bottom: 10px;">
-                <option value="solid">Solid Color (Fisso)</option>
-                <option value="pulse">Pulse</option>
-                <option value="chasing">Chasing</option>
-                <option value="rainbow">Rainbow Animato</option>
-                <option value="fader">Fader</option>
-                <option value="dynamic_gradient">Gradient Dinamico</option>
-                <option value="pulse_fader">Pulse Fader</option>
-                <option value="chasing_fader">Chasing Fader</option>
-                <option value="rainbow_fader">Rainbow Fader</option>
+                <option value="solid" data-i18n="mode_solid">Solid Color (Fisso)</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse</option>
+                <option value="chasing" data-i18n="mode_chasing">Chasing</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="knob_dynamic_inputs" class="dynamic-box">
             </div>
-            <button onclick="applyKnobIndicator()" style="margin-top: 10px;" data-i18n="btn_apply_knob">Applica a Main Knob</button>
+            <button onclick="applyKnobIndicator()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         <div class="card">
-            <label data-i18n="label_bank_btn">Tasto BANK</label>
+            <label data-i18n="bank_btn_title">Tasto BANK</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato OFF (Inattivo)</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_inactive">Stato OFF (Inattivo)</span>
             </div>
             <select id="bank_off_mode" onchange="updateBankUI('off')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="bank_off_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">Stato ON (Attivo)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="state_active">Stato ON (Attivo)</span>
             </div>
             <select id="bank_on_mode" onchange="updateBankUI('on')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="bank_on_inputs" class="dynamic-box"></div>
             
-            <button onclick="applyBank()" style="margin-top: 10px;" data-i18n="btn_apply_bank">Applica a Tasto BANK</button>
+            <button onclick="applyBank()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         
         <div class="card">
-            <label data-i18n="label_bank_num">Numeri Bank (1 e 2)</label>
+            <label data-i18n="bank_nums_title">Numeri Bank (1 e 2)</label>
             <select id="nbnk_idx" style="margin-bottom: 10px;">
-                <option value="23">Numero 1</option>
-                <option value="24">Numero 2</option>
+                <option value="23" data-i18n="num_1_label">Numero 1</option>
+                <option value="24" data-i18n="num_2_label">Numero 2</option>
             </select>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato OFF / Inattivo</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_inactive">Stato OFF / Inattivo</span>
             </div>
             <select id="nbnk_off_mode" onchange="updateNbnkUI('off')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="nbnk_off_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">Stato ON / Attivo</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="state_active">Stato ON / Attivo</span>
             </div>
             <select id="nbnk_on_mode" onchange="updateNbnkUI('on')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="nbnk_on_inputs" class="dynamic-box"></div>
             
-            <button onclick="applyNumBank()" style="margin-top: 10px;" data-i18n="btn_apply_bank_num">Applica a Numero Bank Selezionato</button>
+            <button onclick="applyNumBank()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         
         
         <div class="card">
-            <label>Sample 3</label>
+            <label data-i18n="samp_title">Sample 3</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#666; font-weight:bold;">S. Unassigned</span>
+                <span style="color:#666; font-weight:bold;" data-i18n="unassigned_label"></span>
             </div>
             <select id="samp3_un_mode" onchange="updateSampUI(3, 'un')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp3_un_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">S. Inactive (VUOTO)</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="empty_label"></span>
             </div>
             <select id="samp3_in_mode" onchange="updateSampUI(3, 'in')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp3_in_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">S. Active (IN RIPRODUZIONE)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="playing_label"></span>
             </div>
             <select id="samp3_ac_mode" onchange="updateSampUI(3, 'ac')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp3_ac_inputs" class="dynamic-box"></div>
             
-            <button onclick="applySamp(3)" style="margin-top: 10px;">Applica a Sample 3</button>
+            <button onclick="applySamp(3)" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
     </div>
 
     <div class="column" id="col-right">
-        <h2 data-i18n="col_right">➡️ Destra</h2>
+        <h2 data-i18n="col_right_h2">➡️ Destra</h2>
 
         <div class="card">
-            <label data-i18n="label_content_text">Testo CONTENT</label>
+            <label data-i18n="content_title">Testo CONTENT</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_label">Stato</span>
             </div>
             <select id="content_off_mode" onchange="updateContentUI('off')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="content_off_inputs" class="dynamic-box"></div>
             
-            <button onclick="applyContent()" style="margin-top: 10px;" data-i18n="btn_apply_content">Applica a Testo CONTENT</button>
+            <button onclick="applyContent()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
         
         <div class="card">
-            <label data-i18n="label_ico_game">Icona Game (Controller)</label>
+            <label data-i18n="ico_game_title">Icona Game (Controller)</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_label">Stato</span>
             </div>
             <select id="ico_game_mode" onchange="updateIconUI('game')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="ico_game_inputs" class="dynamic-box"></div>
-            <button onclick="applyIcon('game', 29, 'Icona Game (Controller)')" style="margin-top: 10px;">Applica a Icona Game (Controller)</button>
+            <button onclick="applyIcon('game', 29, 'Icona Game (Controller)')" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
         
         <div class="card">
-            <label data-i18n="label_ico_chat">Icona Chat</label>
+            <label data-i18n="ico_chat_title">Icona Chat</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_label">Stato</span>
             </div>
             <select id="ico_chat_mode" onchange="updateIconUI('chat')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="ico_chat_inputs" class="dynamic-box"></div>
-            <button onclick="applyIcon('chat', 30, 'Icona Chat')" style="margin-top: 10px;" data-i18n="btn_apply_ico_chat">Applica a Icona Chat</button>
+            <button onclick="applyIcon('chat', 30, 'Icona Chat')" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
         
         <div class="card">
-            <label data-i18n="label_ico_samp">Icona Sampler</label>
+            <label data-i18n="ico_samp_title">Icona Sampler</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_label">Stato</span>
             </div>
             <select id="ico_samp_mode" onchange="updateIconUI('samp')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="ico_samp_inputs" class="dynamic-box"></div>
-            <button onclick="applyIcon('samp', 31, 'Icona Sampler')" style="margin-top: 10px;" data-i18n="btn_apply_ico_samp">Applica a Icona Sampler</button>
+            <button onclick="applyIcon('samp', 31, 'Icona Sampler')" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
         
         <div class="card">
-            <label data-i18n="label_ico_sys">Icona System</label>
+            <label data-i18n="ico_sys_title">Icona System</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_label">Stato</span>
             </div>
             <select id="ico_sys_mode" onchange="updateIconUI('sys')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="ico_sys_inputs" class="dynamic-box"></div>
-            <button onclick="applyIcon('sys', 32, 'Icona System')" style="margin-top: 10px;" data-i18n="btn_apply_ico_sys">Applica a Icona System</button>
+            <button onclick="applyIcon('sys', 32, 'Icona System')" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
-        <h3 data-i18n="head_extra_indicators">📊 Altri Indicatori (Game/Chat/Samp/Sys)</h3>
+        <h3>📊 Altri Indicatori (Game/Chat/Samp/Sys)</h3>
         <div class="card" style="border-color: #00e5ff55;">
             <select id="e_target" style="font-weight:bold; color:#00e5ff; background:#1b1b1e; border-color:#00e5ff;">
-                <option value="1">Slider 1 (Game)</option>
-                <option value="2">Slider 2 (Chat)</option>
-                <option value="3">Slider 3 (Sampler)</option>
-                <option value="4">Slider 4 (System)</option>
+                <option value="1" data-i18n="slider_game">Slider 1 (Game)</option>
+                <option value="2" data-i18n="slider_chat">Slider 2 (Chat)</option>
+                <option value="3" data-i18n="slider_samp">Slider 3 (Sampler)</option>
+                <option value="4" data-i18n="slider_sys">Slider 4 (System)</option>
             </select>
             <select id="e_mode" onchange="updateExtraUI()"
                 style="font-weight:bold; color:#ccc; margin-top: 10px; margin-bottom: 10px;">
-                <option value="solid">Solid Color (Fisso)</option>
-                <option value="pulse">Pulse</option>
-                <option value="chasing">Chasing</option>
-                <option value="rainbow">Rainbow Animato</option>
-                <option value="fader">Fader (VU Meter)</option>
-                <option value="dynamic_gradient">Gradient Dinamico</option>
-                <option value="pulse_fader">Pulse Fader</option>
-                <option value="chasing_fader">Chasing Fader</option>
-                <option value="rainbow_fader">Rainbow Fader</option>
-                <option value="vu">VU Sensor Diretto</option>
+                <option value="solid" data-i18n="mode_solid">Solid Color (Fisso)</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse</option>
+                <option value="chasing" data-i18n="mode_chasing">Chasing</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="e_dynamic_inputs" class="dynamic-box">
             </div>
-            <button onclick="applyExtraIndicator()" style="margin-top: 10px;" data-i18n="btn_apply_fader">Applica a questo Fader</button>
+            <button onclick="applyExtraIndicator()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
-        <h3 data-i18n="head_mute_sliders">🎚️ Mute Sliders</h3>
+        <h3>🎚️ Mute Sliders</h3>
         <div class="card">
-            <label data-i18n="label_mute_sliders">Mute Sliders (1, 2, 3, 4)</label>
+            <label data-i18n="mute_sliders_h3">Mute Sliders (1, 2, 3, 4)</label>
             <select id="msl_idx" style="margin-bottom: 10px;">
-                <option value="1">Mute Slider 1 (Game)</option>
-                <option value="2">Mute Slider 2 (Chat)</option>
-                <option value="3">Mute Slider 3 (Sampler)</option>
-                <option value="4">Mute Slider 4 (System)</option>
+                <option value="1" data-i18n="slider_game">Mute Slider 1 (Game)</option>
+                <option value="2" data-i18n="slider_chat">Mute Slider 2 (Chat)</option>
+                <option value="3" data-i18n="slider_samp">Mute Slider 3 (Sampler)</option>
+                <option value="4" data-i18n="slider_sys">Mute Slider 4 (System)</option>
             </select>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato OFF / Inattivo</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_inactive">Stato OFF / Inattivo</span>
             </div>
             <select id="msl_off_mode" onchange="updateMslUI('off')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="msl_off_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">Stato ON / Attivo</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="state_active">Stato ON / Attivo</span>
             </div>
             <select id="msl_on_mode" onchange="updateMslUI('on')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="msl_on_inputs" class="dynamic-box"></div>
             
-            <button onclick="applyMuteSlider()" style="margin-top: 10px;" data-i18n="btn_apply_mute_sliders">Applica a Mute Slider Selezionato</button>
+            <button onclick="applyMuteSlider()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
-        <h3>⚙️ Extra DX</h3>
+        <h3 data-i18n="strip_dx">⚙️ Extra DX</h3>
         <div class="card">
-            <label>Striscia Led DX</label>
+            <label data-i18n="strip_title">Striscia Led DX</label>
             <select id="sdx_mode" onchange="updateStripUI('dx')" style="font-weight:bold; color:#ff2a2a; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="chasing">Chasing (Fg, Bkg)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="chasing" data-i18n="mode_chasing">Chasing (Fg, Bkg)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="sdx_inputs" class="dynamic-box"></div>
-            <button onclick="applyStrip('dx')" style="margin-top: 10px;">Applica a Striscia DX</button>
+            <button onclick="applyStrip('dx')" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         <div class="card">
-            <label>Voice FX 2</label>
+            <label data-i18n="vfx2_title">Voice FX 2</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">Stato OFF / Unassigned</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_inactive">Stato OFF / Unassigned</span>
             </div>
             <select id="vfx2_off_mode" onchange="updateVfx2UI('off')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="vfx2_off_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">Stato ON (Attivo)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="state_active">Stato ON (Attivo)</span>
             </div>
             <select id="vfx2_on_mode" onchange="updateVfx2UI('on')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="vfx2_on_inputs" class="dynamic-box"></div>
             
-            <button onclick="applyVfx2()" style="margin-top: 10px;">Applica a Voice FX 2</button>
+            <button onclick="applyVfx2()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         
         <div class="card">
-            <label data-i18n="label_samp4">Sample 4</label>
+            <label data-i18n="samp_title">Sample 4</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#666; font-weight:bold;">S. Unassigned</span>
+                <span style="color:#666; font-weight:bold;" data-i18n="unassigned_label"></span>
             </div>
             <select id="samp4_un_mode" onchange="updateSampUI(4, 'un')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp4_un_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">S. Inactive (VUOTO)</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="empty_label"></span>
             </div>
             <select id="samp4_in_mode" onchange="updateSampUI(4, 'in')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp4_in_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">S. Active (IN RIPRODUZIONE)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="playing_label"></span>
             </div>
             <select id="samp4_ac_mode" onchange="updateSampUI(4, 'ac')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp4_ac_inputs" class="dynamic-box"></div>
             
-            <button onclick="applySamp(4)" style="margin-top: 10px;" data-i18n="btn_apply_samp4">Applica a Sample 4</button>
+            <button onclick="applySamp(4)" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
 
         
         <div class="card">
-            <label data-i18n="label_samp5">Sample 5</label>
+            <label data-i18n="samp_title">Sample 5</label>
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#666; font-weight:bold;">S. Unassigned</span>
+                <span style="color:#666; font-weight:bold;" data-i18n="unassigned_label"></span>
             </div>
             <select id="samp5_un_mode" onchange="updateSampUI(5, 'un')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp5_un_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#00e5ff; font-weight:bold;">S. Inactive (VUOTO)</span>
+                <span style="color:#00e5ff; font-weight:bold;" data-i18n="empty_label"></span>
             </div>
             <select id="samp5_in_mode" onchange="updateSampUI(5, 'in')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp5_in_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
             
             <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                <span style="color:#ff2a2a; font-weight:bold;">S. Active (IN RIPRODUZIONE)</span>
+                <span style="color:#ff2a2a; font-weight:bold;" data-i18n="playing_label"></span>
             </div>
             <select id="samp5_ac_mode" onchange="updateSampUI(5, 'ac')" style="font-weight:bold; color:#ccc; margin-bottom:5px;">
-                <option value="solid">Colore Fisso</option>
-                <option value="pulse">Pulse (1-4 colori)</option>
-                <option value="rainbow">Rainbow Animato</option>
+                <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                <option value="pulse" data-i18n="mode_pulse">Pulse (1-4 colori)</option>
+                <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
             </select>
             <div id="samp5_ac_inputs" class="dynamic-box"></div>
             
-            <button onclick="applySamp(5)" style="margin-top: 10px;" data-i18n="btn_apply_samp5">Applica a Sample 5</button>
+            <button onclick="applySamp(5)" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
         </div>
     </div>
 
@@ -1131,8 +1138,10 @@ input[type="checkbox"] {
             oninput="document.getElementById('boost_input').value = this.value" 
             onchange="updateMicDSP()">
         <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 5px;">
-            <input type="number" id="boost_input" value="6" min="0" max="12" style="width: 70px; margin: 0; padding: 4px; text-align: right; font-family: monospace; font-size: 1em; color: #00e5ff;" 
+            <button type="button" class="dsp-btn" onclick="document.getElementById('boost_input').stepDown(); document.getElementById('boost_input').dispatchEvent(new Event('change'))">-</button>
+            <input type="number" id="boost_input" value="6" min="0" max="12" style="width: 50px; margin: 0; padding: 4px; text-align: center; font-family: monospace; font-size: 1em; color: #00e5ff; background: rgba(0,0,0,0.4) !important;" 
                 onchange="document.getElementById('mic_boost_slider').value = this.value; updateMicDSP()">
+            <button type="button" class="dsp-btn" onclick="document.getElementById('boost_input').stepUp(); document.getElementById('boost_input').dispatchEvent(new Event('change'))">+</button>
             <span style="color: #00e5ff; font-weight: bold; margin-left: 8px;">dB</span>
         </div>
     </div>
@@ -1143,8 +1152,10 @@ input[type="checkbox"] {
             oninput="document.getElementById('hpf_input').value = this.value" 
             onchange="updateMicDSP()">
         <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 5px;">
-            <input type="number" id="hpf_input" value="80" min="40" max="1000" style="width: 70px; margin: 0; padding: 4px; text-align: right; font-family: monospace; font-size: 1em; color: #00e5ff;" 
+            <button type="button" class="dsp-btn" onclick="document.getElementById('hpf_input').stepDown(); document.getElementById('hpf_input').dispatchEvent(new Event('change'))">-</button>
+            <input type="number" id="hpf_input" value="80" min="40" max="1000" style="width: 60px; margin: 0; padding: 4px; text-align: center; font-family: monospace; font-size: 1em; color: #00e5ff; background: rgba(0,0,0,0.4) !important;" 
                 onchange="document.getElementById('hpf_slider').value = this.value; updateMicDSP()">
+            <button type="button" class="dsp-btn" onclick="document.getElementById('hpf_input').stepUp(); document.getElementById('hpf_input').dispatchEvent(new Event('change'))">+</button>
             <span style="color: #00e5ff; font-weight: bold; margin-left: 8px;">Hz</span>
         </div>
     </div>
@@ -1155,8 +1166,10 @@ input[type="checkbox"] {
             oninput="document.getElementById('de_esser_input').value = this.value" 
             onchange="inv('imposta_de_esser', [parseInt(this.value)])">
         <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 5px;">
-            <input type="number" id="de_esser_input" value="16" min="0" max="100" style="width: 70px; margin: 0; padding: 4px; text-align: right; font-family: monospace; font-size: 1em; color: #00e5ff;" 
+            <button type="button" class="dsp-btn" onclick="document.getElementById('de_esser_input').stepDown(); document.getElementById('de_esser_input').dispatchEvent(new Event('change'))">-</button>
+            <input type="number" id="de_esser_input" value="16" min="0" max="100" style="width: 50px; margin: 0; padding: 4px; text-align: center; font-family: monospace; font-size: 1em; color: #00e5ff; background: rgba(0,0,0,0.4) !important;" 
                 onchange="document.getElementById('de_esser_slider').value = this.value; inv('imposta_de_esser', [parseInt(this.value)])">
+            <button type="button" class="dsp-btn" onclick="document.getElementById('de_esser_input').stepUp(); document.getElementById('de_esser_input').dispatchEvent(new Event('change'))">+</button>
             <span style="color: #00e5ff; font-weight: bold; margin-left: 8px;">%</span>
         </div>
     </div>
@@ -1228,8 +1241,10 @@ input[type="checkbox"] {
             oninput="document.getElementById('gate_input').value = this.value" 
             onchange="handleGateSliderChange(this.value)">
         <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 5px;">
-            <input type="number" id="gate_input" value="-80" min="-127" max="0" style="width: 70px; margin: 0; padding: 4px; text-align: right; font-family: monospace; font-size: 1em; color: #00e5ff;" 
+            <button type="button" class="dsp-btn" onclick="document.getElementById('gate_input').stepDown(); document.getElementById('gate_input').dispatchEvent(new Event('change'))">-</button>
+            <input type="number" id="gate_input" value="-80" min="-127" max="0" style="width: 55px; margin: 0; padding: 4px; text-align: center; font-family: monospace; font-size: 1em; color: #00e5ff; background: rgba(0,0,0,0.4) !important;" 
                 onchange="document.getElementById('noise_gate_slider').value = this.value; handleGateSliderChange(this.value)">
+            <button type="button" class="dsp-btn" onclick="document.getElementById('gate_input').stepUp(); document.getElementById('gate_input').dispatchEvent(new Event('change'))">+</button>
             <span style="color: #00e5ff; font-weight: bold; margin-left: 8px;">dB</span>
         </div>
     </div>
@@ -1521,9 +1536,80 @@ input[type="checkbox"] {
     0% { background-position: 100% 0; }
     100% { background-position: -100% 0; }
 }
+/* NASCONDI FRECCE NATIVE DA INPUT NUMBER */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
+button.dsp-btn {
+    background: rgba(0, 229, 255, 0.1) !important;
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+    color: #00e5ff !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    padding: 0 !important;
+    margin: 0 4px !important;
+    margin-top: 0 !important;
+    box-shadow: none !important;
+    transition: all 0.2s !important;
+}
+button.dsp-btn:hover {
+    background: rgba(0, 229, 255, 0.3) !important;
+    border-color: #00e5ff !important;
+    color: #fff !important;
+}
+button.dsp-btn:active {
+    transform: scale(0.9) !important;
+}
 
+</style>
 
+<!-- TASTO MEGA RAINBOW -->
+<button onclick="makeEverythingRainbow()" class="rainbow-btn">🌈 MEGA RAINBOW</button>
+
+<style>
+.rainbow-btn {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    width: 200px !important;
+    height: 50px !important;
+    z-index: 9999 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 50px !important;
+    background: linear-gradient(90deg, #ff0000, #ffaa00, #aaff00, #00ff00, #00aaff, #0000ff, #aa00ff, #ff00aa) !important;
+    background-size: 200% 100% !important;
+    color: white !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8) !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5) !important;
+    border: 2px solid rgba(255,255,255,0.4) !important;
+    animation: rainbowScroll 3s linear infinite !important;
+    cursor: pointer !important;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.rainbow-btn:hover {
+    transform: scale(1.1) !important;
+}
 </style>
 
 <script>
@@ -1543,7 +1629,13 @@ function convertToCustomSelect(selectEl) {
     let initialText = initialOpt ? initialOpt.text : 'Seleziona...';
     let initRainbow = initialOpt && initialOpt.value.includes('rainbow') ? 'rainbow-text' : '';
     
-    selectedBox.innerHTML = `<span class="sel-text ${initRainbow}">${initialText}</span><svg class="chevron" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"></path></svg>`;
+    // Add data-i18n to the span if the option has it
+    let i18nAttr = '';
+    if (initialOpt && initialOpt.hasAttribute('data-i18n')) {
+        i18nAttr = `data-i18n="${initialOpt.getAttribute('data-i18n')}"`;
+    }
+    
+    selectedBox.innerHTML = `<span class="sel-text ${initRainbow}" ${i18nAttr}>${initialText}</span><svg class="chevron" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"></path></svg>`;
     
     let optionsContainer = document.createElement('div');
     optionsContainer.className = 'custom-select-options';
@@ -1553,10 +1645,11 @@ function convertToCustomSelect(selectEl) {
         optionDiv.className = 'custom-select-option';
         
         // Wrap the text so the background-clip only affects the text span, not the whole div block!
+        let optI18n = opt.hasAttribute('data-i18n') ? `data-i18n="${opt.getAttribute('data-i18n')}"` : '';
         if (opt.value.includes('rainbow')) {
-            optionDiv.innerHTML = `<span class="rainbow-text">${opt.text}</span>`;
+            optionDiv.innerHTML = `<span class="rainbow-text" ${optI18n}>${opt.text}</span>`;
         } else {
-            optionDiv.textContent = opt.text;
+            optionDiv.innerHTML = `<span ${optI18n}>${opt.text}</span>`;
         }
         
         if (idx === selectEl.selectedIndex) optionDiv.classList.add('selected');
@@ -1565,6 +1658,14 @@ function convertToCustomSelect(selectEl) {
             selectEl.selectedIndex = idx;
             let selspan = selectedBox.querySelector('.sel-text');
             selspan.textContent = opt.text;
+            
+            // Sync data-i18n attribute
+            if (opt.hasAttribute('data-i18n')) {
+                selspan.setAttribute('data-i18n', opt.getAttribute('data-i18n'));
+            } else {
+                selspan.removeAttribute('data-i18n');
+            }
+
             if (opt.value.includes('rainbow')) {
                 selspan.classList.add('rainbow-text');
             } else {
@@ -1607,6 +1708,13 @@ function convertToCustomSelect(selectEl) {
             let opt = selectEl.options[selectEl.selectedIndex];
             let selspan = selectedBox.querySelector('.sel-text');
             selspan.textContent = opt.text;
+            
+            if (opt.hasAttribute('data-i18n')) {
+                selspan.setAttribute('data-i18n', opt.getAttribute('data-i18n'));
+            } else {
+                selspan.removeAttribute('data-i18n');
+            }
+
             if (opt.value.includes('rainbow')) selspan.classList.add('rainbow-text');
             else selspan.classList.remove('rainbow-text');
             

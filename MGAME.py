@@ -4,7 +4,6 @@ import socket
 import math
 import importlib
 
-# Server (Engine) address running in background
 HOST = '127.0.0.1'
 PORT = 65432
 
@@ -103,11 +102,7 @@ def imposta_tasto_mute_dinamico(id_tasto, nome, mode_off, off_p1, off_p2, off_p3
     arr_off, byte_mod_off = parse_mode(mode_off, off_p1, off_p2, off_p3, off_p4)
     arr_on, byte_mod_on = parse_mode(mode_on, on_p1, on_p2, on_p3, on_p4)
     
-    # Build the DEFINITIVE ATOMIC packet in a single send.
-    # Index 10: Effect for Inactive state (0=Solid, 1=Pulse, 2=Rainbow)
-    # Index 12: Effect for Active state (0=Solid, 1=Pulse, 2=Rainbow)
-    # Indices 14-17: 4 Colors for Inactive state
-    # Indices 18-21: 4 Colors for Active state
+
 
     data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_tasto, 0x03, 0x01, byte_mod_off, 0x00, byte_mod_on, 0x00]
     data_base += arr_off + arr_on
@@ -201,14 +196,11 @@ def imposta_mic_indicator_chasing(colori, id_slider=0):
 
 # --- UNIFIED LOGIC FOR ALL FADER MODES (Supports 10-Color Gradients) ---
 def _invia_fader_base(modalita, byte12, nome_modalita, colori, colore_picco, colore_background, id_slider=0):
-    # Smart safety check:
     if len(colori) == 1:
         colori = colori * 10
     elif len(colori) < 10:
-        # If fewer than 10 colors (e.g. 2 colors for Pulse Fader), pad the rest with 0x00
         colori = colori + [0x00] * (10 - len(colori))
     elif len(colori) > 10:
-        # If too many are sent by mistake, trim the excess
         colori = colori[:10]
         
     link = id_slider if id_slider <= 5 else 0
@@ -313,7 +305,6 @@ def genera_sfumatura_mgame(c1, c2):
         h_float = h1 + (h2 - h1) * (i / 9.0)
         r_float = r1 + (r2 - r1) * (i / 9.0)
         
-        # Apply Glow at center for uniform transitions at the base brightness level
         r_glow = 0
         if r1 == r2 == 0 and (2 < i < 7) and dist_hue <= 12:
             r_glow = 1
@@ -321,17 +312,13 @@ def genera_sfumatura_mgame(c1, c2):
         r_finale = int(round(r_float)) + r_glow
         h_round = int(round(h_float))
         
-        # Map H back into the hardware color wheel
         h_wrapped = ((h_round - 46) % 25) + 46
         
-        # Hardware workaround: ID 51 (and derivatives) is "White" or "Off"
-        # and breaks the gradient between Purple(50) and Red(52). We bypass it!
         if h_wrapped == 51:
             h_wrapped = 50
             
         val = h_wrapped + (r_finale * 25)
         
-        # Hardware boundary safety
         if val > 127: val = 127
         if val < 0: val = 0
             
