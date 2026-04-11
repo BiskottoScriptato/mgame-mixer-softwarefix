@@ -4,10 +4,10 @@ An attempt to remake the M-Game RGB Dual mixer managing software (because the or
 
 ## 🌟 Key Features
 
-- **🌐 Multi-Language UI
-- **✨ LED Logic config**:
+- 🌐 Multi-Language UI
+- ✨ LED Logic config**:
   - Full control over leds configuration
-- **🎚️ Audio config
+- 🎚️ Audio config
 
 ---
 
