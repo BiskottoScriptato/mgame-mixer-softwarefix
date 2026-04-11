@@ -1,4 +1,4 @@
-# M-Game RGB Dual Dashboard - Global Support & Settings Panel
+# M-Game RGB Dual Dashboard - Global Support & Settings Panel.
 
 An attempt to remake the M-Game RGB Dual mixer managing software (because the original sucks) by using a web ui, it provides software improvements and it solves (gets around) some driver issues. 
 
