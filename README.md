@@ -10,6 +10,8 @@ We tried to fix it by creating a server that never closes the connection when yo
 - ✨ LED Logic config
        - `You can also edit singular LEDs `
 - 🎚️ Audio config
+- 🔉 Samplers config (Coming Soon!)
+- 🎤 Voice Effects config (Coming Soon!)
 
 ---
 
