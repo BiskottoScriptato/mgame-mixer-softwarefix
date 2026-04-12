@@ -1,18 +1,13 @@
-# M-Game RGB Dual Dashboard - Global Support & Settings Panel
+# M-Game RGB Dual Dashboard - Global Support & Settings Panel.
 
-A comprehensive update to the M-Game RGB Dual mixer web interface, introducing persistent multi-language support (Italian/English), a modern settings management system, and refined UI/UX for absolute hardware control.
+An attempt to remake the M-Game RGB Dual mixer managing software (because the original sucks) by using a web ui, it provides software improvements and it solves (gets around) some driver issues. 
 
 ## 🌟 Key Features
 
-- **🌐 Dynamic Internationalization (i18n)**: Seamlessly switch between Italian and English. The interface remembers your preference across sessions.
-- **⚙️ New Settings Panel**: Access global configuration via a premium Glassmorphism-styled floating menu.
-- **✨ Advanced LED Logic**:
-  - Full control over active/inactive states for **Logo Audio**, **Mute Mic**, and **Censor** buttons.
-  - Granular LED management for Side Strips (Left/Right), Voice FX, and Samples.
-  - Integration for high/low luminosity modes in Rainbow effects.
-- **🎹 Interactive Sampler**: Redesigned Sample cards with real-time state feedback (Empty, Unassigned, Playing).
-- **🎚️ Integrated DSP Control**: Real-time management of Microphone EQ and Compressor settings.
-- **🎨 Visual Refinement**: Optimized layout for 10-color gradients and improved spacing for hardware controls.
+- 🌐 Multi-Language UI
+- ✨ LED Logic config**:
+  - Full control over leds configuration
+- 🎚️ Audio config
 
 ---
 
@@ -44,14 +39,6 @@ pip install flask flask-cors
    ```
 2. **Open the Dashboard**:
    Open your preferred browser and navigate to the local server address (typically `http://127.0.0.1:5000` or the one specified in your terminal).
-3. **Customize Your Experience**:
-   - Use the **Settings Icon** (bottom-right) to toggle between Italian and English.
-   - Click "Apply" on any card to push changes directly to your M-Game RGB Dual hardware.
-
----
-
-## 📂 Project Maintenance
-This project includes a `.gitignore` to keep the repository clean from `__pycache__` and other temporary build artifacts.
 
 ---
 
