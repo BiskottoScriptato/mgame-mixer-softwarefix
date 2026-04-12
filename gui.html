@@ -46,6 +46,62 @@
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
     }
 
+    /* BANK SELECTOR - POSITIONED FIXED LEFT */
+    .bank-sidebar {
+        position: fixed !important;
+        left: 20px !important;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 9999;
+        background: rgba(15, 15, 20, 0.8) !important;
+        backdrop-filter: blur(15px);
+        padding: 15px;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 229, 255, 0.2);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    }
+
+    .bank-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        border: 2px solid rgba(0, 229, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        color: #00e5ff;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 800;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+    }
+
+    .bank-btn span {
+        font-size: 0.6em;
+        opacity: 0.7;
+        margin-top: 2px;
+    }
+
+    .bank-btn:hover {
+        background: rgba(0, 229, 255, 0.1);
+        border-color: rgba(0, 229, 255, 0.4);
+        transform: scale(1.05);
+    }
+
+    .bank-btn.active {
+        background: #00e5ff !important;
+        color: #000 !important;
+        box-shadow: 0 0 25px rgba(0, 229, 255, 0.4);
+        border-color: #00e5ff;
+    }
+
     .github-trigger {
         position: fixed !important;
         right: 25px !important;
@@ -579,6 +635,17 @@
     </svg>
 </a>
 
+<div class="bank-sidebar">
+    <button id="bank_btn_0" class="bank-btn active" onclick="setBank(0)">
+        1
+        <span data-i18n="bank_label_short">BANK</span>
+    </button>
+    <button id="bank_btn_1" class="bank-btn" onclick="setBank(1)">
+        2
+        <span data-i18n="bank_label_short">BANK</span>
+    </button>
+</div>
+
 <!-- Settings Modal -->
 <div id="settingsModal" class="modal-overlay" onclick="toggleSettingsModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
@@ -704,10 +771,16 @@
             <div class="card">
                 <select id="mic_mode" onchange="updateMicUI()"
                     style="font-weight:bold; color:#00e5ff; margin-bottom: 10px;">
-                    <option value="solid" data-i18n="mode_solid">Solid Color</option>
-                    <option value="pulse" data-i18n="mode_pulse">Pulse</option>
-                    <option value="chasing" data-i18n="mode_chasing">Chasing Fader</option>
-                    <option value="rainbow" data-i18n="mode_rainbow">Rainbow</option>
+                    <option value="solid" data-i18n="mode_solid_label">Solid</option>
+                    <option value="pulse" data-i18n="mode_pulse_label">Pulse</option>
+                    <option value="chasing" data-i18n="mode_chasing_label">Chasing</option>
+                    <option value="rainbow" data-i18n="mode_rainbow_label">Rainbow</option>
+                    <option value="fader" data-i18n="mode_fader_label">Fader</option>
+                    <option value="dynamic_gradient" data-i18n="mode_dynamic_gradient_label">Gradient Fader</option>
+                    <option value="pulse_fader" data-i18n="mode_pulse_fader_label">Pulse Fader</option>
+                    <option value="chasing_fader" data-i18n="mode_chasing_fader_label">Chasing Fader</option>
+                    <option value="rainbow_fader" data-i18n="mode_rainbow_fader_label">Rainbow Fader</option>
+                    <option value="vu" data-i18n="mode_vu_label">VU Meter</option>
                 </select>
 
                 <div id="mic_dynamic_inputs" class="dynamic-box">
@@ -760,7 +833,7 @@
 
 
             <div class="card">
-                <label data-i18n="samp_title">Sample 1</label>
+                <label data-i18n="samp_1">Sample 1</label>
                 <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
                     <span style="color:#666; font-weight:bold;" data-i18n="unassigned_label"></span>
                 </div>
@@ -799,7 +872,7 @@
 
 
             <div class="card">
-                <label data-i18n="samp_title">Sample 2</label>
+                <label data-i18n="samp_2">Sample 2</label>
                 <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
                     <span style="color:#666; font-weight:bold;" data-i18n="unassigned_label"></span>
                 </div>
@@ -936,7 +1009,7 @@
 
 
             <div class="card">
-                <label data-i18n="samp_title">Sample 3</label>
+                <label data-i18n="samp_3">Sample 3</label>
                 <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
                     <span style="color:#666; font-weight:bold;" data-i18n="unassigned_label"></span>
                 </div>
@@ -1057,7 +1130,7 @@
                     data-i18n="apply_btn">Applica</button>
             </div>
 
-            <h3>📊 Altri Indicatori (Game/Chat/Samp/Sys)</h3>
+            <h3 data-i18n="extra_indicators_h3">📊 Altri Indicatori (Game/Chat/Samp/Sys)</h3>
             <div class="card" style="border-color: #00e5ff55;">
                 <select id="e_target"
                     style="font-weight:bold; color:#00e5ff; background:#1b1b1e; border-color:#00e5ff;">
@@ -1068,10 +1141,16 @@
                 </select>
                 <select id="e_mode" onchange="updateExtraUI()"
                     style="font-weight:bold; color:#ccc; margin-top: 10px; margin-bottom: 10px;">
-                    <option value="solid" data-i18n="mode_solid">Solid Color (Fisso)</option>
-                    <option value="pulse" data-i18n="mode_pulse">Pulse</option>
-                    <option value="chasing" data-i18n="mode_chasing">Chasing</option>
-                    <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
+                    <option value="solid" data-i18n="mode_solid_label">Solid Color</option>
+                    <option value="pulse" data-i18n="mode_pulse_label">Pulse</option>
+                    <option value="chasing" data-i18n="mode_chasing_label">Chasing</option>
+                    <option value="rainbow" data-i18n="mode_rainbow_label">Rainbow</option>
+                    <option value="fader" data-i18n="mode_fader_label">Fader</option>
+                    <option value="dynamic_gradient" data-i18n="mode_dynamic_gradient_label">Gradient Fader</option>
+                    <option value="pulse_fader" data-i18n="mode_pulse_fader_label">Pulse Fader</option>
+                    <option value="chasing_fader" data-i18n="mode_chasing_fader_label">Chasing Fader</option>
+                    <option value="rainbow_fader" data-i18n="mode_rainbow_fader_label">Rainbow Fader</option>
+                    <option value="vu" data-i18n="mode_vu_label">VU Meter</option>
                 </select>
                 <div id="e_dynamic_inputs" class="dynamic-box">
                 </div>
@@ -1158,7 +1237,7 @@
 
 
             <div class="card">
-                <label data-i18n="samp_title">Sample 4</label>
+                <label data-i18n="samp_4">Sample 4</label>
                 <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
                     <span style="color:#666; font-weight:bold;" data-i18n="unassigned_label"></span>
                 </div>
@@ -1197,7 +1276,7 @@
 
 
             <div class="card">
-                <label data-i18n="samp_title">Sample 5</label>
+                <label data-i18n="samp_5">Sample 5</label>
                 <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
                     <span style="color:#666; font-weight:bold;" data-i18n="unassigned_label"></span>
                 </div>

@@ -14,6 +14,16 @@ OUTPORT = None
 # CORE COMMUNICATION FUNCTIONS
 # =====================================================================
 
+try:
+    CURRENT_BANK
+except NameError:
+    CURRENT_BANK = 0 # 0 = Bank 1, 1 = Bank 2
+
+def set_active_bank(bank_index):
+    global CURRENT_BANK
+    CURRENT_BANK = int(bank_index)
+    print(f"[BANK] Active bank set to: {CURRENT_BANK + 1}")
+
 def invia_messaggio_sysex(data_array, descrizione):
     """Sends the MIDI SysEx packet to the Server over UDP."""
     pacchetto_completo = [0xF0] + data_array + [0xF7]
@@ -104,10 +114,22 @@ def imposta_tasto_mute_dinamico(id_tasto, nome, mode_off, off_p1, off_p2, off_p3
     
 
 
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_tasto, 0x03, 0x01, byte_mod_off, 0x00, byte_mod_on, 0x00]
+    # Bank Logic: Voice FX uses ID 0x07 and 0x09 for Bank 1, but they shift to 0x14 and 0x16 for Bank 2.
+    # The actual target ID changes on the hardware level, not the bank_byte at the end.
+    # Standard Mutes (Mic, Censura, Sliders) use 0x00 regardless of bank.
+    bank_byte = 0x00
+    target_id = id_tasto
+
+    if CURRENT_BANK == 1:
+        if id_tasto == 7:  # Voice FX 1
+            target_id = 0x14
+        elif id_tasto == 9:  # Voice FX 2
+            target_id = 0x15
+
+    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, target_id, 0x03, 0x01, byte_mod_off, 0x00, byte_mod_on, bank_byte]
     data_base += arr_off + arr_on
     
-    invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} (Atomic Sync)")
+    invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} (Atomic Sync - Bank {CURRENT_BANK + 1})")
 
 def imposta_tasto_mute_mic(col_on, col_off):
     _invia_comando_mute_base(0x01, "Mute Microfono", col_on, col_off)
@@ -132,8 +154,12 @@ def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_u
     """
     Configures the 3 states of Sampler buttons using the atomic SysEx engine.
     """
-    id_base = 9 + int(num_sample)
-    id_active = 15 + int(num_sample)
+    if CURRENT_BANK == 0:
+        id_base = 9 + int(num_sample)       # Sample 1-5 Bank 1 Base: 10-14  (0x0A - 0x0E)
+        id_active = 15 + int(num_sample)    # Sample 1-5 Bank 1 Unassigned: 16-20 (0x10 - 0x14)
+    else:
+        id_base = 14 + int(num_sample)      # Sample 1-5 Bank 2 Base: 15-19  (0x0F - 0x13)
+        id_active = 22 + int(num_sample)    # Sample 1-5 Bank 2 Unassigned: 23-27 (0x17 - 0x1B)
 
     def _get_bytes(mode, p1, p2, p3, p4):
         if mode == "rainbow":
@@ -147,13 +173,14 @@ def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_u
     mod_in, cols_in = _get_bytes(mode_in, p1_in, p2_in, p3_in, p4_in)
     mod_ac, cols_ac = _get_bytes(mode_ac, p1_ac, p2_ac, p3_ac, p4_ac)
 
-    # Base packet -> handles EXACTLY like a Mute: Inactive (Slot 1) and Active (Slot 2)
+    # Inactive/Active packet 
     data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, mod_in, 0x00, mod_ac, 0x00] + cols_in + cols_ac
-    invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} (Inactive/Active)")
+    invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} (Inactive/Active - Bank {CURRENT_BANK + 1})")
 
-    # Active packet -> handles the third state in a workaround fashion: UNASSIGNED (Slot 2)
-    data_active = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_active, 0x03, 0x01, 0x00, 0x00, mod_un, 0x00, 0x12, 0x00, 0x00, 0x00] + cols_un
-    invia_messaggio_sysex(data_active + [calcola_checksum_7bit(data_active)], f"{nome} (Unassigned)")
+    # [IN ATTESA DI DUMP PER LO STATO UNASSIGNED]
+    # Inviare l'unassigned con le formule (15+n) e (22+n) sovrascrive involontariamente i Sample del Bank 2 e il Main Logo!
+    # data_active = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_active, 0x03, 0x01, 0x00, 0x00, mod_un, 0x00, 0x12, 0x00, 0x00, 0x00] + cols_un
+    # invia_messaggio_sysex(data_active + [calcola_checksum_7bit(data_active)], f"{nome} (Unassigned - Bank {CURRENT_BANK + 1})")
 
 # =====================================================================
 # MIC INDICATOR FUNCTIONS (VU METER - 26-BYTE RULE)

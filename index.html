@@ -2,7 +2,6 @@
 <html lang="it">
 
 <head>
-    <meta name="google-site-verification" content="82JcPpH5yMtY1Jt3F9lFClUJbTCCmJ_g_e_ycGBst4M" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M-Game UI - Layout Fisico</title>
@@ -144,6 +143,7 @@
         let activeColorIndex = 0;
         let activeLength = 1;
         let currentLang = 'it';
+        let currentBank = 0; // 0 = Bank 1, 1 = Bank 2
 
         const translations = {
             it: {
@@ -166,7 +166,11 @@
                 strip_sx: "STRISCIA SX",
                 strip_dx: "STRISCIA DX",
                 vfx1_title: "VOICE FX 1",
-                samp_title: "CAMPIONE",
+                samp_1: "CAMPIONE 1",
+                samp_2: "CAMPIONE 2",
+                samp_3: "CAMPIONE 3",
+                samp_4: "CAMPIONE 4",
+                samp_5: "CAMPIONE 5",
                 unassigned_label: "NON ASSEGNATO",
                 empty_label: "VUOTO / INATTIVO",
                 playing_label: "IN RIPRODUZIONE",
@@ -186,6 +190,10 @@
                 bank_nums_title: "NUMERI BANK (1 E 2)",
                 num_1_label: "NUMERO 1",
                 num_2_label: "NUMERO 2",
+                bank_sel_label: "MODIFICA BANCO (FX/SAMPLES)",
+                bank_1_opt: "BANCO 1",
+                bank_2_opt: "BANCO 2",
+                bank_label_short: "BANCO",
                 col_right_h2: "➡️ DESTRA",
                 content_title: "TESTO CONTENT",
                 ico_game_title: "ICONA GAME (CONTROLLER)",
@@ -199,7 +207,21 @@
                 slider_sys: "SLIDER 4 (SYSTEM)",
                 mute_sliders_h3: "🎚️ MUTE SLIDERS",
                 mute_slider_label: "MUTE SLIDER",
-                vfx2_title: "VOICE FX 2"
+                vfx2_title: "VOICE FX 2",
+                lum_low: "Luminosità Bassa",
+                lum_high: "Luminosità Alta",
+                mode_solid_label: "Colore Fisso",
+                mode_pulse_label: "Pulsante (1-4 colori)",
+                mode_chasing_label: "Chasing (1-4 colori)",
+                mode_rainbow_label: "Rainbow Animato",
+                mode_chasing_fg_bg: "Chasing (Fg, Bkg)",
+                use_10_gradient: "Usa Sfumatura 10 Colori",
+                color_grid_title: "Scegli il Colore",
+                peak_label: "Peak Opz.",
+                bg_label: "BG Opz.",
+                color_1_label: "Colore 1",
+                color_2_label: "Colore 2",
+                fader_follow_label: "Segue il Fader Fisico (Se tolto riempie tutta la striscia)"
             },
             en: {
                 settings_title: "SETTINGS",
@@ -221,7 +243,11 @@
                 strip_sx: "LEFT STRIP",
                 strip_dx: "RIGHT STRIP",
                 vfx1_title: "VOICE FX 1",
-                samp_title: "SAMPLE",
+                samp_1: "SAMPLE 1",
+                samp_2: "SAMPLE 2",
+                samp_3: "SAMPLE 3",
+                samp_4: "SAMPLE 4",
+                samp_5: "SAMPLE 5",
                 unassigned_label: "UNASSIGNED",
                 empty_label: "EMPTY / INACTIVE",
                 playing_label: "PLAYING",
@@ -241,6 +267,10 @@
                 bank_nums_title: "BANK NUMBERS (1 & 2)",
                 num_1_label: "NUMBER 1",
                 num_2_label: "NUMBER 2",
+                bank_sel_label: "EDIT BANK (FX/SAMPLES)",
+                bank_1_opt: "BANK 1",
+                bank_2_opt: "BANK 2",
+                bank_label_short: "BANK",
                 col_right_h2: "➡️ RIGHT",
                 content_title: "CONTENT TEXT",
                 ico_game_title: "GAME ICON (CONTROLLER)",
@@ -254,9 +284,32 @@
                 slider_sys: "SLIDER 4 (SYSTEM)",
                 mute_sliders_h3: "🎚️ MUTE SLIDERS",
                 mute_slider_label: "MUTE SLIDER",
-                vfx2_title: "VOICE FX 2"
+                vfx2_title: "VOICE FX 2",
+                lum_low: "Low Brightness",
+                lum_high: "High Brightness",
+                mode_solid_label: "Solid Color",
+                mode_pulse_label: "Pulse (1-4 colors)",
+                mode_chasing_label: "Chasing (1-4 colors)",
+                mode_rainbow_label: "Animated Rainbow",
+                mode_chasing_fg_bg: "Chasing (Fg, Bkg)",
+                use_10_gradient: "Use 10-Color Gradient",
+                color_grid_title: "Choose Color",
+                peak_label: "Opt. Peak",
+                bg_label: "Opt. BG",
+                color_1_label: "Color 1",
+                color_2_label: "Color 2",
+                fader_follow_label: "Follows Physical Fader (If unchecked fills the strip)"
             }
         };
+
+        function setBank(val) {
+            currentBank = parseInt(val);
+            inv('set_active_bank', [currentBank]);
+
+            // Update UI
+            document.querySelectorAll('.bank-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('bank_btn_' + val).classList.add('active');
+        }
 
         function updateTranslations() {
             const lang = currentLang;
@@ -264,8 +317,17 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) {
-                    el.textContent = t[key];
+                    if (el.tagName === 'OPTION') {
+                        el.text = t[key];
+                    } else {
+                        el.textContent = t[key];
+                    }
                 }
+            });
+            // Update bank buttons if they exist
+            document.querySelectorAll('.bank-btn').forEach((btn, idx) => {
+                if (idx === currentBank) btn.classList.add('active');
+                else btn.classList.remove('active');
             });
         }
 
@@ -357,7 +419,7 @@
                         <div class="color-btn" id="btn_${inputId}_9" onclick="openColorGrid('${inputId}', 9, 10)" style="width:25px;height:25px;border-radius:4px;background:${M_COLORS[0]};border:1px solid rgba(255,255,255,0.2);cursor:pointer;"></div>
                     </div>
                     <label style="margin-top:10px; font-size:0.85em; color:#00e5ff; cursor:pointer;">
-                        <input type="checkbox" onchange="toggleMulti10(this, '${inputId}')" style="vertical-align:middle; width:auto; margin-right:5px; accent-color:#00e5ff;"> Usa Sfumatura 10 Colori
+                        <input type="checkbox" onchange="toggleMulti10(this, '${inputId}')" style="vertical-align:middle; width:auto; margin-right:5px; accent-color:#00e5ff;"> <span data-i18n="use_10_gradient">Usa Sfumatura 10 Colori</span>
                     </label>
                 </div>`;
             }
@@ -447,18 +509,18 @@
                 html = buildColorPickerHTML(prefix + 'cols', 'multi_4');
             } else if (mode === 'rainbow' || mode === 'rainbow_fader') {
                 html = `<select id="${prefix}lum">
-                            <option value="false">Luminosità Bassa</option>
-                            <option value="true">Luminosità Alta</option>
+                            <option value="false" data-i18n="lum_low">Luminosità Bassa</option>
+                            <option value="true" data-i18n="lum_high">Luminosità Alta</option>
                         </select>`;
             } else if (mode === 'fader' || mode === 'pulse_fader') {
                 html = buildColorPickerHTML(prefix + 'cols', 'single_or_10') + `
                         <div class="row" style="display:flex; justify-content:center; gap:20px; width:100%; align-items:center; margin-top:10px;">
                             <div style="text-align:center; width:50%;">
-                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:0.9em; text-transform:uppercase; margin-bottom:-5px;">Peak Opz.</label>
+                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:0.9em; text-transform:uppercase; margin-bottom:-5px;" data-i18n="peak_label">Peak Opz.</label>
                                 ${buildColorPickerHTML(prefix + 'peak', 'single')}
                             </div>
                             <div style="text-align:center; width:50%;">
-                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:0.9em; text-transform:uppercase; margin-bottom:-5px;">BG Opz.</label>
+                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:0.9em; text-transform:uppercase; margin-bottom:-5px;" data-i18n="bg_label">BG Opz.</label>
                                 ${buildColorPickerHTML(prefix + 'bg', 'single')}
                             </div>
                         </div>`;
@@ -467,27 +529,27 @@
             } else if (mode === 'dynamic_gradient') {
                 html = `<div class="row" style="display:flex; justify-content:center; gap:20px; width:100%; align-items:center;">
                             <div style="text-align:center; width:50%;">
-                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:1em; text-transform:uppercase; margin-bottom:-5px;">Colore 1</label>
+                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:1em; text-transform:uppercase; margin-bottom:-5px;" data-i18n="color_1_label">Colore 1</label>
                                 ${buildColorPickerHTML(prefix + 'c1', 'single')}
                             </div>
                             <div style="text-align:center; width:50%;">
-                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:1em; text-transform:uppercase; margin-bottom:-5px;">Colore 2</label>
+                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:1em; text-transform:uppercase; margin-bottom:-5px;" data-i18n="color_2_label">Colore 2</label>
                                 ${buildColorPickerHTML(prefix + 'c2', 'single')}
                             </div>
                         </div>` + `
                         <div class="row" style="display:flex; justify-content:center; gap:20px; width:100%; align-items:center; margin-top:10px;">
                             <div style="text-align:center; width:50%;">
-                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:0.9em; text-transform:uppercase; margin-bottom:-5px;">Peak Opz.</label>
+                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:0.9em; text-transform:uppercase; margin-bottom:-5px;" data-i18n="peak_label">Peak Opz.</label>
                                 ${buildColorPickerHTML(prefix + 'peak', 'single')}
                             </div>
                             <div style="text-align:center; width:50%;">
-                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:0.9em; text-transform:uppercase; margin-bottom:-5px;">BG Opz.</label>
+                                <label style="display:block; font-weight:600; color:#00e5ff; font-size:0.9em; text-transform:uppercase; margin-bottom:-5px;" data-i18n="bg_label">BG Opz.</label>
                                 ${buildColorPickerHTML(prefix + 'bg', 'single')}
                             </div>
                         </div>
                         <label style="margin-top: 5px; display: block;">
                             <input type="checkbox" id="${prefix}is_fader" checked style="width: auto; margin-right: 5px;">
-                            Segue il Fader Fisico (Se tolto riempie tutta la striscia)
+                            <span data-i18n="fader_follow_label">Segue il Fader Fisico (Se tolto riempie tutta la striscia)</span>
                         </label>`;
             } else if (mode === 'vu') {
                 html = buildColorPickerHTML(prefix + 'cols', 'single_or_10') + `
@@ -574,7 +636,7 @@
             } else if (mode === 'pulse' || mode === 'chasing') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -639,7 +701,7 @@
                 p1 = document.getElementById('t_lum').value === 'true';
             }
 
-            inv('imposta_tasto_mute_dinamico', [26, 'Testo MIC', mode, p1, p2, p3, p4, 'solid', 0, 0, 0, 0]);
+            inv('imposta_testo_animato', [26, 'Testo MIC', mode, p1, p2, p3, p4]);
         }
 
         function updateLogoAudioUI(state) {
@@ -653,7 +715,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -692,7 +754,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -733,7 +795,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -772,7 +834,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -811,7 +873,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -836,7 +898,7 @@
         function applyLogo() {
             let off = _getLogoParams('off');
             // Il Logo non usa lo stato ON, inviamo zeri
-            inv('imposta_tasto_mute_dinamico', [25, 'Logo Principale', off.mode, off.p1, off.p2, off.p3, off.p4, 'solid', 0, 0, 0, 0]);
+            inv('imposta_testo_animato', [25, 'Logo Principale', off.mode, off.p1, off.p2, off.p3, off.p4]);
         }
 
         function updateContentUI(state) {
@@ -850,7 +912,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -884,7 +946,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -908,12 +970,12 @@
 
         function applyIcon(idName, numericId, friendlyName) {
             let off = _getIconParams(idName);
-            inv('imposta_tasto_mute_dinamico', [numericId, friendlyName, off.mode, off.p1, off.p2, off.p3, off.p4, 'solid', 0, 0, 0, 0]);
+            inv('imposta_testo_animato', [numericId, friendlyName, off.mode, off.p1, off.p2, off.p3, off.p4]);
         }
 
         function applyContent() {
             let off = _getContentParams();
-            inv('imposta_tasto_mute_dinamico', [28, 'Testo CONTENT', off.mode, off.p1, off.p2, off.p3, off.p4, 'solid', 0, 0, 0, 0]);
+            inv('imposta_testo_animato', [28, 'Testo CONTENT', off.mode, off.p1, off.p2, off.p3, off.p4]);
         }
 
         function updateMslUI(state) {
@@ -927,7 +989,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -961,7 +1023,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -1011,7 +1073,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -1050,7 +1112,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -1090,7 +1152,7 @@
             } else if (mode === 'pulse') {
                 html = buildColorPickerHTML(prefix + 'pcols', 'multi_4');
             } else if (mode === 'rainbow') {
-                html = `<select id="${prefix}lum"><option value="false">Lum. Bassa</option><option value="true">Lum. Alta</option></select>`;
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
             }
             container.innerHTML = html;
         }
@@ -1241,10 +1303,36 @@
 
             // Esegue i comandi sequenzialmente con 150ms di latenza per non sovraccaricare l'UDP
             let delay = 0;
+            
+            // Applica sul banco corrente (o Bank 1)
             funcs.forEach(f => {
                 setTimeout(f, delay);
                 delay += 150;
             });
+
+            // Adesso forza il cambio al Bank 2 e processa i tasti che dipendono dalla memoria esterna
+            setTimeout(() => {
+                inv('set_active_bank', [currentBank === 0 ? 1 : 0]);
+            }, delay);
+            delay += 150;
+
+            let bank2Funcs = [
+                () => { if (typeof applyVfx1 === 'function') applyVfx1(); },
+                () => { if (typeof applyVfx2 === 'function') applyVfx2(); }
+            ];
+            for (let i = 1; i <= 5; i++) {
+                bank2Funcs.push(() => { if (typeof applySamp === 'function') applySamp(i); });
+            }
+
+            bank2Funcs.forEach(f => {
+                setTimeout(f, delay);
+                delay += 150;
+            });
+
+            // Riporta il mixer al banco attivo reale per non sballare l'UI
+            setTimeout(() => {
+                inv('set_active_bank', [currentBank]);
+            }, delay);
         }
     </script>
 </body>
