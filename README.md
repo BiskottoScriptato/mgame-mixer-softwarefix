@@ -5,10 +5,9 @@ The main problem is that the driver used to comunicate with the mixer crashes wh
 We tried to fix it by creating a server that never closes the connection when you close the program (original) or the web ui.
 
 ## 🌟 Key Features
-
+- 🔧 Fixed driver issue when closing and re-opening the official software.
 - 🌐 Multi-Language UI
-- ✨ LED Logic config**:
-  - Full control over leds configuration
+- ✨ LED Logic config
 - 🎚️ Audio config
 
 ---
