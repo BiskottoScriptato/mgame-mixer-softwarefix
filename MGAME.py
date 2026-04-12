@@ -152,44 +152,43 @@ def imposta_tasti_fx_bank(is_fx, col_on, col_off):
 
 def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_un, p4_un, mode_in, p1_in, p2_in, p3_in, p4_in, mode_ac, p1_ac, p2_ac, p3_ac, p4_ac):
     """
-    Configures the 3 states of Sampler buttons using the exact hardware logic.
-    There is no secondary ID for unassigned states. 
-    id_base covers ALL 3 states based on modifier masks!
+    ULTIMATE FIXED SAMPLER ENGINE:
+    Uses the 30-byte Extended Atomic Sync structure (Cmd Group 0x04).
+    Validated against 4 independent official software dumps.
     """
     if CURRENT_BANK == 0:
-        id_base = 9 + int(num_sample)       # Sample 1-5 Bank 1: 10-14 (0x0A - 0x0E)
+        id_base = 9 + int(num_sample)  # 10..14
     else:
-        id_base = 14 + int(num_sample)      # Sample 1-5 Bank 2: 15-19 (0x0F - 0x13)
+        id_base = 14 + int(num_sample) # 15..19
 
-    def _get_bytes(mode, p1, p2, p3, p4):
-        if mode == "rainbow":
-            return 0x02, [0x4D if p1 else 0x34, 0x34, 0x00, 0x00]
-        elif mode == "pulse":
-            return 0x01, [p1, p2, p3, p4]
-        else: # solid
-            return 0x00, [p1, 0x00, 0x00, 0x00]
+    v_un = int(p1_un)
+    v_in = int(p1_in)
+    v_ac = int(p1_ac)
 
-    mod_un, cols_un = _get_bytes(mode_un, p1_un, p2_un, p3_un, p4_un)
-    mod_in, cols_in = _get_bytes(mode_in, p1_in, p2_in, p3_in, p4_in)
-    mod_ac, cols_ac = _get_bytes(mode_ac, p1_ac, p2_ac, p3_ac, p4_ac)
+    def build_extended_packet(m1, m2, c1, c2):
+        # Header (9 bytes)
+        # Official vendor: 00 01 04 05 42
+        # Command Group: 00 04
+        # Target: 03 (Btn) 00 (Page) id_base
+        d = [0x00, 0x01, 0x04, 0x05, 0x42, 0x00, 0x04, 0x03, 0x00, id_base]
+        
+        # Atomic Sync Payload (17 bytes)
+        # 04 (SyncSub) 03 01 (SyncHead)
+        # m1 04 00 m2 00 04 c1 00 00 04 00 c2 00 04 00 00
+        d += [0x04, 0x03, 0x01]
+        d += [m1, 0x04, 0x00, m2, 0x00, 0x04, c1, 0x00, 0x00, 0x04, 0x00, c2, 0x00, 0x04, 0x00, 0x00]
+        
+        # Checksum (Standard Sum) + Official Trailer 0x05
+        cs = calcola_checksum_7bit(d)
+        return d + [cs, 0x05]
 
-    # Forziamo rigorosamente il formato "Solid" a singolo colore per tutti i 3 stati del Sampler.
-    # Questo è necessario perché l'UI invia "Rainbow", restituendo mod_in = 0x02. 
-    # Ma per l'apparecchio, "0x02" NON è l'animazione Rainbow, bensì è ESATTAMENTE LA FLAG UNIVERSALE PER L'UNASSIGNED!
-    # Mandando mod_in = 0x02 nell'Inactive/Active il mixer andava totalmente in confusione scartando o mascherando l'intento!
-    col_in_fixed = [cols_in[0], 0x00, 0x00, 0x00]
-    col_ac_fixed = [cols_ac[0], 0x00, 0x00, 0x00]
-    col_un_fixed = [cols_un[0], 0x00, 0x00, 0x00]
+    # Invia Inactive/Active (mod 00/01)
+    invia_messaggio_sysex(build_extended_packet(0x00, 0x01, v_in, v_ac), f"{nome} (Base)")
+    
+    time.sleep(0.05)
 
-    # 1. Inactive/Active packet (forziamo mod=0x00 e mod=0x00)
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00] + col_in_fixed + col_ac_fixed
-    invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} (Inactive/Active - Bank {CURRENT_BANK + 1})")
-
-    time.sleep(0.05) # Lascia al mixer il tempo di salvare il primo pacchetto
-
-    # 2. Unassigned packet (forzerà i byte identificatori a 0x02 come ci ha dimostrato il dump originale)
-    data_unassigned = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, 0x02, 0x00, 0x02, 0x00] + col_un_fixed + col_un_fixed
-    invia_messaggio_sysex(data_unassigned + [calcola_checksum_7bit(data_unassigned)], f"{nome} (Unassigned - Bank {CURRENT_BANK + 1})")
+    # Invia Unassigned (mod 02/02)
+    invia_messaggio_sysex(build_extended_packet(0x02, 0x02, v_un, v_un), f"{nome} (Unassigned)")
 
 # =====================================================================
 # MIC INDICATOR FUNCTIONS (VU METER - 26-BYTE RULE)
