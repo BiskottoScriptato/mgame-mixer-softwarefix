@@ -6,7 +6,7 @@ We tried to fix it by creating a server that never closes the connection when yo
 
 ## 🌟 Key Features
 - 🔧 Fixed driver issue when closing and re-opening the official software.
-- 🌐 Multi-Language UI
+- 🌐 WEB UI
 - ✨ LED Logic config
        - `You can also edit singular LEDs `
 - 🎚️ Audio config
