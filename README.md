@@ -36,6 +36,7 @@ pip install flask flask-cors
 
 1. **Start the Backend**:
    Run the Python server to establish communication with the M-Game hardware. (you can also compile it with pyinstaller and put it in shell:startup so it runs in the background).
+   
    pyinstaller --onefile --noconsole servermgame.py
    ```bash
    python servermgame.py
