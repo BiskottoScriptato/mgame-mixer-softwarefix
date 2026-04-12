@@ -173,14 +173,16 @@ def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_u
     mod_in, cols_in = _get_bytes(mode_in, p1_in, p2_in, p3_in, p4_in)
     mod_ac, cols_ac = _get_bytes(mode_ac, p1_ac, p2_ac, p3_ac, p4_ac)
 
-    # L'hardware imposta lo stato Unassigned quando i byte di modalità sono entrambi 0x02 per il pacchetto primario
-    # Usiamo 0x02 come flag "Unassigned Configuration" invece di passarlo come animazione
-    data_unassigned = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, 0x02, 0x00, 0x02, 0x00] + cols_un + cols_un
-    invia_messaggio_sysex(data_unassigned + [calcola_checksum_7bit(data_unassigned)], f"{nome} (Unassigned - Bank {CURRENT_BANK + 1})")
-
-    # Inactive/Active packet usa lo stesso ID!
+    # 1. Inactive/Active packet usa lo stesso ID!
     data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, mod_in, 0x00, mod_ac, 0x00] + cols_in + cols_ac
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} (Inactive/Active - Bank {CURRENT_BANK + 1})")
+
+    time.sleep(0.05) # Lascia al mixer il tempo di salvare il primo pacchetto
+
+    # 2. L'hardware imposta lo stato Unassigned quando i byte di modalità sono entrambi 0x02 per il pacchetto primario
+    # Deve essere mandato SECONDO, altrimenti il pacchetto base Inactive lo sovrascrive o l'hardware lo droppa!
+    data_unassigned = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, 0x02, 0x00, 0x02, 0x00] + cols_un + cols_un
+    invia_messaggio_sysex(data_unassigned + [calcola_checksum_7bit(data_unassigned)], f"{nome} (Unassigned - Bank {CURRENT_BANK + 1})")
 
 # =====================================================================
 # MIC INDICATOR FUNCTIONS (VU METER - 26-BYTE RULE)
