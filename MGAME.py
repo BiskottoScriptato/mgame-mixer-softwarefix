@@ -179,9 +179,11 @@ def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_u
 
     time.sleep(0.05) # Lascia al mixer il tempo di salvare il primo pacchetto
 
-    # 2. L'hardware imposta lo stato Unassigned quando i byte di modalità sono entrambi 0x02 per il pacchetto primario
+    # L'hardware imposta lo stato Unassigned quando i byte di modalità sono entrambi 0x02 per il pacchetto primario
     # Deve essere mandato SECONDO, altrimenti il pacchetto base Inactive lo sovrascrive o l'hardware lo droppa!
-    data_unassigned = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, 0x02, 0x00, 0x02, 0x00] + cols_un + cols_un
+    # L'array colori per Unassigned DEVE essere formattato come [Colore, 0, 0, 0] indipendentemente dalle scelte UI
+    col_un_fixed = [cols_un[0], 0x00, 0x00, 0x00]
+    data_unassigned = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, 0x02, 0x00, 0x02, 0x00] + col_un_fixed + col_un_fixed
     invia_messaggio_sysex(data_unassigned + [calcola_checksum_7bit(data_unassigned)], f"{nome} (Unassigned - Bank {CURRENT_BANK + 1})")
 
 # =====================================================================
