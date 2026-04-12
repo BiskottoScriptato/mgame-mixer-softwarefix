@@ -173,16 +173,21 @@ def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_u
     mod_in, cols_in = _get_bytes(mode_in, p1_in, p2_in, p3_in, p4_in)
     mod_ac, cols_ac = _get_bytes(mode_ac, p1_ac, p2_ac, p3_ac, p4_ac)
 
-    # 1. Inactive/Active packet usa lo stesso ID!
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, mod_in, 0x00, mod_ac, 0x00] + cols_in + cols_ac
+    # Forziamo rigorosamente il formato "Solid" a singolo colore per tutti i 3 stati del Sampler.
+    # Questo è necessario perché l'UI invia "Rainbow", restituendo mod_in = 0x02. 
+    # Ma per l'apparecchio, "0x02" NON è l'animazione Rainbow, bensì è ESATTAMENTE LA FLAG UNIVERSALE PER L'UNASSIGNED!
+    # Mandando mod_in = 0x02 nell'Inactive/Active il mixer andava totalmente in confusione scartando o mascherando l'intento!
+    col_in_fixed = [cols_in[0], 0x00, 0x00, 0x00]
+    col_ac_fixed = [cols_ac[0], 0x00, 0x00, 0x00]
+    col_un_fixed = [cols_un[0], 0x00, 0x00, 0x00]
+
+    # 1. Inactive/Active packet (forziamo mod=0x00 e mod=0x00)
+    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00] + col_in_fixed + col_ac_fixed
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} (Inactive/Active - Bank {CURRENT_BANK + 1})")
 
     time.sleep(0.05) # Lascia al mixer il tempo di salvare il primo pacchetto
 
-    # L'hardware imposta lo stato Unassigned quando i byte di modalità sono entrambi 0x02 per il pacchetto primario
-    # Deve essere mandato SECONDO, altrimenti il pacchetto base Inactive lo sovrascrive o l'hardware lo droppa!
-    # L'array colori per Unassigned DEVE essere formattato come [Colore, 0, 0, 0] indipendentemente dalle scelte UI
-    col_un_fixed = [cols_un[0], 0x00, 0x00, 0x00]
+    # 2. Unassigned packet (forzerà i byte identificatori a 0x02 come ci ha dimostrato il dump originale)
     data_unassigned = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, 0x02, 0x00, 0x02, 0x00] + col_un_fixed + col_un_fixed
     invia_messaggio_sysex(data_unassigned + [calcola_checksum_7bit(data_unassigned)], f"{nome} (Unassigned - Bank {CURRENT_BANK + 1})")
 
