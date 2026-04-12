@@ -184,30 +184,41 @@ def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_u
         elif m_str == 'rainbow': return 0x02
         return 0x00
 
+    def get_color_array(m_str, p1, p2, p3, p4):
+        if m_str == 'rainbow':
+            # p1 defines luminosity: High (0x4D) or Low (0x34)
+            return [0x4D if int(p1) else 0x34, 0x34, 0x00, 0x00]
+        elif m_str == 'pulse':
+            # Pulse uses all 4 bytes for alternating colors
+            return [int(p1), int(p2), int(p3), int(p4)]
+        else:
+            # Solid uses only the first byte
+            return [int(p1), 0x00, 0x00, 0x00]
+
     m_un = parse_mode(mode_un)
     m_in = parse_mode(mode_in)
     m_ac = parse_mode(mode_ac)
 
-    v_un = int(p1_un)
-    v_in = int(p1_in)
-    v_ac = int(p1_ac)
+    arr_un = get_color_array(mode_un, p1_un, p2_un, p3_un, p4_un)
+    arr_in = get_color_array(mode_in, p1_in, p2_in, p3_in, p4_in)
+    arr_ac = get_color_array(mode_ac, p1_ac, p2_ac, p3_ac, p4_ac)
 
-    def build_25byte_packet(m1, m2, c1, c2):
+    def build_25byte_packet(m1, m2, arr1, arr2):
         # 25-byte structure confirmed from reassembled USB messages
         # [Vend_4, Zero_1, Target_3, Cmd_2, Mod_4, Col1_4, Col2_4, Checksum_1]
         d = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01]
         d += [m1, 0x00, m2, 0x00] # Params/Modifiers
-        d += [c1, 0x00, 0x00, 0x00] # Color 1
-        d += [c2, 0x00, 0x00, 0x00] # Color 2
+        d += arr1 # Color 1 (4 bytes)
+        d += arr2 # Color 2 (4 bytes)
         
         # Standard 7-bit checksum matches official dumps perfectly now
         return d + [calcola_checksum_7bit(d)]
 
     # Invia Inactive/Active
-    invia_messaggio_sysex(build_25byte_packet(m_in, m_ac, v_in, v_ac), f"{nome} (Base)")
+    invia_messaggio_sysex(build_25byte_packet(m_in, m_ac, arr_in, arr_ac), f"{nome} (Base)")
     time.sleep(0.05)
-    # Invia Unassigned (questo sovrascrive temporaneamente il colore fisico se il Sampler è considerato 'vuoto')
-    invia_messaggio_sysex(build_25byte_packet(m_un, m_un, v_un, v_un), f"{nome} (Unassigned)")
+    # Invia Unassigned (sovrascrive temporaneamente il colore fisico se il Sampler è 'vuoto')
+    invia_messaggio_sysex(build_25byte_packet(m_un, m_un, arr_un, arr_un), f"{nome} (Unassigned)")
 
 # =====================================================================
 # MIC INDICATOR FUNCTIONS (VU METER - 26-BYTE RULE)
