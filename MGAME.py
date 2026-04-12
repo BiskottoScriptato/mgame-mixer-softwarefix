@@ -152,42 +152,37 @@ def imposta_tasti_fx_bank(is_fx, col_on, col_off):
 
 def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_un, p4_un, mode_in, p1_in, p2_in, p3_in, p4_in, mode_ac, p1_ac, p2_ac, p3_ac, p4_ac):
     """
-    ULTIMATE FIXED SAMPLER ENGINE:
-    Uses the 30-byte Extended Atomic Sync structure (Cmd Group 0x04).
-    Validated against 4 independent official software dumps.
+    CORRECTED SAMPLER ENGINE (ID 10-14, CS +28 Offset)
+    Matches the official SysEx checksum logic and byte structure.
     """
     if CURRENT_BANK == 0:
-        id_base = 9 + int(num_sample)  # 10..14
+        id_base = 9 + int(num_sample)  # S1=10, S2=11, S3=12, S4=13, S5=14
     else:
-        id_base = 14 + int(num_sample) # 15..19
+        id_base = 14 + int(num_sample) # S1=15, S2=16, S3=17, S4=18, S5=19
 
     v_un = int(p1_un)
     v_in = int(p1_in)
     v_ac = int(p1_ac)
 
     def build_extended_packet(m1, m2, c1, c2):
-        # Header (9 bytes)
-        # Official vendor: 00 01 04 05 42
-        # Command Group: 00 04
-        # Target: 03 (Btn) 00 (Page) id_base
+        # Header (Target ID and Extended group)
         d = [0x00, 0x01, 0x04, 0x05, 0x42, 0x00, 0x04, 0x03, 0x00, id_base]
         
-        # Atomic Sync Payload (17 bytes)
-        # 04 (SyncSub) 03 01 (SyncHead)
-        # m1 04 00 m2 00 04 c1 00 00 04 00 c2 00 04 00 00
+        # Atomic Sync Structure with separators 0x04
         d += [0x04, 0x03, 0x01]
         d += [m1, 0x04, 0x00, m2, 0x00, 0x04, c1, 0x00, 0x00, 0x04, 0x00, c2, 0x00, 0x04, 0x00, 0x00]
         
-        # Checksum (Standard Sum) + Official Trailer 0x05
-        cs = calcola_checksum_7bit(d)
-        return d + [cs, 0x05]
+        # The +28 offset was the missing key discovered in export.txt
+        base_cs = calcola_checksum_7bit(d)
+        final_cs = (base_cs + 28) % 128
+        return d + [final_cs, 0x05]
 
-    # Invia Inactive/Active (mod 00/01)
+    # Invia Inactive/Active (00/01)
     invia_messaggio_sysex(build_extended_packet(0x00, 0x01, v_in, v_ac), f"{nome} (Base)")
     
     time.sleep(0.05)
 
-    # Invia Unassigned (mod 02/02)
+    # Invia Unassigned (02/02)
     invia_messaggio_sysex(build_extended_packet(0x02, 0x02, v_un, v_un), f"{nome} (Unassigned)")
 
 # =====================================================================
