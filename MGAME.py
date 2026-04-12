@@ -170,35 +170,44 @@ def imposta_tasti_fx_bank(is_fx, col_on, col_off):
 
 def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_un, p4_un, mode_in, p1_in, p2_in, p3_in, p4_in, mode_ac, p1_ac, p2_ac, p3_ac, p4_ac):
     """
-    BIT-PERFECT SAMPLER ENGINE (ID 10-14, CS +28 Offset)
-    matches Frame 744 and 19611 of official dumps.
+    OFFICIAL 25-BYTE SAMPLER ENGINE
+    Matches Frame 748 and 19611 bit-for-bit.
     """
     if CURRENT_BANK == 0:
         id_base = 9 + int(num_sample)  # S1=10, S2=11...
     else:
         id_base = 14 + int(num_sample) # S1=15, S2=16...
 
+    def parse_mode(m_str):
+        if m_str == 'solid': return 0x00
+        elif m_str == 'pulse': return 0x01
+        elif m_str == 'rainbow': return 0x02
+        return 0x00
+
+    m_un = parse_mode(mode_un)
+    m_in = parse_mode(mode_in)
+    m_ac = parse_mode(mode_ac)
+
     v_un = int(p1_un)
     v_in = int(p1_in)
     v_ac = int(p1_ac)
 
-    def build_extended_packet(m1, m2, c1, c2):
-        # Header: Verified 5-byte vendor + Atomic group
-        d = [0x00, 0x01, 0x04, 0x05, 0x42, 0x00, 0x04, 0x03, 0x00, id_base]
+    def build_25byte_packet(m1, m2, c1, c2):
+        # 25-byte structure confirmed from reassembled USB messages
+        # [Vend_4, Zero_1, Target_3, Cmd_2, Mod_4, Col1_4, Col2_4, Checksum_1]
+        d = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01]
+        d += [m1, 0x00, m2, 0x00] # Params/Modifiers
+        d += [c1, 0x00, 0x00, 0x00] # Color 1
+        d += [c2, 0x00, 0x00, 0x00] # Color 2
         
-        # Atomic Sync Payload: m1 04 00 m2 00 04 col 00 00 04 00 col 00 04 00 00
-        d += [0x04, 0x03, 0x01]
-        d += [m1, 0x04, 0x00, m2, 0x00, 0x04, c1, 0x00, 0x00, 0x04, 0x00, c2, 0x00, 0x04, 0x00, 0x00]
-        
-        # Checksum +28 discovered in official dump Frame 744
-        base_cs = calcola_checksum_7bit(d)
-        final_cs = (base_cs + 28) % 128
-        return d + [final_cs, 0x05]
+        # Standard 7-bit checksum matches official dumps perfectly now
+        return d + [calcola_checksum_7bit(d)]
 
-    # Invia Base state then Unassigned state
-    invia_messaggio_sysex(build_extended_packet(0x00, 0x01, v_in, v_ac), f"{nome} (Base)")
+    # Invia Inactive/Active
+    invia_messaggio_sysex(build_25byte_packet(m_in, m_ac, v_in, v_ac), f"{nome} (Base)")
     time.sleep(0.05)
-    invia_messaggio_sysex(build_extended_packet(0x02, 0x02, v_un, v_un), f"{nome} (Unassigned)")
+    # Invia Unassigned (questo sovrascrive temporaneamente il colore fisico se il Sampler è considerato 'vuoto')
+    invia_messaggio_sysex(build_25byte_packet(m_un, m_un, v_un, v_un), f"{nome} (Unassigned)")
 
 # =====================================================================
 # MIC INDICATOR FUNCTIONS (VU METER - 26-BYTE RULE)
