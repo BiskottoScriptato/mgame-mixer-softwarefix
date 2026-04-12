@@ -1,6 +1,8 @@
 # M-Game RGB Dual Dashboard - Global Support & Settings Panel.
 
 An attempt to remake the M-Game RGB Dual mixer managing software (because the original sucks) by using a web ui, it provides software improvements and it solves (gets around) some driver issues. 
+The main problem is that the driver used to comunicate with the mixer crashes when you try to close the bridge between your pc and the mixer, this means that if you accidentally close the m-game original software you can't re-open and you have to restart your pc;
+We tried to fix it by creating a server that never closes the connection when you close the program (original) or the web ui.
 
 ## 🌟 Key Features
 
@@ -33,7 +35,7 @@ pip install flask flask-cors
 ## 🛠 Usage
 
 1. **Start the Backend**:
-   Run the Python server to establish communication with the M-Game hardware.
+   Run the Python server to establish communication with the M-Game hardware. (you can also compile it with pyinstaller and put it in shell:startup so it runs in the background).
    ```bash
    python servermgame.py
    ```
