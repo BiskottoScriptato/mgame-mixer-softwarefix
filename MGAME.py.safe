@@ -1,6 +1,5 @@
 import time
 import sys
-import os
 import socket
 import math
 import importlib
@@ -15,32 +14,15 @@ OUTPORT = None
 # CORE COMMUNICATION FUNCTIONS
 # =====================================================================
 
-STATE_FILE = ".mgame_state"
-
-def load_bank_state():
-    try:
-        if os.path.exists(STATE_FILE):
-            with open(STATE_FILE, 'r') as f:
-                return int(f.read().strip())
-    except:
-        pass
-    return 0
-
-def save_bank_state(bank):
-    try:
-        with open(STATE_FILE, 'w') as f:
-            f.write(str(bank))
-    except:
-        pass
-
-# PERSISTENT STATE - Survives Server Hot-Reloads
-CURRENT_BANK = load_bank_state()
+try:
+    CURRENT_BANK
+except NameError:
+    CURRENT_BANK = 0 # 0 = Bank 1, 1 = Bank 2
 
 def set_active_bank(bank_index):
     global CURRENT_BANK
     CURRENT_BANK = int(bank_index)
-    save_bank_state(CURRENT_BANK)
-    print(f"[BANK] Active bank saved and set to: {CURRENT_BANK + 1}")
+    print(f"[BANK] Active bank set to: {CURRENT_BANK + 1}")
 
 def invia_messaggio_sysex(data_array, descrizione):
     """Sends the MIDI SysEx packet to the Server over UDP."""
@@ -170,34 +152,37 @@ def imposta_tasti_fx_bank(is_fx, col_on, col_off):
 
 def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_un, p4_un, mode_in, p1_in, p2_in, p3_in, p4_in, mode_ac, p1_ac, p2_ac, p3_ac, p4_ac):
     """
-    BIT-PERFECT SAMPLER ENGINE (ID 10-14, CS +28 Offset)
-    matches Frame 744 and 19611 of official dumps.
+    CORRECTED SAMPLER ENGINE (ID 10-14, CS +28 Offset)
+    Matches the official SysEx checksum logic and byte structure.
     """
     if CURRENT_BANK == 0:
-        id_base = 9 + int(num_sample)  # S1=10, S2=11...
+        id_base = 9 + int(num_sample)  # S1=10, S2=11, S3=12, S4=13, S5=14
     else:
-        id_base = 14 + int(num_sample) # S1=15, S2=16...
+        id_base = 14 + int(num_sample) # S1=15, S2=16, S3=17, S4=18, S5=19
 
     v_un = int(p1_un)
     v_in = int(p1_in)
     v_ac = int(p1_ac)
 
     def build_extended_packet(m1, m2, c1, c2):
-        # Header: Verified 5-byte vendor + Atomic group
+        # Header (Target ID and Extended group)
         d = [0x00, 0x01, 0x04, 0x05, 0x42, 0x00, 0x04, 0x03, 0x00, id_base]
         
-        # Atomic Sync Payload: m1 04 00 m2 00 04 col 00 00 04 00 col 00 04 00 00
+        # Atomic Sync Structure with separators 0x04
         d += [0x04, 0x03, 0x01]
         d += [m1, 0x04, 0x00, m2, 0x00, 0x04, c1, 0x00, 0x00, 0x04, 0x00, c2, 0x00, 0x04, 0x00, 0x00]
         
-        # Checksum +28 discovered in official dump Frame 744
+        # The +28 offset was the missing key discovered in export.txt
         base_cs = calcola_checksum_7bit(d)
         final_cs = (base_cs + 28) % 128
         return d + [final_cs, 0x05]
 
-    # Invia Base state then Unassigned state
+    # Invia Inactive/Active (00/01)
     invia_messaggio_sysex(build_extended_packet(0x00, 0x01, v_in, v_ac), f"{nome} (Base)")
+    
     time.sleep(0.05)
+
+    # Invia Unassigned (02/02)
     invia_messaggio_sysex(build_extended_packet(0x02, 0x02, v_un, v_un), f"{nome} (Unassigned)")
 
 # =====================================================================
