@@ -19,7 +19,7 @@ PORT = 65432
 # ==========================================================
 # WEB SERVER (FLASK)
 # ==========================================================
-percorso_templates = r'D:\Desktop\m-game'
+percorso_templates = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__, template_folder=percorso_templates)
 
 # Forces Flask to re-read index.html from disk on every browser
