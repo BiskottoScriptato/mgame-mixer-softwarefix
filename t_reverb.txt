@@ -1,0 +1,1940 @@
+No.     Time           Source                Destination           Protocol Length Info
+      1 0.000000       host                  1.1.0                 USB      36     GET DESCRIPTOR Request DEVICE
+
+Frame 1: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 0b 00   ................
+0010  00 01 00 01 00 80 02 08 00 00 00 00 80 06 00 01   ................
+0020  00 00 12 00                                       ....
+
+No.     Time           Source                Destination           Protocol Length Info
+      2 0.000000       1.1.0                 host                  USB      46     GET DESCRIPTOR Response DEVICE
+
+Frame 2: Packet, 46 bytes on wire (368 bits), 46 bytes captured (368 bits) on interface \\.\USBPcap1, id 0
+USB URB
+DEVICE DESCRIPTOR
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 08 00   ................
+0010  01 01 00 01 00 80 02 12 00 00 00 03 12 01 00 02   ................
+0020  00 00 00 40 05 0b ce 1a 07 07 01 02 03 01         ...@..........
+
+No.     Time           Source                Destination           Protocol Length Info
+      3 0.000000       host                  1.1.0                 USB      36     GET DESCRIPTOR Request CONFIGURATION
+
+Frame 3: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 0b 00   ................
+0010  00 01 00 01 00 80 02 08 00 00 00 00 80 06 00 02   ................
+0020  00 00 8d 00                                       ....
+
+No.     Time           Source                Destination           Protocol Length Info
+      4 0.000000       1.1.0                 host                  USB      169    GET DESCRIPTOR Response CONFIGURATION
+
+Frame 4: Packet, 169 bytes on wire (1352 bits), 169 bytes captured (1352 bits) on interface \\.\USBPcap1, id 0
+USB URB
+CONFIGURATION DESCRIPTOR
+INTERFACE DESCRIPTOR (0.0): class HID
+HID DESCRIPTOR
+ENDPOINT DESCRIPTOR
+INTERFACE DESCRIPTOR (1.0): class HID
+HID DESCRIPTOR
+ENDPOINT DESCRIPTOR
+INTERFACE DESCRIPTOR (2.0): class HID
+HID DESCRIPTOR
+ENDPOINT DESCRIPTOR
+ENDPOINT DESCRIPTOR
+INTERFACE DESCRIPTOR (3.0): class HID
+HID DESCRIPTOR
+ENDPOINT DESCRIPTOR
+INTERFACE DESCRIPTOR (4.0): class HID
+HID DESCRIPTOR
+ENDPOINT DESCRIPTOR
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 08 00   ................
+0010  01 01 00 01 00 80 02 8d 00 00 00 03 09 02 8d 00   ................
+0020  05 01 04 e0 fa 09 04 00 00 01 03 00 01 00 09 21   ...............!
+0030  11 01 00 01 22 5f 00 07 05 81 03 40 00 01 09 04   ...."_.....@....
+0040  01 00 01 03 01 02 00 09 21 11 01 00 01 22 52 00   ........!...."R.
+0050  07 05 82 03 40 00 01 09 04 02 00 02 03 00 00 00   ....@...........
+0060  09 21 11 01 00 01 22 6c 00 07 05 83 03 40 00 01   .!...."l.....@..
+0070  07 05 03 03 40 00 01 09 04 03 00 01 03 00 00 00   ....@...........
+0080  09 21 11 01 00 01 22 b2 00 07 05 84 03 40 00 01   .!...."......@..
+0090  09 04 04 00 01 03 00 00 00 09 21 11 01 00 01 22   ..........!...."
+00a0  47 01 07 05 85 03 40 00 01                        G.....@..
+
+No.     Time           Source                Destination           Protocol Length Info
+      5 0.000000       host                  1.1.0                 USB      36     SET CONFIGURATION Request
+
+Frame 5: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  00 01 00 01 00 00 02 08 00 00 00 00 00 09 01 00   ................
+0020  00 00 00 00                                       ....
+
+No.     Time           Source                Destination           Protocol Length Info
+      6 0.000000       1.1.0                 host                  USB      28     SET CONFIGURATION Response
+
+Frame 6: Packet, 28 bytes on wire (224 bits), 28 bytes captured (224 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  01 01 00 01 00 00 02 00 00 00 00 03               ............
+
+No.     Time           Source                Destination           Protocol Length Info
+      7 0.000000       host                  1.2.0                 USB      36     GET DESCRIPTOR Request DEVICE
+
+Frame 7: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 0b 00   ................
+0010  00 01 00 02 00 80 02 08 00 00 00 00 80 06 00 01   ................
+0020  00 00 12 00                                       ....
+
+No.     Time           Source                Destination           Protocol Length Info
+      8 0.000000       1.2.0                 host                  USB      46     GET DESCRIPTOR Response DEVICE
+
+Frame 8: Packet, 46 bytes on wire (368 bits), 46 bytes captured (368 bits) on interface \\.\USBPcap1, id 0
+USB URB
+DEVICE DESCRIPTOR
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 08 00   ................
+0010  01 01 00 02 00 80 02 12 00 00 00 03 12 01 00 02   ................
+0020  ef 02 01 40 63 07 42 00 02 00 02 03 00 01         ...@c.B.......
+
+No.     Time           Source                Destination           Protocol Length Info
+      9 0.000000       host                  1.2.0                 USB      36     GET DESCRIPTOR Request CONFIGURATION
+
+Frame 9: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 0b 00   ................
+0010  00 01 00 02 00 80 02 08 00 00 00 00 80 06 00 02   ................
+0020  00 00 a4 01                                       ....
+
+No.     Time           Source                Destination           Protocol Length Info
+     10 0.000000       1.2.0                 host                  USB      448    GET DESCRIPTOR Response CONFIGURATION
+
+Frame 10: Packet, 448 bytes on wire (3584 bits), 448 bytes captured (3584 bits) on interface \\.\USBPcap1, id 0
+USB URB
+CONFIGURATION DESCRIPTOR
+INTERFACE DESCRIPTOR (0.0): class Application Specific
+DFU Descriptor: DFU FUNCTIONAL
+INTERFACE ASSOCIATION DESCRIPTOR
+INTERFACE DESCRIPTOR (1.0): class Audio
+Class-specific Audio Control Interface Descriptor: Header Descriptor
+Class-specific Audio Control Interface Descriptor: Clock selector descriptor
+Class-specific Audio Control Interface Descriptor: Clock source descriptor
+Class-specific Audio Control Interface Descriptor: Input terminal descriptor
+Class-specific Audio Control Interface Descriptor: Output terminal descriptor
+Class-specific Audio Control Interface Descriptor: Input terminal descriptor
+Class-specific Audio Control Interface Descriptor: Output terminal descriptor
+Class-specific Audio Control Interface Descriptor: Feature unit descriptor
+Class-specific Audio Control Interface Descriptor: Feature unit descriptor
+INTERFACE DESCRIPTOR (2.0): class Audio
+INTERFACE DESCRIPTOR (2.1): class Audio
+Class-specific Audio Streaming Interface Descriptor: General AS Descriptor
+Class-specific Audio Streaming Interface Descriptor: Format type descriptor
+ENDPOINT DESCRIPTOR
+Class-specific Audio Streaming Endpoint Descriptor
+ENDPOINT DESCRIPTOR
+INTERFACE DESCRIPTOR (3.0): class Audio
+INTERFACE DESCRIPTOR (3.1): class Audio
+Class-specific Audio Streaming Interface Descriptor: General AS Descriptor
+Class-specific Audio Streaming Interface Descriptor: Format type descriptor
+ENDPOINT DESCRIPTOR
+Class-specific Audio Streaming Endpoint Descriptor
+INTERFACE DESCRIPTOR (4.0): class Audio
+Class-specific Audio Control Interface Descriptor: Header Descriptor
+INTERFACE DESCRIPTOR (5.0): class Audio
+Class-specific MIDI Streaming Interface Descriptor: Header Descriptor
+Class-specific MIDI Streaming Interface Descriptor: MIDI IN Jack descriptor
+Class-specific MIDI Streaming Interface Descriptor: MIDI IN Jack descriptor
+Class-specific MIDI Streaming Interface Descriptor: MIDI OUT Jack descriptor
+Class-specific MIDI Streaming Interface Descriptor: MIDI OUT Jack descriptor
+ENDPOINT DESCRIPTOR
+Class-specific MIDI Streaming Endpoint Descriptor
+ENDPOINT DESCRIPTOR
+Class-specific MIDI Streaming Endpoint Descriptor
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 08 00   ................
+0010  01 01 00 02 00 80 02 a4 01 00 00 03 09 02 a4 01   ................
+0020  06 01 04 c0 00 09 04 00 00 00 fe 01 01 00 09 21   ...............!
+0030  05 d0 07 0c 08 01 01 08 0b 01 03 01 00 20 03 09   ............. ..
+0040  04 01 00 00 01 01 20 03 09 24 01 00 02 09 a7 00   ...... ..$......
+0050  00 08 24 0b 01 01 02 03 00 08 24 0a 02 03 03 00   ..$.......$.....
+0060  05 11 24 02 03 01 01 04 01 08 00 00 00 00 06 00   ..$.............
+0070  00 00 0c 24 03 04 01 03 03 08 01 00 00 00 11 24   ...$...........$
+0080  02 05 03 06 06 01 08 00 00 00 00 0e 00 00 00 0c   ................
+0090  24 03 06 01 01 05 07 01 00 00 00 2a 24 06 07 05   $..........*$...
+00a0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+00b0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+00c0  00 00 00 00 00 2a 24 06 08 03 00 00 00 00 00 00   .....*$.........
+00d0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+00e0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 09   ................
+00f0  04 02 00 00 01 02 20 00 09 04 02 01 02 01 02 20   ...... ........ 
+0100  00 10 24 01 03 00 01 01 00 00 00 08 00 00 00 00   ..$.............
+0110  06 06 24 02 01 03 18 07 05 02 05 a8 00 01 08 25   ..$............%
+0120  01 00 00 01 01 00 07 05 82 11 04 00 04 09 04 03   ................
+0130  00 00 01 02 20 00 09 04 03 01 01 01 02 20 00 10   .... ........ ..
+0140  24 01 06 00 01 01 00 00 00 08 00 00 00 00 0e 06   $...............
+0150  24 02 01 03 18 07 05 81 05 a8 00 01 08 25 01 00   $............%..
+0160  00 01 01 00 09 04 04 00 00 01 01 00 00 09 24 01   ..............$.
+0170  00 01 09 00 01 05 09 04 05 00 02 01 03 00 03 07   ................
+0180  24 01 00 01 41 00 06 24 02 01 01 16 06 24 02 02   $...A..$.....$..
+0190  02 16 09 24 03 01 03 01 02 01 16 09 24 03 02 04   ...$........$...
+01a0  01 01 01 16 09 05 03 02 00 01 00 00 00 05 25 01   ..............%.
+01b0  01 01 09 05 83 02 00 02 00 00 00 05 25 01 01 03   ............%...
+
+No.     Time           Source                Destination           Protocol Length Info
+     11 0.000000       host                  1.2.0                 USB      36     SET CONFIGURATION Request
+
+Frame 11: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  00 01 00 02 00 00 02 08 00 00 00 00 00 09 01 00   ................
+0020  00 00 00 00                                       ....
+
+No.     Time           Source                Destination           Protocol Length Info
+     12 0.000000       1.2.0                 host                  USB      28     SET CONFIGURATION Response
+
+Frame 12: Packet, 28 bytes on wire (224 bits), 28 bytes captured (224 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  01 01 00 02 00 00 02 00 00 00 00 03               ............
+
+No.     Time           Source                Destination           Protocol Length Info
+     13 0.000000       host                  1.4.0                 USB      36     GET DESCRIPTOR Request DEVICE
+
+Frame 13: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 0b 00   ................
+0010  00 01 00 04 00 80 02 08 00 00 00 00 80 06 00 01   ................
+0020  00 00 12 00                                       ....
+
+No.     Time           Source                Destination           Protocol Length Info
+     14 0.000000       1.4.0                 host                  USB      46     GET DESCRIPTOR Response DEVICE
+
+Frame 14: Packet, 46 bytes on wire (368 bits), 46 bytes captured (368 bits) on interface \\.\USBPcap1, id 0
+USB URB
+DEVICE DESCRIPTOR
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 08 00   ................
+0010  01 01 00 04 00 80 02 12 00 00 00 03 12 01 10 01   ................
+0020  00 00 00 08 3a 09 21 25 00 01 00 02 00 01         ....:.!%......
+
+No.     Time           Source                Destination           Protocol Length Info
+     15 0.000000       host                  1.4.0                 USB      36     GET DESCRIPTOR Request CONFIGURATION
+
+Frame 15: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 0b 00   ................
+0010  00 01 00 04 00 80 02 08 00 00 00 00 80 06 00 02   ................
+0020  00 00 22 00                                       ..".
+
+No.     Time           Source                Destination           Protocol Length Info
+     16 0.000000       1.4.0                 host                  USB      62     GET DESCRIPTOR Response CONFIGURATION
+
+Frame 16: Packet, 62 bytes on wire (496 bits), 62 bytes captured (496 bits) on interface \\.\USBPcap1, id 0
+USB URB
+CONFIGURATION DESCRIPTOR
+INTERFACE DESCRIPTOR (0.0): class HID
+HID DESCRIPTOR
+ENDPOINT DESCRIPTOR
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 08 00   ................
+0010  01 01 00 04 00 80 02 22 00 00 00 03 09 02 22 00   ......."......".
+0020  01 01 04 a0 32 09 04 00 00 01 03 01 02 00 09 21   ....2..........!
+0030  11 01 00 01 22 4f 00 07 05 81 03 07 00 0a         ...."O........
+
+No.     Time           Source                Destination           Protocol Length Info
+     17 0.000000       host                  1.4.0                 USB      36     SET CONFIGURATION Request
+
+Frame 17: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  00 01 00 04 00 00 02 08 00 00 00 00 00 09 01 00   ................
+0020  00 00 00 00                                       ....
+
+No.     Time           Source                Destination           Protocol Length Info
+     18 0.000000       1.4.0                 host                  USB      28     SET CONFIGURATION Response
+
+Frame 18: Packet, 28 bytes on wire (224 bits), 28 bytes captured (224 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  01 01 00 04 00 00 02 00 00 00 00 03               ............
+
+No.     Time           Source                Destination           Protocol Length Info
+     19 0.000000       host                  1.3.0                 USB      36     GET DESCRIPTOR Request DEVICE
+
+Frame 19: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 0b 00   ................
+0010  00 01 00 03 00 80 02 08 00 00 00 00 80 06 00 01   ................
+0020  00 00 12 00                                       ....
+
+No.     Time           Source                Destination           Protocol Length Info
+     20 0.000000       1.3.0                 host                  USB      46     GET DESCRIPTOR Response DEVICE
+
+Frame 20: Packet, 46 bytes on wire (368 bits), 46 bytes captured (368 bits) on interface \\.\USBPcap1, id 0
+USB URB
+DEVICE DESCRIPTOR
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 08 00   ................
+0010  01 01 00 03 00 80 02 12 00 00 00 03 12 01 00 02   ................
+0020  00 00 00 40 8d 04 02 57 01 00 01 02 00 01         ...@...W......
+
+No.     Time           Source                Destination           Protocol Length Info
+     21 0.000000       host                  1.3.0                 USB      36     GET DESCRIPTOR Request CONFIGURATION
+
+Frame 21: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 0b 00   ................
+0010  00 01 00 03 00 80 02 08 00 00 00 00 80 06 00 02   ................
+0020  00 00 22 00                                       ..".
+
+No.     Time           Source                Destination           Protocol Length Info
+     22 0.000000       1.3.0                 host                  USB      62     GET DESCRIPTOR Response CONFIGURATION
+
+Frame 22: Packet, 62 bytes on wire (496 bits), 62 bytes captured (496 bits) on interface \\.\USBPcap1, id 0
+USB URB
+CONFIGURATION DESCRIPTOR
+INTERFACE DESCRIPTOR (0.0): class HID
+HID DESCRIPTOR
+ENDPOINT DESCRIPTOR
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 08 00   ................
+0010  01 01 00 03 00 80 02 22 00 00 00 03 09 02 22 00   ......."......".
+0020  01 01 00 a0 32 09 04 00 00 01 03 00 00 00 09 21   ....2..........!
+0030  12 01 00 01 22 2e 00 07 05 81 03 40 00 01         ...."......@..
+
+No.     Time           Source                Destination           Protocol Length Info
+     23 0.000000       host                  1.3.0                 USB      36     SET CONFIGURATION Request
+
+Frame 23: Packet, 36 bytes on wire (288 bits), 36 bytes captured (288 bits) on interface \\.\USBPcap1, id 0
+USB URB
+Setup Data
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  00 01 00 03 00 00 02 08 00 00 00 00 00 09 01 00   ................
+0020  00 00 00 00                                       ....
+
+No.     Time           Source                Destination           Protocol Length Info
+     24 0.000000       1.3.0                 host                  USB      28     SET CONFIGURATION Response
+
+Frame 24: Packet, 28 bytes on wire (224 bits), 28 bytes captured (224 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+0.000000
+0000  1c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0010  01 01 00 03 00 00 02 00 00 00 00 03               ............
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103209 24.367138      host                  1.2.3                 SYSEX    131    MIDI System Exclusive Command
+
+Frame 103209: Packet, 131 bytes on wire (1048 bits), 131 bytes captured (1048 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.367138
+Packet (131 bytes):
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  00 01 00 02 00 03 03 68 00 00 00 04 f0 00 01 04   .......h........
+0020  05 42 00 04 10 00 00 04 03 50 00 04 00 00 41 04   .B.......P....A.
+0030  5a 00 10 04 00 01 00 04 00 41 19 04 19 34 00 04   Z........A...4..
+0040  02 00 00 04 41 59 00 04 34 10 03 04 00 00 41 04   ....AY..4.....A.
+0050  05 00 20 04 00 04 00 04 00 41 53 04 00 34 00 04   .. ......AS..4..
+0060  05 00 00 04 41 00 00 04 20 00 06 04 00 00 41 04   ....A... .....A.
+0070  3f 00 34 04 00 07 00 04 00 41 00 04 00 20 00 06   ?.4......A... ..
+0080  65 f7 00                                          e..
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 00 00 03 50 00 00 00 41 5a   ....B.....P...AZ
+0010  00 10 00 01 00 00 41 19 19 34 00 02 00 00 41 59   ......A..4....AY
+0020  00 34 10 03 00 00 41 05 00 20 00 04 00 00 41 53   .4....A.. ....AS
+0030  00 34 00 05 00 00 41 00 00 20 00 06 00 00 41 3f   .4....A.. ....A?
+0040  00 34 00 07 00 00 41 00 00 20 00 65 f7            .4....A.. .e.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103210 24.367162      1.2.3                 host                  USB      27     URB_BULK out
+
+Frame 103210: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.367162
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  01 01 00 02 00 03 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103211 24.367635      host                  1.2.3                 SYSEX    131    MIDI System Exclusive Command
+
+Frame 103211: Packet, 131 bytes on wire (1048 bits), 131 bytes captured (1048 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.367635
+Packet (131 bytes):
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  00 01 00 02 00 03 03 68 00 00 00 04 f0 00 01 04   .......h........
+0020  05 42 00 04 10 10 00 04 03 50 08 04 00 00 41 04   .B.......P....A.
+0030  3f 00 34 04 00 09 00 04 00 41 00 04 00 20 00 04   ?.4......A... ..
+0040  0a 00 00 04 41 3f 00 04 34 00 00 04 00 04 41 04   ....A?..4.....A.
+0050  00 00 00 04 3f 00 00 04 07 41 01 04 7f 0b 69 04   ....?....A....i.
+0060  01 00 07 04 41 00 00 04 00 00 02 04 00 07 41 04   ....A.........A.
+0070  38 0c 7f 04 7f 03 00 04 07 41 00 04 00 00 00 06   8........A......
+0080  01 f7 00                                          ...
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 10 00 03 50 08 00 00 41 3f   ....B.....P...A?
+0010  00 34 00 09 00 00 41 00 00 20 00 0a 00 00 41 3f   .4....A.. ....A?
+0020  00 34 00 00 00 04 41 00 00 00 3f 00 00 07 41 01   .4....A...?...A.
+0030  7f 0b 69 01 00 07 41 00 00 00 00 02 00 07 41 38   ..i...A.......A8
+0040  0c 7f 7f 03 00 07 41 00 00 00 00 01 f7            ......A......
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103212 24.367664      1.2.3                 host                  USB      27     URB_BULK out
+
+Frame 103212: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.367664
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  01 01 00 02 00 03 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103217 24.368634      host                  1.2.3                 SYSEX    131    MIDI System Exclusive Command
+
+Frame 103217: Packet, 131 bytes on wire (1048 bits), 131 bytes captured (1048 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.368634
+Packet (131 bytes):
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  00 01 00 02 00 03 03 68 00 00 00 04 f0 00 01 04   .......h........
+0020  05 42 00 04 10 20 00 04 03 50 04 04 00 07 41 04   .B... ...P....A.
+0030  02 46 00 04 1d 05 00 04 07 41 02 04 5d 50 4a 04   .F.......A..]PJ.
+0040  00 00 08 04 41 5a 5f 04 73 01 00 04 03 04 01 04   ....AZ_.s.......
+0050  02 00 00 04 41 01 03 04 04 01 7f 04 00 00 00 04   ....A...........
+0060  02 03 04 04 01 59 00 04 00 00 03 04 03 04 01 04   .....Y..........
+0070  6d 00 00 04 00 00 00 04 00 00 4e 04 41 4d 45 06   m.........N.AME.
+0080  79 f7 00                                          y..
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 20 00 03 50 04 00 07 41 02   ....B.. ..P...A.
+0010  46 00 1d 05 00 07 41 02 5d 50 4a 00 00 08 41 5a   F.....A.]PJ...AZ
+0020  5f 73 01 00 03 04 01 02 00 00 41 01 03 04 01 7f   _s........A.....
+0030  00 00 00 02 03 04 01 59 00 00 00 03 03 04 01 6d   .......Y.......m
+0040  00 00 00 00 00 00 00 4e 41 4d 45 79 f7            .......NAMEy.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103218 24.368664      1.2.3                 host                  USB      27     URB_BULK out
+
+Frame 103218: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.368664
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  01 01 00 02 00 03 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103223 24.369475      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103223: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.369475
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 20 00 00 00 04 f0 00 01 04   ....... ........
+0020  05 42 00 04 10 00 00 04 03 50 00 04 00 00 41 04   .B.......P....A.
+0030  5a 00 10 04 00 01 00 04 00 41 19                  Z........A.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103224 24.369505      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103224: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.369505
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103225 24.369600      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103225: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.369600
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 19 34 00 04   ....... .....4..
+0020  02 00 00 04 41 59 00 04 34 10 03 04 00 00 41 04   ....AY..4.....A.
+0030  05 00 20 04 00 04 00 04 00 41 53                  .. ......AS
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103226 24.369608      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103226: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.369608
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103227 24.369645      host                  1.2.3                 SYSEX    131    MIDI System Exclusive Command
+
+Frame 103227: Packet, 131 bytes on wire (1048 bits), 131 bytes captured (1048 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.369645
+Packet (131 bytes):
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  00 01 00 02 00 03 03 68 00 00 00 04 f0 00 01 04   .......h........
+0020  05 42 00 04 10 30 00 04 03 50 51 04 57 78 70 04   .B...0...PQ.Wxp.
+0030  5a 57 34 04 3d 00 00 04 00 00 00 04 00 00 00 04   ZW4.=...........
+0040  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0050  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0060  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0070  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 06   ................
+0080  73 f7 00                                          s..
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 30 00 03 50 51 57 78 70 5a   ....B..0..PQWxpZ
+0010  57 34 3d 00 00 00 00 00 00 00 00 00 00 00 00 00   W4=.............
+0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0040  00 00 00 00 00 00 00 00 00 00 00 73 f7            ...........s.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103228 24.369730      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103228: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.369730
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 34 00 04   ....... .....4..
+0020  05 00 00 04 41 00 00 04 20 00 06 04 00 00 41 04   ....A... .....A.
+0030  3f 00 34 04 00 07 00 04 00 41 00                  ?.4......A.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103229 24.369741      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103229: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.369741
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103230 24.369852      1.2.3                 host                  SYSEX    35     MIDI System Exclusive Command
+
+Frame 103230: Packet, 35 bytes on wire (280 bits), 35 bytes captured (280 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.369852
+Packet (35 bytes):
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 08 00 00 00 04 00 20 00 06   ............. ..
+0020  65 f7 00                                          e..
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 00 00 03 50 00 00 00 41 5a   ....B.....P...AZ
+0010  00 10 00 01 00 00 41 19 19 34 00 02 00 00 41 59   ......A..4....AY
+0020  00 34 10 03 00 00 41 05 00 20 00 04 00 00 41 53   .4....A.. ....AS
+0030  00 34 00 05 00 00 41 00 00 20 00 06 00 00 41 3f   .4....A.. ....A?
+0040  00 34 00 07 00 00 41 00 00 20 00 65 f7            .4....A.. .e.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103231 24.369857      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103231: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.369857
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103236 24.370138      1.2.3                 host                  USB      27     URB_BULK out
+
+Frame 103236: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.370138
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  01 01 00 02 00 03 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103241 24.371147      host                  1.2.3                 SYSEX    131    MIDI System Exclusive Command
+
+Frame 103241: Packet, 131 bytes on wire (1048 bits), 131 bytes captured (1048 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.371147
+Packet (131 bytes):
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  00 01 00 02 00 03 03 68 00 00 00 04 f0 00 01 04   .......h........
+0020  05 42 00 04 10 40 00 04 03 50 00 04 00 00 00 04   .B...@...P......
+0030  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0040  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0050  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0060  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0070  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 06   ................
+0080  15 f7 00                                          ...
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 40 00 03 50 00 00 00 00 00   ....B..@..P.....
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0040  00 00 00 00 00 00 00 00 00 00 00 15 f7            .............
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103243 24.371976      1.2.3                 host                  USBAUDIO 47     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103243: Packet, 47 bytes on wire (376 bits), 47 bytes captured (376 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.371976
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 14 00 00 00 04 f0 00 01 04   ................
+0020  05 42 00 04 10 10 00 04 03 50 08 04 00 00 41      .B.......P....A
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103244 24.371988      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103244: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.371988
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103248 24.372100      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103248: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.372100
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 3f 00 34 04   ....... ....?.4.
+0020  00 09 00 04 00 41 00 04 00 20 00 04 0a 00 00 04   .....A... ......
+0030  41 3f 00 04 34 00 00 04 00 04 41                  A?..4.....A
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103249 24.372110      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103249: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.372110
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103250 24.372157      host                  1.2.3                 SYSEX    131    MIDI System Exclusive Command
+
+Frame 103250: Packet, 131 bytes on wire (1048 bits), 131 bytes captured (1048 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.372157
+Packet (131 bytes):
+0000  1b 00 20 29 0e ee 0f b5 ff ff 00 00 00 00 09 00   .. )............
+0010  00 01 00 02 00 03 03 68 00 00 00 04 f0 00 01 04   .......h........
+0020  05 42 00 04 10 50 00 04 03 50 00 04 00 00 00 04   .B...P...P......
+0030  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0040  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0050  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0060  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0070  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 06   ................
+0080  05 f7 00                                          ...
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 50 00 03 50 00 00 00 00 00   ....B..P..P.....
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0040  00 00 00 00 00 00 00 00 00 00 00 05 f7            .............
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103251 24.372230      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103251: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.372230
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  3f 00 00 04 07 41 01 04 7f 0b 69 04 01 00 07 04   ?....A....i.....
+0030  41 00 00 04 00 00 02 04 00 07 41                  A.........A
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103252 24.372242      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103252: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.372242
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103253 24.372350      1.2.3                 host                  SYSEX    47     MIDI System Exclusive Command
+
+Frame 103253: Packet, 47 bytes on wire (376 bits), 47 bytes captured (376 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.372350
+Packet (47 bytes):
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 14 00 00 00 04 38 0c 7f 04   ............8...
+0020  7f 03 00 04 07 41 00 04 00 00 00 06 01 f7 00      .....A.........
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 10 00 03 50 08 00 00 41 3f   ....B.....P...A?
+0010  00 34 00 09 00 00 41 00 00 20 00 0a 00 00 41 3f   .4....A.. ....A?
+0020  00 34 00 00 00 04 41 00 00 00 3f 00 00 07 41 01   .4....A...?...A.
+0030  7f 0b 69 01 00 07 41 00 00 00 00 02 00 07 41 38   ..i...A.......A8
+0040  0c 7f 7f 03 00 07 41 00 00 00 00 01 f7            ......A......
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103254 24.372358      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103254: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.372358
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103255 24.372654      1.2.3                 host                  USB      27     URB_BULK out
+
+Frame 103255: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.372654
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  01 01 00 02 00 03 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103260 24.373158      host                  1.2.3                 SYSEX    131    MIDI System Exclusive Command
+
+Frame 103260: Packet, 131 bytes on wire (1048 bits), 131 bytes captured (1048 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.373158
+Packet (131 bytes):
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  00 01 00 02 00 03 03 68 00 00 00 04 f0 00 01 04   .......h........
+0020  05 42 00 04 10 60 00 04 03 50 00 04 00 00 00 04   .B...`...P......
+0030  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0040  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0050  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0060  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0070  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 06   ................
+0080  75 f7 00                                          u..
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 60 00 03 50 00 00 00 00 00   ....B..`..P.....
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0040  00 00 00 00 00 00 00 00 00 00 00 75 f7            ...........u.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103261 24.373657      host                  1.2.3                 SYSEX    131    MIDI System Exclusive Command
+
+Frame 103261: Packet, 131 bytes on wire (1048 bits), 131 bytes captured (1048 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.373657
+Packet (131 bytes):
+0000  1b 00 60 35 60 f0 0f b5 ff ff 00 00 00 00 09 00   ..`5`...........
+0010  00 01 00 02 00 03 03 68 00 00 00 04 f0 00 01 04   .......h........
+0020  05 42 00 04 10 70 00 04 03 50 00 04 00 00 00 04   .B...p...P......
+0030  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0040  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0050  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0060  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0070  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 06   ................
+0080  65 f7 00                                          e..
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 70 00 03 50 00 00 00 00 00   ....B..p..P.....
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0040  00 00 00 00 00 00 00 00 00 00 00 65 f7            ...........e.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103266 24.374479      1.2.3                 host                  USBAUDIO 31     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103266: Packet, 31 bytes on wire (248 bits), 31 bytes captured (248 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+
+24.374479
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 04 00 00 00 04 f0 00 01      ...............
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103267 24.374496      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103267: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.374496
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103268 24.374602      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103268: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.374602
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 05 42 00 04   ....... .....B..
+0020  10 20 00 04 03 50 04 04 00 07 41 04 02 46 00 04   . ...P....A..F..
+0030  1d 05 00 04 07 41 02 04 5d 50 4a                  .....A..]PJ
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103269 24.374615      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103269: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.374615
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103270 24.374724      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103270: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.374724
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 08 04   ....... ........
+0020  41 5a 5f 04 73 01 00 04 03 04 01 04 02 00 00 04   AZ_.s...........
+0030  41 01 03 04 04 01 7f 04 00 00 00                  A..........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103271 24.374733      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103271: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.374733
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103272 24.374848      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103272: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.374848
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 02 03 04 04   ....... ........
+0020  01 59 00 04 00 00 03 04 03 04 01 04 6d 00 00 04   .Y..........m...
+0030  00 00 00 04 00 00 4e 04 41 4d 45                  ......N.AME
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103273 24.374854      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103273: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.374854
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103274 24.374975      1.2.3                 host                  SYSEX    31     MIDI System Exclusive Command
+
+Frame 103274: Packet, 31 bytes on wire (248 bits), 31 bytes captured (248 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.374975
+Packet (31 bytes):
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 04 00 00 00 06 79 f7 00      ............y..
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 20 00 03 50 04 00 07 41 02   ....B.. ..P...A.
+0010  46 00 1d 05 00 07 41 02 5d 50 4a 00 00 08 41 5a   F.....A.]PJ...AZ
+0020  5f 73 01 00 03 04 01 02 00 00 41 01 03 04 01 7f   _s........A.....
+0030  00 00 00 02 03 04 01 59 00 00 00 03 03 04 01 6d   .......Y.......m
+0040  00 00 00 00 00 00 00 4e 41 4d 45 79 f7            .......NAMEy.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103277 24.374980      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103277: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.374980
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103280 24.375228      1.2.3                 host                  USB      27     URB_BULK out
+
+Frame 103280: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.375228
+0000  1b 00 20 29 0e ee 0f b5 ff ff 00 00 00 00 09 00   .. )............
+0010  01 01 00 02 00 03 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103289 24.377102      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103289: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.377102
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 f0 00 01 04   ....... ........
+0020  05 42 00 04 10 30 00 04 03 50 51 04 57 78 70 04   .B...0...PQ.Wxp.
+0030  5a 57 34 04 3d 00 00 04 00 00 00                  ZW4.=......
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103290 24.377117      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103290: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.377117
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103291 24.377227      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103291: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.377227
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103292 24.377239      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103292: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.377239
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103293 24.377348      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103293: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.377348
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103294 24.377355      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103294: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.377355
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103295 24.377475      1.2.3                 host                  SYSEX    35     MIDI System Exclusive Command
+
+Frame 103295: Packet, 35 bytes on wire (280 bits), 35 bytes captured (280 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.377475
+Packet (35 bytes):
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 08 00 00 00 04 00 00 00 06   ................
+0020  73 f7 00                                          s..
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 30 00 03 50 51 57 78 70 5a   ....B..0..PQWxpZ
+0010  57 34 3d 00 00 00 00 00 00 00 00 00 00 00 00 00   W4=.............
+0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0040  00 00 00 00 00 00 00 00 00 00 00 73 f7            ...........s.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103296 24.377478      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103296: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.377478
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103301 24.378097      1.2.3                 host                  USB      27     URB_BULK out
+
+Frame 103301: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.378097
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  01 01 00 02 00 03 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103302 24.378663      host                  1.2.3                 SYSEX    63     MIDI System Exclusive Command
+
+Frame 103302: Packet, 63 bytes on wire (504 bits), 63 bytes captured (504 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following single byte/Single-byte System Common Message
+MIDI System Exclusive Command
+
+24.378663
+Packet (63 bytes):
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  00 01 00 02 00 03 03 24 00 00 00 04 f0 00 01 04   .......$........
+0020  05 42 00 04 03 00 14 04 03 01 00 04 00 00 00 04   .B..............
+0030  12 00 00 04 00 44 00 04 00 00 47 05 f7 00 00      .....D....G....
+Reassembled Message (25 bytes):
+0000  f0 00 01 05 42 00 03 00 14 03 01 00 00 00 00 12   ....B...........
+0010  00 00 00 44 00 00 00 47 f7                        ...D...G.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103308 24.379974      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103308: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.379974
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 f0 00 01 04   ....... ........
+0020  05 42 00 04 10 40 00 04 03 50 00 04 00 00 00 04   .B...@...P......
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103309 24.379987      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103309: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.379987
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103313 24.380100      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103313: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.380100
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103314 24.380108      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103314: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.380108
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103315 24.380226      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103315: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.380226
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103316 24.380235      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103316: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.380235
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103317 24.380347      1.2.3                 host                  SYSEX    35     MIDI System Exclusive Command
+
+Frame 103317: Packet, 35 bytes on wire (280 bits), 35 bytes captured (280 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.380347
+Packet (35 bytes):
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 08 00 00 00 04 00 00 00 06   ................
+0020  15 f7 00                                          ...
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 40 00 03 50 00 00 00 00 00   ....B..@..P.....
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0040  00 00 00 00 00 00 00 00 00 00 00 15 f7            .............
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103318 24.380350      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103318: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.380350
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103319 24.380688      1.2.3                 host                  USB      27     URB_BULK out
+
+Frame 103319: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.380688
+0000  1b 00 60 35 60 f0 0f b5 ff ff 00 00 00 00 09 00   ..`5`...........
+0010  01 01 00 02 00 03 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103328 24.382600      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103328: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.382600
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 f0 00 01 04   ....... ........
+0020  05 42 00 04 10 50 00 04 03 50 00 04 00 00 00 04   .B...P...P......
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103329 24.382625      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103329: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.382625
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103330 24.382724      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103330: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.382724
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103331 24.382733      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103331: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.382733
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103332 24.382849      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103332: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.382849
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103333 24.382873      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103333: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.382873
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103337 24.382992      1.2.3                 host                  SYSEX    35     MIDI System Exclusive Command
+
+Frame 103337: Packet, 35 bytes on wire (280 bits), 35 bytes captured (280 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.382992
+Packet (35 bytes):
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 08 00 00 00 04 00 00 00 06   ................
+0020  05 f7 00                                          ...
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 50 00 03 50 00 00 00 00 00   ....B..P..P.....
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0040  00 00 00 00 00 00 00 00 00 00 00 05 f7            .............
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103338 24.382998      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103338: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.382998
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103340 24.383297      1.2.3                 host                  USB      27     URB_BULK out
+
+Frame 103340: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.383297
+0000  1b 00 a0 5a 72 f0 0f b5 ff ff 00 00 00 00 09 00   ...Zr...........
+0010  01 01 00 02 00 03 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103349 24.385224      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103349: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.385224
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 f0 00 01 04   ....... ........
+0020  05 42 00 04 10 60 00 04 03 50 00 04 00 00 00 04   .B...`...P......
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103350 24.385238      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103350: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.385238
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103351 24.385349      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103351: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.385349
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103352 24.385358      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103352: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.385358
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103353 24.385477      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103353: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.385477
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103354 24.385487      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103354: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.385487
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103355 24.385601      1.2.3                 host                  SYSEX    35     MIDI System Exclusive Command
+
+Frame 103355: Packet, 35 bytes on wire (280 bits), 35 bytes captured (280 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.385601
+Packet (35 bytes):
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 08 00 00 00 04 00 00 00 06   ................
+0020  75 f7 00                                          u..
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 60 00 03 50 00 00 00 00 00   ....B..`..P.....
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0040  00 00 00 00 00 00 00 00 00 00 00 75 f7            ...........u.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103356 24.385606      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103356: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.385606
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103365 24.387850      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103365: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.387850
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 f0 00 01 04   ....... ........
+0020  05 42 00 04 10 70 00 04 03 50 00 04 00 00 00 04   .B...p...P......
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103366 24.387872      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103366: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.387872
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103367 24.387970      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103367: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.387970
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103370 24.387979      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103370: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.387979
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103373 24.388098      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103373: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.388098
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 00 00 00 04   ....... ........
+0020  00 00 00 04 00 00 00 04 00 00 00 04 00 00 00 04   ................
+0030  00 00 00 04 00 00 00 04 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103374 24.388115      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103374: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.388115
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103375 24.388225      1.2.3                 host                  SYSEX    35     MIDI System Exclusive Command
+
+Frame 103375: Packet, 35 bytes on wire (280 bits), 35 bytes captured (280 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx ends with following two bytes
+MIDI System Exclusive Command
+
+24.388225
+Packet (35 bytes):
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 08 00 00 00 04 00 00 00 06   ................
+0020  65 f7 00                                          e..
+Reassembled Message (77 bytes):
+0000  f0 00 01 05 42 00 10 70 00 03 50 00 00 00 00 00   ....B..p..P.....
+0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0040  00 00 00 00 00 00 00 00 00 00 00 65 f7            ...........e.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103376 24.388231      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103376: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.388231
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103381 24.389600      1.2.3                 host                  USBAUDIO 59     USB-MIDI Event Packets (SysEx fragment)
+
+Frame 103381: Packet, 59 bytes on wire (472 bits), 59 bytes captured (472 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+USB Midi Event Packet: SysEx starts or continues
+
+24.389600
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  01 01 00 02 00 83 03 20 00 00 00 04 f0 00 01 04   ....... ........
+0020  05 42 00 04 03 00 14 04 03 01 00 04 00 00 00 04   .B..............
+0030  12 00 00 04 00 44 00 04 00 00 47                  .....D....G
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103382 24.389622      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103382: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.389622
+0000  1b 00 90 ca 54 e7 0f b5 ff ff 00 00 00 00 09 00   ....T...........
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103383 24.389724      1.2.3                 host                  SYSEX    31     MIDI System Exclusive Command
+
+Frame 103383: Packet, 31 bytes on wire (248 bits), 31 bytes captured (248 bits) on interface \\.\USBPcap1, id 0
+USB URB
+USB Midi Event Packet: SysEx ends with following single byte/Single-byte System Common Message
+MIDI System Exclusive Command
+
+24.389724
+Packet (31 bytes):
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  01 01 00 02 00 83 03 04 00 00 00 05 f7 00 00      ...............
+Reassembled Message (25 bytes):
+0000  f0 00 01 05 42 00 03 00 14 03 01 00 00 00 00 12   ....B...........
+0010  00 00 00 44 00 00 00 47 f7                        ...D...G.
+
+No.     Time           Source                Destination           Protocol Length Info
+ 103384 24.389730      host                  1.2.3                 USB      27     URB_BULK in
+
+Frame 103384: Packet, 27 bytes on wire (216 bits), 27 bytes captured (216 bits) on interface \\.\USBPcap1, id 0
+USB URB
+
+24.389730
+0000  1b 00 60 25 ee e4 0f b5 ff ff 00 00 00 00 09 00   ..`%............
+0010  00 01 00 02 00 83 03 00 00 00 00                  ...........
