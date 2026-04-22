@@ -4,12 +4,27 @@ import os
 import socket
 import math
 import importlib
+import json
+import base64
+
+# Database degli effetti vocali catturati (Studio Signature)
+VOCAL_DB = {}
+try:
+    if os.path.exists('vocal_db.json'):
+        with open('vocal_db.json', 'r') as f:
+            VOCAL_DB = json.load(f)
+            print(f"[OK] Caricati {len(VOCAL_DB)} effetti vocali dal database.")
+except Exception as e:
+    print(f"[ERRORE] Impossibile caricare vocal_db.json: {e}")
 
 HOST = '127.0.0.1'
 PORT = 65432
 
 PORT_NAME = "M-Game RGB Dual"
 OUTPORT = None
+
+# PRODUCT CONFIGURATION (Use 0x42 if identifying as RGB Dual, 0x43 for some Solo firmwares)
+PRODUCT_ID = 0x42
 
 # =====================================================================
 # CORE COMMUNICATION FUNCTIONS
@@ -42,14 +57,15 @@ def set_active_bank(bank_index):
     save_bank_state(CURRENT_BANK)
     print(f"[BANK] Active bank saved and set to: {CURRENT_BANK + 1}")
 
-def invia_messaggio_sysex(data_array, descrizione):
+def invia_messaggio_sysex(data_array, descrizione, silente=False):
     """Sends the MIDI SysEx packet to the Server over UDP."""
     pacchetto_completo = [0xF0] + data_array + [0xF7]
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             s.sendto(bytes(pacchetto_completo), (HOST, PORT))
-            print(f"[OK] {descrizione}")
-            time.sleep(0.01)
+            if not silente:
+                print(f"[OK] {descrizione}")
+            time.sleep(0.005) # Reduced sleep for faster updates
     except Exception as e:
         print(f"[ERROR] Is the Server running? {e}")
 
@@ -64,7 +80,7 @@ def calcola_checksum_7bit(data_list):
 
 def imposta_led_fisso(id_led, nome, colore, lum=52):
     """Sets a static color on single-LED components (Logo, Text labels, Icons)."""
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_led, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, colore, 0x00, 0x00, 0x00, lum, 0x00, 0x00, 0x00]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x03, 0x00, id_led, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, colore, 0x00, 0x00, 0x00, lum, 0x00, 0x00, 0x00]
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} -> {colore}")
 
 def imposta_testo_animato(id_led, nome, modalita, param1, param2=0x00, param3=0x00, param4=0x00):
@@ -87,7 +103,7 @@ def imposta_testo_animato(id_led, nome, modalita, param1, param2=0x00, param3=0x
         colori[0] = 0x4D if alta_lum else 0x34
         lum_byte = 0x7F
         
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_led, 0x03, 0x01, mod_byte, 0x00, 0x00, 0x00]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x03, 0x00, id_led, 0x03, 0x01, mod_byte, 0x00, 0x00, 0x00]
     data_base += colori
     data_base += [lum_byte, 0x00, 0x00, 0x00]
     
@@ -95,7 +111,7 @@ def imposta_testo_animato(id_led, nome, modalita, param1, param2=0x00, param3=0x
 
 def imposta_strisce_led(id_striscia, colore):
     """Sets lateral LED strips (ID 0x07 Left, 0x08 Right). Uses the 26-byte rule (10 zones)."""
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x04, 0x00, id_striscia, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x04, 0x00, id_striscia, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00]
     data_base += [colore] * 10 + [0x00, 0x00]
     checksum = calcola_checksum_7bit(data_base)
     nome = "Strip LEFT" if id_striscia == 0x07 else "Strip RIGHT"
@@ -104,17 +120,119 @@ def imposta_strisce_led(id_striscia, colore):
 def imposta_fader_o_knob(id_comp, nome, indice_colore, is_knob=False):
     """Manages color for faders and the main knob."""
     stato_finale = 0x05 if is_knob else id_comp
-    data_base = [0x00,0x01,0x05,0x42,0x00,0x04,0x00,id_comp,0x01,0x01,0x04,0x00,0x00,stato_finale,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,0x00,0x00]
+    data_base = [0x00,0x01,0x05,PRODUCT_ID,0x00,0x04,0x00,id_comp,0x01,0x01,0x04,0x00,0x00,stato_finale,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,indice_colore,0x00,0x00]
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} -> {indice_colore}")
 
 # =====================================================================
 # MUTE / CENSOR BUTTON FUNCTIONS
 # =====================================================================
 
+def set_knob_modality_visuals(mode):
+    """Updates the FX Param button LED and Main Knob ring to reflect the current mode."""
+    # Main Knob LED ID (0x05) - Ring around the knob
+    id_knob = 0x05
+
+    if mode == "fx":
+        # M-Game Solo: Toggle Button 0x0A logic
+        imposta_funzione_knob_solo("fx")
+        # Update knob ring color (Red)
+        imposta_fader_o_knob(id_knob, "Main Knob (FX MODE)", 52, True)
+    else:
+        # M-Game Solo: Toggle Button 0x0A logic
+        imposta_funzione_knob_solo("volume")
+        # Update knob ring color (Blue)
+        imposta_fader_o_knob(id_knob, "Main Knob (VOL MODE)", 68, True)
+
+def imposta_volume_master_solo(val):
+    """Sets the hardware volume for Main Out (Sink 0x04) on M-Game Solo."""
+    # Structure: [Length 01, Src 0A (Knob), Snk 04 (Main Out), Typ 01 (Vol), P1 00, P2 Val, ...]
+    header = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00]
+    payload = [0x01, 0x0A, 0x04, 0x01, 0x00, val, 0x00, 0x00, 0x00]
+    full = header + payload
+    checksum = calcola_checksum_7bit(full)
+    invia_messaggio_sysex(full + [checksum], f"Master Volume -> {val}", silente=True)
+
+def imposta_funzione_knob_solo(mode):
+    """Specific M-Game Solo sequence for switching knob mode (Source 0x0A)."""
+    # Header: [F0] 00 01 05 42 00
+    # Command: [Length 01, Src 0A, Snk 06, Typ 02, P1 00, P2 (0/1), P3 00, P4 00, P5 00]
+    
+    def _send_solo_btn(val):
+        header = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00]
+        # Using Src 0A (FX Param) and Snk 06 (Host Sync)
+        payload = [0x01, 0x0A, 0x06, 0x02, 0x00, val, 0x00, 0x00, 0x00]
+        full = header + payload
+        checksum = calcola_checksum_7bit(full)
+        invia_messaggio_sysex(full + [checksum], f"Solo FX Button -> {val}", silente=True)
+
+    if mode == "fx":
+        # Double packet sequence: OFF then ON
+        _send_solo_btn(0x00)
+        time.sleep(0.01)
+        _send_solo_btn(0x01)
+    else:
+        # Double packet sequence: ON then OFF (to revert to Volume mode)
+        _send_solo_btn(0x01)
+        time.sleep(0.01)
+        _send_solo_btn(0x00)
+
 def _invia_comando_mute_base(id_tasto, nome, col_attivo, col_mutato):
     """Internal function used by Mute functions to send the SysEx packet."""
-    data_base = [0x00,0x01,0x05,0x42,0x00,0x03,0x00,id_tasto,0x03,0x01,0x00,0x00,0x00,0x00,col_mutato,0x00,0x00,0x00,col_attivo,0x00,0x00,0x00]
+    # Updated to 0x43 for M-Game Solo
+    data_base = [0x00,0x01,0x05,PRODUCT_ID,0x00,0x03,0x00,id_tasto,0x03,0x01,0x00,0x00,0x00,0x00,col_mutato,0x00,0x00,0x00,col_attivo,0x00,0x00,0x00]
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} configurato")
+
+def imposta_tasto_fx_param_led(
+    mode_inactive,
+    inactive_p1,
+    inactive_p2,
+    inactive_p3,
+    inactive_p4,
+    mode_active,
+    active_p1,
+    active_p2,
+    active_p3,
+    active_p4,
+):
+    """
+    FX PARAM button LED (RGB Dual).
+
+    Captured frames confirm this uses the 22-byte "button" packet:
+    [.. 0x03 0x01, mod, 00 00 00, inactive(4 bytes), active(4 bytes), 00 00 00, checksum]
+
+    Current confirmed modes from captures:
+    - solid: mod=0x00, inactive[0]=color, active[0]=color
+    - rainbow: mod=0x02, inactive[0]=0x34 (low) or 0x4D (high); active is still a solid color
+    """
+    FX_PARAM_ID = 0x00
+
+    def parse_state(mod, p1, p2, p3, p4):
+        if mod == "solid":
+            return 0x00, [int(p1), 0x00, 0x00, 0x00]
+        if mod == "rainbow":
+            # p1 is "high brightness" flag
+            lum = 0x4D if str(p1).lower() in ["true", "1", "t", "high"] else 0x34
+            return 0x02, [lum, 0x00, 0x00, 0x00]
+        # Fallback to solid
+        return 0x00, [int(p1) if str(p1).strip() else 0, 0x00, 0x00, 0x00]
+
+    # The protocol only carries ONE mod byte; captures show it being used for the inactive state.
+    mod_byte, inactive_arr = parse_state(mode_inactive, inactive_p1, inactive_p2, inactive_p3, inactive_p4)
+    _, active_arr = parse_state(mode_active, active_p1, active_p2, active_p3, active_p4)
+
+    data_base = [
+        0x00, 0x01, 0x05, PRODUCT_ID, 0x00,
+        0x03, 0x00, FX_PARAM_ID, 0x03, 0x01,
+        mod_byte, 0x00, 0x00, 0x00,
+    ]
+    data_base += inactive_arr
+    data_base += active_arr
+    data_base += [0x00, 0x00, 0x00]
+
+    invia_messaggio_sysex(
+        data_base + [calcola_checksum_7bit(data_base)],
+        f"FX Param LED -> inactive:{mode_inactive} active:{mode_active}",
+    )
 
 def imposta_tasto_mute_dinamico(id_tasto, nome, mode_off, off_p1, off_p2, off_p3, off_p4, mode_on, on_p1, on_p2, on_p3, on_p4):
     def parse_mode(mod, p1, p2, p3, p4):
@@ -144,7 +262,7 @@ def imposta_tasto_mute_dinamico(id_tasto, nome, mode_off, off_p1, off_p2, off_p3
         elif id_tasto == 9:  # Voice FX 2
             target_id = 0x15
 
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, target_id, 0x03, 0x01, byte_mod_off, 0x00, byte_mod_on, bank_byte]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x03, 0x00, target_id, 0x03, 0x01, byte_mod_off, 0x00, byte_mod_on, bank_byte]
     data_base += arr_off + arr_on
     
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"{nome} (Atomic Sync - Bank {CURRENT_BANK + 1})")
@@ -206,7 +324,7 @@ def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_u
     def build_25byte_packet(m1, m2, arr1, arr2):
         # 25-byte structure confirmed from reassembled USB messages
         # [Vend_4, Zero_1, Target_3, Cmd_2, Mod_4, Col1_4, Col2_4, Checksum_1]
-        d = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01]
+        d = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x03, 0x00, id_base, 0x03, 0x01]
         d += [m1, 0x00, m2, 0x00] # Params/Modifiers
         d += arr1 # Color 1 (4 bytes)
         d += arr2 # Color 2 (4 bytes)
@@ -226,27 +344,27 @@ def imposta_tasto_sampler_dinamico(num_sample, nome, mode_un, p1_un, p2_un, p3_u
 
 def imposta_mic_indicator_solid(colore, id_slider=0):
     link = id_slider if id_slider <= 5 else 0
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x00, 0x00, 0x00, link] 
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x00, 0x00, 0x00, link] 
     data_base += [colore] * 10 + [0x00, 0x00]
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"Indicator Solid ({id_slider}) -> {colore}")
 
 def imposta_mic_indicator_custom(lista_10_colori, id_slider=0):
     link = id_slider if id_slider <= 5 else 0
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x00, 0x00, 0x00, link] 
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x00, 0x00, 0x00, link] 
     data_base += lista_10_colori + [0x00, 0x00]
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"Indicator Custom Array ({id_slider})")
 
 def imposta_mic_indicator_rainbow(alta_lum=False, id_slider=0):
     lum = 0x4D if alta_lum else 0x34
     link = id_slider if id_slider <= 5 else 0
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x03, 0x00, 0x14, link, lum]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x03, 0x00, 0x14, link, lum]
     data_base += [0x00] * 11
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"Indicator Rainbow ({id_slider})")
 
 def imposta_mic_indicator_pulse(colori, id_slider=0):
     num_colori = len(colori)
     link = id_slider if id_slider <= 5 else 0
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x01, 0x00, 0x14, link]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x01, 0x00, 0x14, link]
     data_base += colori
     data_base += [0x00] * (12 - num_colori) 
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"Indicator Pulse ({id_slider}, {num_colori} col)")
@@ -254,7 +372,7 @@ def imposta_mic_indicator_pulse(colori, id_slider=0):
 def imposta_mic_indicator_chasing(colori, id_slider=0):
     num_colori = len(colori)
     link = id_slider if id_slider <= 5 else 0
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x02, 0x00, 0x00, link]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x02, 0x00, 0x00, link]
     data_base += colori
     data_base += [0x00] * (12 - num_colori) 
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"Indicator Chasing ({id_slider}, {num_colori} col)")
@@ -269,7 +387,7 @@ def _invia_fader_base(modalita, byte12, nome_modalita, colori, colore_picco, col
         colori = colori[:10]
         
     link = id_slider if id_slider <= 5 else 0
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, modalita, 0x00, byte12, link]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, modalita, 0x00, byte12, link]
     data_base += colori + [colore_background, colore_picco]
     
     checksum = calcola_checksum_7bit(data_base)
@@ -287,7 +405,7 @@ def imposta_mic_indicator_chasing_fader(colori, colore_picco=0x00, colore_backgr
 def imposta_mic_indicator_rainbow_fader(alta_lum=False, id_slider=0):
     lum = 0x4D if alta_lum else 0x34
     link = id_slider if id_slider <= 5 else 0
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x07, 0x00, 0x14, link, lum]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x07, 0x00, 0x14, link, lum]
     data_base += [0x00] * 11
     checksum = calcola_checksum_7bit(data_base)
     invia_messaggio_sysex(data_base + [checksum], f"Indicator Rainbow Fader ({id_slider})")
@@ -300,7 +418,7 @@ def imposta_mic_indicator_vu_meter(colori, colore_picco=0x00, id_slider=0):
         return
 
     link = id_slider if id_slider <= 5 else 0
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x38, 0x0D, 0x1E, link]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x04, 0x00, id_slider, 0x01, 0x01, 0x38, 0x0D, 0x1E, link]
     data_base += colori + [colore_picco, 0x00]
     
     checksum = calcola_checksum_7bit(data_base)
@@ -312,7 +430,7 @@ def imposta_numero_bank(numero, col_inactive, col_active):
     Uses ID 0x17 for number 1 and 0x18 for number 2.
     """
     id_led = 0x17 if int(numero) == 1 else 0x18
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_led, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, col_inactive, 0x00, 0x00, 0x00, col_active, 0x00, 0x00, 0x00]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x03, 0x00, id_led, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, col_inactive, 0x00, 0x00, 0x00, col_active, 0x00, 0x00, 0x00]
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], f"Numero Bank {numero} configurato")
     
 def imposta_tasto_voice_fx_2(col_unassigned, col_inactive, col_active):
@@ -323,10 +441,10 @@ def imposta_tasto_voice_fx_2(col_unassigned, col_inactive, col_active):
     id_base = 0x09
     id_active = 0x0F
 
-    data_base = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, col_unassigned, 0x00, 0x00, 0x00, col_inactive, 0x00, 0x00, 0x00]
+    data_base = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x03, 0x00, id_base, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, col_unassigned, 0x00, 0x00, 0x00, col_inactive, 0x00, 0x00, 0x00]
     invia_messaggio_sysex(data_base + [calcola_checksum_7bit(data_base)], "Voice FX 2 (Unassigned / Inactive)")
 
-    data_active = [0x00, 0x01, 0x05, 0x42, 0x00, 0x03, 0x00, id_active, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00, col_active, 0x00, 0x00, 0x00]
+    data_active = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x03, 0x00, id_active, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00, col_active, 0x00, 0x00, 0x00]
     invia_messaggio_sysex(data_active + [calcola_checksum_7bit(data_active)], "Voice FX 2 (Active)")
 
 # =====================================================================
@@ -428,7 +546,7 @@ def imposta_noise_gate(db):
 def imposta_de_esser(val):
     val = max(0, min(127, int(val)))
     data = [
-        0x00, 0x01, 0x05, 0x42, 0x00, 0x07, 0x00, 0x00,
+        0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x07, 0x00, 0x00,
         0x09, 0x41, 0x01, 0x73, 0x01, 0x00, 0x40, 
         0x07, 0x55, 0x00, 0x01, 0x73, 0x02, 0x00, 
         0x40, 0x07, 0x4e, 0x00, 0x01, 0x07, val, 
@@ -442,7 +560,7 @@ def imposta_compressor(attivo, amount):
     val = max(0, min(127, int(amount)))
     
     # Byte 11 controls the "real" % compression, replicate on byte 12 as tested with low values
-    data = [0x00, 0x01, 0x05, 0x42, 0x00, 0x02, 0x00, 0x00, 
+    data = [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x02, 0x00, 0x00, 
             0x06, 0x41, stato, val, val, 0x57, 0x02, 0x04, 0x00, 0x00]
     invia_messaggio_sysex(data + [calcola_checksum_7bit(data)], f"Compressor: {'ON' if attivo else 'OFF'} ({val})")
 
@@ -613,6 +731,126 @@ def main():
             elif scelta == '21': imposta_noise_gate(int(input("Gate dB: ")))
             elif scelta == '0': sys.exit(0)
         except Exception as e: print(f"Errore: {e}")
+
+import base64
+
+# =====================================================================
+# VOICE EFFECTS ENGINE
+# =====================================================================
+
+VOICE_FX_TEMPLATE = {
+    0x00: [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x10, 0x00, 0x00, 0x03, 0x50, 0x00, 0x00, 0x00, 0x41, 0x5a, 0x00, 0x10, 0x00, 0x01, 0x00, 0x00, 0x41, 0x19, 0x19, 0x34, 0x00, 0x02, 0x00, 0x00, 0x41, 0x66, 0x00, 0x34, 0x10, 0x03, 0x00, 0x00, 0x41, 0x05, 0x00, 0x20, 0x00, 0x04, 0x00, 0x00, 0x41, 0x53, 0x00, 0x34, 0x00, 0x05, 0x00, 0x00, 0x41, 0x00, 0x00, 0x20, 0x00, 0x06, 0x00, 0x00, 0x41, 0x3f, 0x00, 0x34, 0x00, 0x07, 0x00, 0x00, 0x41, 0x00, 0x00, 0x20, 0x00, 0x00],
+    0x10: [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x10, 0x10, 0x00, 0x03, 0x50, 0x08, 0x00, 0x00, 0x41, 0x3f, 0x00, 0x34, 0x00, 0x09, 0x00, 0x00, 0x41, 0x00, 0x00, 0x20, 0x00, 0x0a, 0x00, 0x00, 0x41, 0x3f, 0x00, 0x34, 0x00, 0x00, 0x00, 0x04, 0x41, 0x1e, 0x00, 0x00, 0x3f, 0x00, 0x00, 0x07, 0x41, 0x01, 0x7f, 0x0b, 0x69, 0x01, 0x00, 0x07, 0x41, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x07, 0x41, 0x38, 0x0c, 0x7f, 0x7f, 0x03, 0x00, 0x07, 0x41, 0x00, 0x00, 0x00, 0x00, 0x00],
+    0x20: [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x10, 0x20, 0x00, 0x03, 0x50, 0x04, 0x00, 0x07, 0x41, 0x02, 0x46, 0x00, 0x1d, 0x05, 0x00, 0x07, 0x41, 0x02, 0x5d, 0x50, 0x4a, 0x00, 0x00, 0x08, 0x41, 0x00, 0x67, 0x73, 0x01, 0x00, 0x03, 0x04, 0x01, 0x02, 0x00, 0x00, 0x41, 0x01, 0x03, 0x04, 0x01, 0x7f, 0x00, 0x00, 0x00, 0x02, 0x03, 0x04, 0x01, 0x59, 0x00, 0x00, 0x00, 0x03, 0x03, 0x04, 0x01, 0x6d, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4e, 0x41, 0x4d, 0x45, 0x00],
+    0x30: [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x10, 0x30, 0x00, 0x03, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
+    0x40: [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x10, 0x40, 0x00, 0x03, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
+    0x50: [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x10, 0x50, 0x00, 0x03, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
+    0x60: [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x10, 0x60, 0x00, 0x03, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
+    0x70: [0x00, 0x01, 0x05, PRODUCT_ID, 0x00, 0x10, 0x70, 0x00, 0x03, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]
+}
+
+def interpol(val, min_hex, max_hex):
+    # val is 0-100
+    val = max(0, min(100, val))
+    return int(min_hex + (max_hex - min_hex) * (val / 100.0))
+
+def costruisci_payload_effetti(preset_name,
+                        vocal_on, vocal_dial, vocal_id,
+                        dist_on, dist_dial, dist_id,
+                        chorus_on, chorus_dial, chorus_id,
+                        reverb_on, reverb_dial, reverb_id):
+    
+    # Se l'utente ha selezionato un effetto mappato nel DB, usiamo quello come base
+    if vocal_id in VOCAL_DB:
+        pacchetti_raw = VOCAL_DB[vocal_id]
+        # Convertiamo le chiavi da stringa "00" a intero 0x00
+        pacchetti = {int(k, 16): list(v) for k, v in pacchetti_raw.items()}
+    else:
+        pacchetti = {k: list(v) for k, v in VOICE_FX_TEMPLATE.items()}
+        # Se non è nel DB, vocal_id potrebbe essere un numero
+        try:
+            pacchetti[0x00][18] = int(vocal_id)
+        except:
+            pass
+    
+    # Enforce PRODUCT_ID for Solo (0x43) even if DB says 0x42
+    for k in pacchetti:
+        pacchetti[k][3] = PRODUCT_ID
+        
+    # Override: Nome Preset
+    b64_name = base64.b64encode(preset_name.encode('utf-8')).decode('ascii')
+    for i in range(len(b64_name)):
+        if 10 + i < 74: 
+            pacchetti[0x30][10 + i] = ord(b64_name[i])
+    
+    # Override: Toggles e Intensità
+    # Nota: Usiamo gli stessi offset di prima, ma sopra la base "Studio"
+    pacchetti[0x00][14] = 0x5b if vocal_on else 0x5a
+    pacchetti[0x00][30] = interpol(vocal_dial, 0x59, 0x6d)
+    
+    # Distortion (se non mappato nel DB specifico per distorsione, usiamo ID generico)
+    # pacchetti[0x10][39] = dist_id  # Commentato per ora se usiamo signatures globali
+    dist_val = interpol(dist_dial, 0x00, 0x1e)
+    pacchetti[0x10][38] = (dist_val << 1) | (1 if dist_on else 0)
+    
+    # Chorus
+    pacchetti[0x20][14] = 0x03 if chorus_on else 0x02
+    pacchetti[0x20][31] = interpol(chorus_dial, 0x5f, 0x6d)
+    
+    # Reverb
+    pacchetti[0x20][30] = interpol(reverb_dial, 0x5a, 0x69) if reverb_on else 0x00
+        
+    for k in sorted(pacchetti.keys()):
+        data = pacchetti[k][:74] 
+        pacchetti[k][74] = calcola_checksum_7bit(data)
+        
+    return pacchetti
+
+def invia_voice_effects(preset_name,
+                        vocal_on, vocal_dial, vocal_id,
+                        dist_on, dist_dial, dist_id,
+                        chorus_on, chorus_dial, chorus_id,
+                        reverb_on, reverb_dial, reverb_id,
+                        quick_update=False, segments=None):
+    
+    # Se quick_update è attivo, saltiamo il refresh OFF/ON e inviamo solo i segmenti richiesti
+    if quick_update:
+        pacchetti = costruisci_payload_effetti(preset_name,
+                            vocal_on, vocal_dial, vocal_id,
+                            dist_on, dist_dial, dist_id,
+                            chorus_on, chorus_dial, chorus_id,
+                            reverb_on, reverb_dial, reverb_id)
+        
+        target_keys = segments if segments is not None else sorted(pacchetti.keys())
+        for k in target_keys:
+            if k in pacchetti:
+                invia_messaggio_sysex(pacchetti[k], f"Voice FX QUICK {k:02x}", silente=True)
+        return
+
+    # HARDWARE REFRESH FIX:
+    # Il mixer non ricarica i parametri audio interni a meno che l'effetto non venga "ciclato".
+    # Inviamo prima un pacchetto "Tutto Spento" per forzare lo scaricamento dalla memoria...
+    pacchetti_spenti = costruisci_payload_effetti(preset_name,
+                        False, vocal_dial, vocal_id,
+                        False, dist_dial, dist_id,
+                        False, chorus_dial, chorus_id,
+                        False, reverb_dial, reverb_id)
+    
+    for k in sorted(pacchetti_spenti.keys()):
+        invia_messaggio_sysex(pacchetti_spenti[k], f"Voice FX OFF {k:02x}")
+        
+    # Aspettiamo 50ms per dare il tempo al mixer di staccare i relay/DSP interni
+    time.sleep(0.05)
+    
+    # ...e poi inviamo il pacchetto vero con i toggle ON richiesti dall'utente!
+    pacchetti_finali = costruisci_payload_effetti(preset_name,
+                        vocal_on, vocal_dial, vocal_id,
+                        dist_on, dist_dial, dist_id,
+                        chorus_on, chorus_dial, chorus_id,
+                        reverb_on, reverb_dial, reverb_id)
+                        
+    for k in sorted(pacchetti_finali.keys()):
+        invia_messaggio_sysex(pacchetti_finali[k], f"Voice FX FINAL {k:02x}")
 
 if __name__ == "__main__":
     main()

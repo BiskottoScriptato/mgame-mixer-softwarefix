@@ -135,7 +135,7 @@
 </head>
 
 <body
-    onload="updateMicUI(); updateExtraUI(); updateTxtMicUI(); updateLogoAudioUI(); updateMuteMicUI('off'); updateMuteMicUI('on'); updateCensuraUI('off'); updateCensuraUI('on'); updateStripUI('sx'); updateStripUI('dx'); updateVfx1UI('off'); updateVfx1UI('on'); updateBankUI('off'); updateBankUI('on'); updateVfx2UI('off'); updateVfx2UI('on'); updateSampUI(1, 'un'); updateSampUI(1, 'in'); updateSampUI(1, 'ac'); updateSampUI(2, 'un'); updateSampUI(2, 'in'); updateSampUI(2, 'ac'); updateSampUI(3, 'un'); updateSampUI(3, 'in'); updateSampUI(3, 'ac'); updateSampUI(4, 'un'); updateSampUI(4, 'in'); updateSampUI(4, 'ac'); updateSampUI(5, 'un'); updateSampUI(5, 'in'); updateSampUI(5, 'ac'); updateKnobUI(); updateLogoUI('off'); updateContentUI('off'); updateIconUI('game'); updateIconUI('chat'); updateIconUI('samp'); updateIconUI('sys'); updateMslUI('off'); updateMslUI('on'); updateNbnkUI('off'); updateNbnkUI('on');">
+    onload="updateMicUI(); updateExtraUI(); updateTxtMicUI(); updateLogoAudioUI(); updateMuteMicUI('off'); updateMuteMicUI('on'); updateCensuraUI('off'); updateCensuraUI('on'); updateStripUI('sx'); updateStripUI('dx'); updateVfx1UI('off'); updateVfx1UI('on'); updateFxParamUI('off'); updateFxParamUI('on'); updateBankUI('off'); updateBankUI('on'); updateVfx2UI('off'); updateVfx2UI('on'); updateSampUI(1, 'un'); updateSampUI(1, 'in'); updateSampUI(1, 'ac'); updateSampUI(2, 'un'); updateSampUI(2, 'in'); updateSampUI(2, 'ac'); updateSampUI(3, 'un'); updateSampUI(3, 'in'); updateSampUI(3, 'ac'); updateSampUI(4, 'un'); updateSampUI(4, 'in'); updateSampUI(4, 'ac'); updateSampUI(5, 'un'); updateSampUI(5, 'in'); updateSampUI(5, 'ac'); updateKnobUI(); updateLogoUI('off'); updateContentUI('off'); updateIconUI('game'); updateIconUI('chat'); updateIconUI('samp'); updateIconUI('sys'); updateMslUI('off'); updateMslUI('on'); updateNbnkUI('off'); updateNbnkUI('on');">
 
     <script>
         const M_COLORS = ["#000000", "#000000", "#7f0000", "#7f1f00", "#7f3f00", "#7f5f00", "#7f7f00", "#5f7f00", "#3f7f00", "#1f7f00", "#007f00", "#007f1f", "#007f3f", "#007f5f", "#007f7f", "#005f7f", "#003f7f", "#001f7f", "#00007f", "#1f007f", "#3f007f", "#5f007f", "#7f007f", "#7f005f", "#7f003f", "#7f001f", "#3f3f3f", "#cc0000", "#cc3300", "#cc6600", "#cc9900", "#cbcc00", "#99cc00", "#66cc00", "#32cc00", "#00cc00", "#00cc33", "#00cc66", "#00cc99", "#00cbcc", "#0099cc", "#0065cc", "#0032cc", "#0000cc", "#3300cc", "#6500cc", "#9900cc", "#cc00cb", "#cc0098", "#cc0066", "#cc0032", "#666666", "#ff0000", "#ff3f00", "#ff7f00", "#ffbf00", "#feff00", "#bfff00", "#7fff00", "#3fff00", "#00ff00", "#00ff3f", "#00ff7f", "#00ffbf", "#00feff", "#00bfff", "#007fff", "#003fff", "#0000ff", "#3f00ff", "#7f00ff", "#bf00ff", "#ff00fe", "#ff00bf", "#ff007f", "#ff003f", "#7f7f7f", "#ff6565", "#ff8c65", "#ffb265", "#ffd865", "#feff65", "#d8ff65", "#b2ff65", "#8cff65", "#65ff65", "#65ff8c", "#65ffb2", "#65ffd8", "#65feff", "#65d8ff", "#65b2ff", "#658cff", "#6565ff", "#8c65ff", "#b265ff", "#d865ff", "#ff65fe", "#ff65d8", "#ff65b2", "#ff658c", "#b2b2b2", "#ffb2b2", "#ffc5b2", "#ffd8b2", "#ffebb2", "#ffffb2", "#ebffb2", "#d8ffb2", "#c5ffb2", "#b2ffb2", "#b2ffc5", "#b2ffd8", "#b2ffeb", "#b2ffff", "#b2ebff", "#b2d8ff", "#b2c5ff", "#b2b2ff", "#c5b2ff", "#d8b2ff", "#ebb2ff", "#ffb2ff", "#ffb2eb", "#ffb2d8", "#d8d8d8", "#ffffff", "#ffffff"];
@@ -152,6 +152,7 @@
                 close_btn: "CHIUDI",
                 nav_led: "🎛️ Modifica LED",
                 nav_dsp: "🎚️ Audio DSP",
+                nav_fx: "✨ Effects",
                 led_page_h1: "🎛️ Modifica Hardware & LED",
                 col_left_h2: "⬅️ Sinistra",
                 mic_channel_h3: "🎤 Canale MIC",
@@ -161,7 +162,12 @@
                 mode_solid: "Solido",
                 mode_pulse: "Pulsante",
                 mode_rainbow: "Rainbow",
-                mode_chasing: "Chasing Fader",
+                mode_chasing: "Chasing",
+                mode_fader: "Fader",
+                mode_gradient_fader: "Gradient Fader",
+                mode_pulse_fader: "Pulse Fader",
+                mode_chasing_fader: "Chasing Fader",
+                mode_rainbow_fader: "Rainbow Fader",
                 strip_title: "STRISCIA LATERALE",
                 strip_sx: "STRISCIA SX",
                 strip_dx: "STRISCIA DX",
@@ -222,6 +228,12 @@
                 color_1_label: "Colore 1",
                 color_2_label: "Colore 2",
                 fader_follow_label: "Segue il Fader Fisico (Se tolto riempie tutta la striscia)"
+                ,
+                fx_page_h1: "✨ Effetti Voice FX",
+                fx_select_label: "Seleziona Effetto",
+                fx_tab_on: "Voice FX Tab ON",
+                fx_tab_off: "Voice FX Tab OFF",
+                fx_wider_mild: "Wider Mild (Attiva + Salva)"
             },
             en: {
                 settings_title: "SETTINGS",
@@ -229,6 +241,7 @@
                 close_btn: "CLOSE",
                 nav_led: "🎛️ Edit LEDs",
                 nav_dsp: "🎚️ Audio DSP",
+                nav_fx: "✨ Effects",
                 led_page_h1: "🎛️ Hardware & LED Editing",
                 col_left_h2: "⬅️ Left",
                 mic_channel_h3: "🎤 MIC Channel",
@@ -238,7 +251,12 @@
                 mode_solid: "Solid",
                 mode_pulse: "Pulse",
                 mode_rainbow: "Rainbow",
-                mode_chasing: "Chasing Fader",
+                mode_chasing: "Chasing",
+                mode_fader: "Fader",
+                mode_gradient_fader: "Gradient Fader",
+                mode_pulse_fader: "Pulse Fader",
+                mode_chasing_fader: "Chasing Fader",
+                mode_rainbow_fader: "Rainbow Fader",
                 strip_title: "SIDE STRIP",
                 strip_sx: "LEFT STRIP",
                 strip_dx: "RIGHT STRIP",
@@ -299,6 +317,12 @@
                 color_1_label: "Color 1",
                 color_2_label: "Color 2",
                 fader_follow_label: "Follows Physical Fader (If unchecked fills the strip)"
+                ,
+                fx_page_h1: "✨ Voice FX Effects",
+                fx_select_label: "Select Effect",
+                fx_tab_on: "Voice FX Tab ON",
+                fx_tab_off: "Voice FX Tab OFF",
+                fx_wider_mild: "Wider Mild (Enable + Save)"
             }
         };
 
@@ -839,6 +863,39 @@
             container.innerHTML = html;
         }
 
+        function updateFxParamUI(state) {
+            let mode = document.getElementById(state === 'off' ? 'fxp_off_mode' : 'fxp_on_mode').value;
+            let container = document.getElementById(state === 'off' ? 'fxp_off_inputs' : 'fxp_on_inputs');
+            let prefix = state === 'off' ? 'fxpoff_' : 'fxpon_';
+
+            let html = '';
+            if (mode === 'solid') {
+                html = buildColorPickerHTML(prefix + 'c1', 'single');
+            } else if (mode === 'rainbow') {
+                html = `<select id="${prefix}lum"><option value="false" data-i18n="lum_low">Luminosità Bassa</option><option value="true" data-i18n="lum_high">Luminosità Alta</option></select>`;
+            }
+            container.innerHTML = html;
+        }
+
+        function _getFxParamParams(state) {
+            let mode = document.getElementById(state === 'off' ? 'fxp_off_mode' : 'fxp_on_mode').value;
+            let prefix = state === 'off' ? 'fxpoff_' : 'fxpon_';
+            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
+
+            if (mode === 'solid') {
+                p1 = val(`${prefix}c1`);
+            } else if (mode === 'rainbow') {
+                p1 = document.getElementById(`${prefix}lum`).value === 'true';
+            }
+            return { mode: mode, p1, p2, p3, p4 };
+        }
+
+        function applyFxParam() {
+            let off = _getFxParamParams('off');
+            let on = _getFxParamParams('on');
+            inv('imposta_tasto_fx_param_led', [off.mode, off.p1, off.p2, off.p3, off.p4, on.mode, on.p1, on.p2, on.p3, on.p4]);
+        }
+
         function _getVfx1Params(state) {
             let mode = document.getElementById(state === 'off' ? 'vfx1_off_mode' : 'vfx1_on_mode').value;
             let prefix = state === 'off' ? 'vfx1off_' : 'vfx1on_';
@@ -1185,6 +1242,11 @@
             let boost = parseInt(document.getElementById('mic_boost_slider').value);
             let hpf = parseInt(document.getElementById('hpf_slider').value);
             inv('imposta_mic_dsp', [boost, hpf]);
+        }
+
+        function applyEffectPreset() {
+            const effectId = document.getElementById('fx_effect_select').value;
+            inv('applica_voice_fx_effetto', [effectId]);
         }
 
         function updateEQ() {

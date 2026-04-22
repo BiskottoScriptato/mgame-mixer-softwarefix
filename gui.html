@@ -619,6 +619,7 @@
 <div class="nav-bar">
     <button class="nav-btn active" onclick="switchPage('led-page', this)" data-i18n="nav_led">🎛️ Modifica LED</button>
     <button class="nav-btn" onclick="switchPage('dsp-page', this)" data-i18n="nav_dsp">🎚️ Audio DSP</button>
+    <button class="nav-btn" onclick="switchPage('effects-page', this)" data-i18n="nav_fx">✨ Effects</button>
 
 </div>
 
@@ -831,6 +832,30 @@
                 <button onclick="applyVfx1()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
             </div>
 
+            <div class="card">
+                <label>FX Param</label>
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                    <span style="color:#00e5ff; font-weight:bold;" data-i18n="state_inactive">Stato OFF (Inattivo)</span>
+                </div>
+                <select id="fxp_off_mode" onchange="updateFxParamUI('off')"
+                    style="font-weight:bold; color:#ccc; margin-bottom:5px;">
+                    <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                    <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
+                </select>
+                <div id="fxp_off_inputs" class="dynamic-box" style="margin-bottom: 15px;"></div>
+
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                    <span style="color:#ff2a2a; font-weight:bold;" data-i18n="state_active">Stato ON (Attivo)</span>
+                </div>
+                <select id="fxp_on_mode" onchange="updateFxParamUI('on')"
+                    style="font-weight:bold; color:#ccc; margin-bottom:5px;">
+                    <option value="solid" data-i18n="mode_solid">Colore Fisso</option>
+                </select>
+                <div id="fxp_on_inputs" class="dynamic-box"></div>
+
+                <button onclick="applyFxParam()" style="margin-top: 10px;" data-i18n="apply_btn">Applica</button>
+            </div>
+
 
             <div class="card">
                 <label data-i18n="samp_1">Sample 1</label>
@@ -938,6 +963,11 @@
                     <option value="pulse" data-i18n="mode_pulse">Pulse</option>
                     <option value="chasing" data-i18n="mode_chasing">Chasing</option>
                     <option value="rainbow" data-i18n="mode_rainbow">Rainbow Animato</option>
+                    <option value="fader" data-i18n="mode_fader">Fader</option>
+                    <option value="dynamic_gradient" data-i18n="mode_gradient_fader">Gradient Fader</option>
+                    <option value="pulse_fader" data-i18n="mode_pulse_fader">Pulse Fader</option>
+                    <option value="chasing_fader" data-i18n="mode_chasing_fader">Chasing Fader</option>
+                    <option value="rainbow_fader" data-i18n="mode_rainbow_fader">Rainbow Fader</option>
                 </select>
                 <div id="knob_dynamic_inputs" class="dynamic-box">
                 </div>
@@ -1455,6 +1485,127 @@
                 <span style="color: #00e5ff; font-weight: bold; margin-left: 8px;">dB</span>
             </div>
         </div>
+    </div>
+</div>
+<div id="effects-page" class="view-page">
+    <h1 style="margin-bottom:40px; font-size:2.5em; text-align:center;" data-i18n="fx_page_h1">✨ Voice FX Effects</h1>
+    <div class="dsp-grid">
+        
+        <!-- Preset Name -->
+        <div class="dsp-card" style="border-color: #00e5ff55;">
+            <label>Preset Name</label>
+            <input type="text" id="fx_preset_name" value="Custom" onchange="inviaVoiceEffects()">
+        </div>
+
+        <!-- Vocal Processor -->
+        <div class="dsp-card" style="border-color: #00e5ff55;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <label style="margin: 0;">Vocal Processor</label>
+                <label style="margin: 0; color: #fff; font-size: 0.85em; display: flex; align-items: center; cursor: pointer;">
+                    <input type="checkbox" id="vocal_on" checked style="width: auto; margin-right: 5px; margin-bottom: 0;" onchange="inviaVoiceEffects()"> ON/OFF
+                </label>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <label style="font-size: 0.8em; color: #aaa;">Effect ID</label>
+                <select id="vocal_id" onchange="inviaVoiceEffects()" style="width: auto; flex-grow: 1; margin-left: 10px;">
+                    <option value="Monotone">Monotone</option>
+                    <option value="Lock Tune">Lock Tune</option>
+                    <option value="Pitch Correction">Pitch Correction</option>
+                    <option value="Pitch Correct + Vibrato">Pitch Correct + Vibrato</option>
+                    <option value="Sci Fi Villian">Sci Fi Villian</option>
+                    <option value="Alien">Alien</option>
+                    <option value="Robot 1">Robot 1</option>
+                    <option value="Robot 2">Robot 2</option>
+                    <option value="Robot 3">Robot 3</option>
+                    <option value="Hi RPM">Hi RPM</option>
+                    <option value="Wobbley">Wobbley</option>
+                    <option value="Tiny">Tiny</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Child">Child</option>
+                    <option value="Ogre">Ogre</option>
+                    <option value="Squirrel">Squirrel</option>
+                    <option value="Octave Up">Octave Up</option>
+                    <option value="Octave Down">Octave Down</option>
+                    <option value="High Fixed">High Fixed</option>
+                    <option value="Low Fixed">Low Fixed</option>
+                    <option value="Unison">Unison</option>
+                    <option value="Group 1">Group 1</option>
+                    <option value="Group 2">Group 2</option>
+                    <option value="Lock Tune 2">Lock Tune 2</option>
+                    <option value="Harmonies 1">Harmonies 1</option>
+                    <option value="Harmonies 2">Harmonies 2</option>
+                    <option value="Harmonies 3">Harmonies 3</option>
+                    <option value="Smooth Harmonies">Smooth Harmonies</option>
+                    <option value="Low Harmonies">Low Harmonies</option>
+                    <option value="Bent Choir">Bent Choir</option>
+                    <option value="Deep Choir">Deep Choir</option>
+                </select>
+            </div>
+            <div style="margin-top: 10px;">
+                <label style="font-size: 0.8em; color: #aaa;">Intensity (%)</label>
+                <input type="range" id="vocal_dial" min="0" max="100" value="50" oninput="document.getElementById('vocal_dial_val').textContent = this.value + '%'" onchange="inviaVoiceEffects()">
+                <div style="text-align: right; font-family: monospace; color: #00e5ff; font-size: 0.9em;" id="vocal_dial_val">50%</div>
+            </div>
+        </div>
+
+        <!-- Distortion -->
+        <div class="dsp-card" style="border-color: #00e5ff55;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <label style="margin: 0;">Distortion</label>
+                <label style="margin: 0; color: #fff; font-size: 0.85em; display: flex; align-items: center; cursor: pointer;">
+                    <input type="checkbox" id="dist_on" checked style="width: auto; margin-right: 5px; margin-bottom: 0;" onchange="inviaVoiceEffects()"> ON/OFF
+                </label>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <label style="font-size: 0.8em; color: #aaa;">Effect ID</label>
+                <input type="number" id="dist_id" value="0" min="0" max="255" onchange="inviaVoiceEffects()">
+            </div>
+            <div style="margin-top: 10px;">
+                <label style="font-size: 0.8em; color: #aaa;">Intensity (%)</label>
+                <input type="range" id="dist_dial" min="0" max="100" value="50" oninput="document.getElementById('dist_dial_val').textContent = this.value + '%'" onchange="inviaVoiceEffects()">
+                <div style="text-align: right; font-family: monospace; color: #00e5ff; font-size: 0.9em;" id="dist_dial_val">50%</div>
+            </div>
+        </div>
+
+        <!-- Chorus -->
+        <div class="dsp-card" style="border-color: #00e5ff55;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <label style="margin: 0;">Chorus</label>
+                <label style="margin: 0; color: #fff; font-size: 0.85em; display: flex; align-items: center; cursor: pointer;">
+                    <input type="checkbox" id="chorus_on" checked style="width: auto; margin-right: 5px; margin-bottom: 0;" onchange="inviaVoiceEffects()"> ON/OFF
+                </label>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <label style="font-size: 0.8em; color: #aaa;">Effect ID</label>
+                <input type="number" id="chorus_id" value="29" min="0" max="255" onchange="inviaVoiceEffects()">
+            </div>
+            <div style="margin-top: 10px;">
+                <label style="font-size: 0.8em; color: #aaa;">Intensity (%)</label>
+                <input type="range" id="chorus_dial" min="0" max="100" value="50" oninput="document.getElementById('chorus_dial_val').textContent = this.value + '%'" onchange="inviaVoiceEffects()">
+                <div style="text-align: right; font-family: monospace; color: #00e5ff; font-size: 0.9em;" id="chorus_dial_val">50%</div>
+            </div>
+        </div>
+
+        <!-- Reverb & Echo -->
+        <div class="dsp-card" style="border-color: #00e5ff55;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <label style="margin: 0;">Reverb & Echo</label>
+                <label style="margin: 0; color: #fff; font-size: 0.85em; display: flex; align-items: center; cursor: pointer;">
+                    <input type="checkbox" id="reverb_on" checked style="width: auto; margin-right: 5px; margin-bottom: 0;" onchange="inviaVoiceEffects()"> ON/OFF
+                </label>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <label style="font-size: 0.8em; color: #aaa;">Effect ID</label>
+                <input type="number" id="reverb_id" value="0" min="0" max="255" onchange="inviaVoiceEffects()">
+            </div>
+            <div style="margin-top: 10px;">
+                <label style="font-size: 0.8em; color: #aaa;">Intensity (%)</label>
+                <input type="range" id="reverb_dial" min="0" max="100" value="50" oninput="document.getElementById('reverb_dial_val').textContent = this.value + '%'" onchange="inviaVoiceEffects()">
+                <div style="text-align: right; font-family: monospace; color: #00e5ff; font-size: 0.9em;" id="reverb_dial_val">50%</div>
+            </div>
+        </div>
+
     </div>
 </div>
 <script>
@@ -2349,4 +2500,41 @@
         document.querySelectorAll('.custom-select-options.open').forEach(c => c.classList.remove('open'));
         document.querySelectorAll('.custom-select-box.open').forEach(c => c.classList.remove('open'));
     });
+
+    function inviaVoiceEffects() {
+        const payload = {
+            funzione: 'invia_voice_effects',
+            args: [
+                document.getElementById('fx_preset_name').value,
+                document.getElementById('vocal_on').checked,
+                parseInt(document.getElementById('vocal_dial').value),
+                parseInt(document.getElementById('vocal_id').value),
+                
+                document.getElementById('dist_on').checked,
+                parseInt(document.getElementById('dist_dial').value),
+                parseInt(document.getElementById('dist_id').value),
+                
+                document.getElementById('chorus_on').checked,
+                parseInt(document.getElementById('chorus_dial').value),
+                parseInt(document.getElementById('chorus_id').value),
+                
+                document.getElementById('reverb_on').checked,
+                parseInt(document.getElementById('reverb_dial').value),
+                parseInt(document.getElementById('reverb_id').value)
+            ]
+        };
+
+        fetch('/api/comando', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.status !== 'ok') {
+                console.error("Errore nell'invio degli effetti voce:", data.msg);
+            }
+        })
+        .catch(err => console.error("Errore di rete:", err));
+    }
 </script>
