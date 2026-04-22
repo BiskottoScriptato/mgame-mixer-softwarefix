@@ -13,3 +13,8 @@ dist/
 *.spec
 *.exe
 debug/
+
+# Debug captures / protocol reverse-engineering artifacts
+export*
+*.txt
+sniffer*.py
